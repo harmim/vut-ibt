@@ -41,3 +41,11 @@
 - [ ] Kontrolovat, jestli se lock/unlock volá nad stejným zámkem/objektem?
 
 - [ ] Kontrolovat, nad jakými objekty se volají atomické funkce?
+
+- [ ] Vymyslet název mého nástroje.
+
+- [ ] Změnit název souboru `Atomicity.ml/Atomicity.mli/Domain` na něco jako
+  `AtomicityDetector` a vytvořit nějaký soubor `AtomicityAnalysis`, který
+  se bude spouštět po detekční fázi.
+
+- [ ] Zkusit detekční fázi spustit na nějakých existujících programech.
