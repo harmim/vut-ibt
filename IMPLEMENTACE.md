@@ -1,3 +1,12 @@
+# harmim/infer
+
+Moje implementace se nachází v repositáři
+[harmim/infer](https://github.com/harmim/infer/tree/atomicity). Jedná se o
+fork repositáře [facebook/infer](https://github.com/facebook/infer). Mnou
+editované/přidané soubory se nachází ve větvi
+[atomicity](https://github.com/harmim/infer/tree/atomicity), viz
+[diff](https://github.com/facebook/infer/compare/master...harmim:atomicity).
+
 # Instalace
 ```bash
 cd infer
