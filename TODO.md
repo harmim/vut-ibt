@@ -49,3 +49,6 @@
   se bude spouštět po detekční fázi.
 
 - [ ] Zkusit detekční fázi spustit na nějakých existujících programech.
+
+- [ ] Upravit výpis detekční fáze na standardní výstup a udělt výpis atomických
+  sekvencí do nějakého souboru.
