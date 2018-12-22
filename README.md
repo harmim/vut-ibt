@@ -49,6 +49,9 @@
 
 ---
 
+- [TODO list](./TODO.md)
+- [Implementace](./IMPLEMENTACE.md)
+
 ##### Odkazy:
 - [Facebook Infer](https://fbinfer.com)
 - [Facebook Infer GitHub](https://github.com/facebook/infer)
