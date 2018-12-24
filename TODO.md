@@ -10,7 +10,7 @@
   - V `ConcurrencyModeles` modulu je funkce `get_lock`, která zjistí, jestli
     je daná funkce zámek `Lock`, případně jestli zámek ruší `Unlock`. Bohužel
     nefunguje pro C, pouze pro Java a C++ a možná Ojbective-C.
-    - Zkoušel jsem to Java s funkcemi `synchronized` a nefungovalo mi to.
+    - Zkoušel jsem to v Java s funkcemi `synchronized` a nefungovalo mi to.
   - Detekci, jestli se jedná o zamykací funkci můžu v C udělat přímým porovnáním
     názvu funkce, např. porovnáním na název `pthread_mutex_lock`.
 
@@ -44,9 +44,8 @@
 
 - [ ] Vymyslet název mého nástroje.
 
-- [ ] Změnit název souboru `Atomicity.ml/Atomicity.mli/Domain` na něco jako
-  `AtomicityDetector` a vytvořit nějaký soubor `AtomicityAnalysis`, který
-  se bude spouštět po detekční fázi.
+- [ ] Vytvořit nějaký soubor `AtomicityAnalysis`, který se bude spouštět
+  po detekční fázi.
 
 - [ ] Zkusit detekční fázi spustit na nějakých existujících programech.
 
