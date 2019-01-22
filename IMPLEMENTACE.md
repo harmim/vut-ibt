@@ -29,7 +29,7 @@ make
 
 sudo make install
 ```
-Víc viz https://github.com/facebook/infer/blob/master/INSTALL.md.
+Více viz https://github.com/facebook/infer/blob/master/INSTALL.md.
 
 # Překlad zdrojových souborů
 ```bash
@@ -53,6 +53,11 @@ Facebook Infer lze provést parametrem `--atomicity`, případně parametrem
 Př.:
 ```bash
 infer run --atomicity-only -- gcc -c sourc_file.c
+```
+
+Př. ladící režim (generuje HTML výstup a ladící záznamy):
+```bash
+infer run -g --atomicity-only -- gcc -c sourc_file.c
 ```
 
 # Poznámky k návrhu a implementaci
@@ -170,6 +175,11 @@ infer run --atomicity-only -- gcc -c sourc_file.c
          - Zdvojené volnání `a6` `a6` / `a7` `a7` je možno ignorovat.
 
 ### Detekční fáze
+Vypisuje atomické sekvence do souboru `infer-out/atomicity-detection`.
+Při spuštění v ladícím režimu (parametr `-g`) se do souboru
+`infer-out/logs` generují podrobné informace o abstratním stavu a `summary`
+jednotlivých funkcí.
+
 Příklad pro vysvětlení níže uvedených typů a funkcí:
 `f1` (`f1` `f2`) `f1` (`f1` `f3`).
 
@@ -240,3 +250,5 @@ Záznam `summary`:
   - Převod abstraktního stavu na `summary` na konci analýzy funkce. Do
     `atomicitySequences` se uloží všechny atomické sekvence z `finalCalls`.
     Do `allOccurrences` se uloží výskyty všech funkcí z `finalCalls`.
+- `report`
+  - Výpis atomických sekvencí ze `summary` dané funkce do výstupního souboru.

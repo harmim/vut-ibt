@@ -6,41 +6,39 @@
 pthread_mutex_t lock;
 
 
-void f1(void) { printf("f1\n"); }
-void f2(void) { printf("f2\n"); }
-void f3(void) { printf("f3\n"); }
-void f4(void) { printf("f4\n"); }
-void f5(void) { printf("f5\n"); }
+void f1(void) {}
+void f2(void) {}
+void f3(void) {}
+void f4(void) {}
+void f5(void) {}
+
 
 
 void test1(void)
 {
-	while (1)
+	f1(); f1();
+
+	pthread_mutex_lock(&lock);
 	{
-		f1(); f1();
-
-		pthread_mutex_lock(&lock);
-		{
-			f1(); f1(); f2();
-		}
-		pthread_mutex_unlock(&lock);
-
-		f1(); f1();
-
-		pthread_mutex_lock(&lock);
-		{
-			f1(); f3();
-		}
-		pthread_mutex_unlock(&lock);
-
-		f1();
-
-		pthread_mutex_lock(&lock);
-		{
-			f1(); f3(); f3();
-		}
-		pthread_mutex_unlock(&lock);
+		f1(); f1(); f2();
 	}
+	pthread_mutex_unlock(&lock);
+
+	f1(); f1();
+
+	pthread_mutex_lock(&lock);
+	{
+		f1(); f3();
+	}
+	pthread_mutex_unlock(&lock);
+
+	f1();
+
+	pthread_mutex_lock(&lock);
+	{
+		f1(); f3(); f3();
+	}
+	pthread_mutex_unlock(&lock);
 }
 
 
@@ -153,17 +151,37 @@ void test_selection(void)
 }
 
 
+void ff(void) { f1(); f2(); }
+
+
+void test_lock_nested(void)
+{
+	pthread_mutex_lock(&lock);
+	{
+		ff(); f3();
+	}
+	pthread_mutex_unlock(&lock);
+
+	pthread_mutex_lock(&lock);
+	{
+		f4(); f5(); ff();
+	}
+	pthread_mutex_unlock(&lock);
+}
+
+
 int main(void)
 {
-	if (pthread_mutex_init(&lock, NULL)) exit(1);
+	if (pthread_mutex_init(&lock, NULL)) return 1;
 
 	test1();
 	test2();
 	test_not_paired_lock();
 	test_iteration();
 	test_selection();
+	test_lock_nested();
 
 	pthread_mutex_destroy(&lock);
 
-	exit(0);
+	return 0;
 }

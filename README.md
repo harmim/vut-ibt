@@ -58,7 +58,7 @@
 - [OCaml](https://ocaml.org)
 - [Real Wolrd OCaml](https://v1.realworldocaml.org/v1/en/html/index.html)
 - [Abstraktni interpretace - Patrick Cousot intro](https://www.di.ens.fr/~cousot/AI/IntroAbsInt.html)
-- [Facebook Infer lab](https://github.com/facebook/infer/blob/master/infer/src/labs/lab.md)
+- [Facebook Infer lab](https://github.com/facebook/infer/tree/master/infer/src/labs)
 - [Facebook Infer prezentace](https://fbinfer.com/downloads/pldi17-infer-ai-tutorial.pdf)
 - [Facebook Infer INSTALL](https://github.com/facebook/infer/blob/master/INSTALL.md)
 - [Facebook Infer CONTRIBUTING](https://github.com/facebook/infer/blob/master/CONTRIBUTING.md)
