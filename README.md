@@ -1,10 +1,10 @@
 # Bakalářská práce
-### Statická analýza v nástroji Facebook Infer zaměřená na detekci porušení atomičnosti.
+### Statická analýza v nástroji Facebook Infer zaměřená na detekci porušení atomičnosti
 
 ---
 
 # Bachelor's Thesis
-### Static Analysis Using Facebook Infer to Find Atomicity Violations.
+### Static Analysis Using Facebook Infer to Find Atomicity Violations
 
 ---
 
