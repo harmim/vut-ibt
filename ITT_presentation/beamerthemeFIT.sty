@@ -1,0 +1,34 @@
+\ProvidesPackage{beamerthemeFIT}[2019/02/08]
+% Copyright 2007 by Zdenek Vasicek <vasicek AT fit.vutbr.cz>
+% Updated 2019 by Dominik Harmim <harmim6 AT gmail.com>
+
+\mode<presentation>
+
+\newif\ifbeamer@mylogo
+\newif\ifbeamer@nologo
+\newif\ifbeamer@toccir
+\newif\ifbeamer@tocsqr
+\newif\ifbeamer@tocnum
+
+\beamer@mylogofalse
+\beamer@nologotrue
+\beamer@toccirfalse
+\beamer@tocsqrfalse
+\beamer@tocnumfalse
+
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+\DeclareOptionBeamer{mylogo}{\beamer@mylogotrue}
+\DeclareOptionBeamer{nologo}{\beamer@nologofalse}
+\DeclareOptionBeamer{tocdots}{\beamer@toccirtrue}
+\DeclareOptionBeamer{tocsquares}{\beamer@tocsqrtrue}
+\DeclareOptionBeamer{tocnumbers}{\beamer@tocnumtrue}
+
+\ProcessOptionsBeamer
+
+\useinnertheme[shadow=false]{FIT}
+\useoutertheme{FIT}
+\usecolortheme{FIT}
+\usefonttheme{FIT}
+
+\mode
+<all>

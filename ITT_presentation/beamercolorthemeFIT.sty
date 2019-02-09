@@ -1,0 +1,85 @@
+\ProvidesPackage{beamercolorthemeFIT}[2019/02/08]
+% Copyright 2007 by Zdenek Vasicek <vasicek AT fit.vutbr.cz>
+% Updated 2015 by Ales Smrcka <smrcka AT fit.vutbr.cz> wrt
+%   http://www.vutbr.cz/jvs
+% Updated 2019 by Dominik Harmim <harmim6 AT gmail.com>
+
+\mode<presentation>
+
+\definecolor{fitblue}{RGB}{0, 169, 224}
+\definecolor{fitgray}{RGB}{128, 128, 128}
+\definecolor{fitlightgray}{RGB}{229, 229, 229}
+\definecolor{fitdark}{RGB}{0, 123, 163}
+\definecolor{fitred}{RGB}{237, 38, 58}
+\renewcommand{\emph}[1]{{\color{fitdark}#1}}
+\providecommand{\important}[1]{{\color{fitred}#1}}
+
+\setbeamercolor*{structure}{fg=fitblue, bg=white}
+\setbeamercolor{normal text}{fg=black, bg=white}
+
+% TOC
+\setbeamercolor{section in toc}{fg=fitblue, bg=white}
+\setbeamercolor{subsection in toc}{fg=fitgray, bg=white}
+\setbeamercolor{section number projected}{fg=white, bg=fitblue}
+
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=fitgray}
+\setbeamercolor{alerted text}{fg=red}
+
+\setbeamercolor{background canvas}{parent=normal text}
+\setbeamercolor{background}{parent=background canvas}
+
+\setbeamercolor{block title}{use=structure, fg=white, bg=fitblue}
+\setbeamercolor{block title alerted}{
+  use=alerted text, fg=white, bg=alerted text.fg!75!black
+}
+\setbeamercolor{block title example}{
+  use=example text, fg=white, bg=example text.fg!75!black
+}
+
+\setbeamercolor{block body}{
+  parent=normal text, use=block title, bg=fitlightgray
+}
+\setbeamercolor{block body alerted}{
+  parent=normal text, use=block title alerted, bg=block title alerted.bg!15!bg
+}
+\setbeamercolor{block body example}{
+  parent=normal text, use=block title example, bg=block title example.bg!15!bg
+}
+
+\setbeamercolor*{palette primary}{use=structure, fg=white, bg=structure.fg}
+\setbeamercolor*{palette secondary}{
+  use=structure, fg=white, bg=structure.fg!80!white
+}
+\setbeamercolor*{palette tertiary}{
+  use=structure, fg=white, bg=structure.fg!90!white
+}
+\setbeamercolor*{palette quaternary}{fg=white, bg=black}
+
+\setbeamercolor*{sidebar}{use=structure, bg=structure.fg}
+
+\setbeamercolor*{palette sidebar primary}{use=structure, fg=structure.fg!10}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{use=structure, fg=structure.fg!50}
+\setbeamercolor*{palette sidebar quaternary}{fg=white}
+
+\setbeamercolor*{titlelike}{parent=palette primary}
+
+% title frame
+\setbeamercolor{frametitle}{bg=fitlightgray, fg=fitblue}
+% right side
+\setbeamercolor{frametitle right}{bg=fitlightgray}
+% vertical line in title (left)
+\setbeamercolor{frametitle left rule}{fg=red}
+% vertical line in title (right)
+\setbeamercolor{frametitle right rule}{fg=fitblue}
+
+% vertical line in footer
+\setbeamercolor{footline right rule}{fg=white}
+\setbeamercolor{page number in head/foot}{fg=white}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\mode
+<all>
