@@ -45,9 +45,9 @@ Více viz https://github.com/facebook/infer/blob/master/CONTRIBUTING.md#building
 
 # Spouštění analýzy
 Viz https://fbinfer.com/docs/hello-world.html a
-https://fbinfer.com/docs/analyzing-apps-or-projects.html. Analýza je implicitně
-vypnutá. Analýza je implicitně vypnutá. Nejprve je nutné spustit detekci
-atomických sekvencí `--atomic-sequences-only` a poté detekci porušení atomicity
+https://fbinfer.com/docs/analyzing-apps-or-projects.html. Analýza je implicitně 
+vypnutá. Nejprve je nutné spustit detekci atomických sekvencí 
+`--atomic-sequences-only` a poté detekci porušení atomicity 
 `--atomicity-violations-only`. Případně je možné spustit analýzu společně
 s ostatními implicitními analýzami přepínačem `--atomic-sequences`, respektive
 `--atomicity-violations`.
