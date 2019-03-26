@@ -46,18 +46,22 @@ Více viz https://github.com/facebook/infer/blob/master/CONTRIBUTING.md#building
 # Spouštění analýzy
 Viz https://fbinfer.com/docs/hello-world.html a
 https://fbinfer.com/docs/analyzing-apps-or-projects.html. Analýza je implicitně
-vypnutá. Její spuštění společně s ostatními implicitními analýzami nástroje
-Facebook Infer lze provést parametrem `--atomicity`, případně parametrem
-`--atomicity-only` pro samostané spuštění analýzy porušení atomičnosti.
+vypnutá. Analýza je implicitně vypnutá. Nejprve je nutné spustit detekci
+atomických sekvencí `--atomic-sequences-only` a poté detekci porušení atomicity
+`--atomicity-violations-only`. Případně je možné spustit analýzu společně
+s ostatními implicitními analýzami přepínačem `--atomic-sequences`, respektive
+`--atomicity-violations`.
 
 Př.:
 ```bash
-infer run --atomicity-only -- gcc -c sourc_file.c
+infer run --atomic-sequences-only -- gcc -c sourc_file.c
+infer run --atomicity-violations-only -- gcc -c sourc_file.c
 ```
 
 Př. ladící režim (generuje HTML výstup a ladící záznamy):
 ```bash
-infer run -g --atomicity-only -- gcc -c sourc_file.c
+infer run -g --atomic-sequences-only -- gcc -c sourc_file.c
+infer run -g --atomicity-violations-only -- gcc -c sourc_file.c
 ```
 
 # Poznámky k návrhu a implementaci
