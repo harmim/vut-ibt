@@ -1,6 +1,5 @@
 *.ast.sh
 
-/Literatura/
-/Obhajoba/
-/Pisemna_cast/
-/Programy_pro_testovani/
+/bibliography/
+/text/
+/experiments/

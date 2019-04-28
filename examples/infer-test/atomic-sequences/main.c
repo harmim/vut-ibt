@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <pthread.h>
-#include <stdio.h>
 
 
 pthread_mutex_t lock;
@@ -11,6 +10,7 @@ void f2(void) {}
 void f3(void) {}
 void f4(void) {}
 void f5(void) {}
+void ff(void) { f1(); f2(); }
 
 
 
@@ -62,24 +62,17 @@ void test2(void)
 }
 
 
-void only_lock(void)
+void test_only_lock(void)
 {
 	pthread_mutex_lock(&lock);
 	f1();
 }
 
 
-void only_unlock(void)
+void test_only_unlock(void)
 {
 	f2();
 	pthread_mutex_unlock(&lock);
-}
-
-
-void test_not_paired_lock(void)
-{
-	only_lock();
-	only_unlock();
 }
 
 
@@ -90,7 +83,6 @@ void test_iteration(void)
 	int c1;
 	while (c1 > 0)
 	{
-		c1++;
 		f3(); f5();
 	}
 
@@ -105,7 +97,6 @@ void test_iteration(void)
 		int c2;
 		while (c2 > 0)
 		{
-			c2++;
 			f3();
 		}
 	}
@@ -151,10 +142,7 @@ void test_selection(void)
 }
 
 
-void ff(void) { f1(); f2(); }
-
-
-void test_lock_nested(void)
+void test_nested(void)
 {
 	pthread_mutex_lock(&lock);
 	{
@@ -176,10 +164,11 @@ int main(void)
 
 	test1();
 	test2();
-	test_not_paired_lock();
+	test_only_lock();
+	test_only_unlock();
 	test_iteration();
 	test_selection();
-	test_lock_nested();
+	test_nested();
 
 	pthread_mutex_destroy(&lock);
 

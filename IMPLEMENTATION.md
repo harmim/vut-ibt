@@ -45,9 +45,9 @@ Více viz https://github.com/facebook/infer/blob/master/CONTRIBUTING.md#building
 
 # Spouštění analýzy
 Viz https://fbinfer.com/docs/hello-world.html a
-https://fbinfer.com/docs/analyzing-apps-or-projects.html. Analýza je implicitně 
-vypnutá. Nejprve je nutné spustit detekci atomických sekvencí 
-`--atomic-sequences-only` a poté detekci porušení atomicity 
+https://fbinfer.com/docs/analyzing-apps-or-projects.html. Analýza je implicitně
+vypnutá. Nejprve je nutné spustit detekci atomických sekvencí
+`--atomic-sequences-only` a poté detekci porušení atomicity
 `--atomicity-violations-only`. Případně je možné spustit analýzu společně
 s ostatními implicitními analýzami přepínačem `--atomic-sequences`, respektive
 `--atomicity-violations`.
@@ -179,7 +179,7 @@ infer run -g --atomicity-violations-only -- gcc -c sourc_file.c
          - Zdvojené volnání `a6` `a6` / `a7` `a7` je možno ignorovat.
 
 ### Detekční fáze
-Vypisuje atomické sekvence do souboru `infer-out/atomicity-detection`.
+Vypisuje atomické sekvence do souboru `infer-atomicity-out/atomicity-detection`.
 Při spuštění v ladícím režimu (parametr `-g`) se do souboru
 `infer-out/logs` generují podrobné informace o abstratním stavu a `summary`
 jednotlivých funkcí.
