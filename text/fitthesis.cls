@@ -47,13 +47,13 @@
   \ifx\pdfoutput\undefined % nejedeme pod pdftexem / we are not using pdftex
     \LoadClass[a4paper,twoside,onecolumn,11pt]{report}
   \else
-    \LoadClass[pdftex,a4paper,twoside,onecolumn,11pt]{report}
+    \LoadClass[a4paper,twoside,onecolumn,11pt]{report}
   \fi
 \else
   \ifx\pdfoutput\undefined % nejedeme pod pdftexem
     \LoadClass[a4paper,oneside,onecolumn,11pt]{report}
   \else
-    \LoadClass[pdftex,a4paper,oneside,onecolumn,11pt]{report}
+    \LoadClass[a4paper,oneside,onecolumn,11pt]{report}
   \fi
 \fi
 
@@ -63,7 +63,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage[]{opensans}
-\usepackage[czech,slovak,english]{babel}
+\usepackage[english,czech,slovak]{babel}
 \usepackage[utf8]{inputenc} %kodovani / encoding
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
