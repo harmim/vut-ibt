@@ -1,0 +1,237 @@
+%===============================================================================
+% Authors: 2008 Michal Bidlo, 2018 Jaroslav Dytrych, 2019 Dominik Harmim
+% Contact for questions and comments: dytrych@fit.vutbr.cz
+% Author contact: xharmi00@stud.fit.vutbr.cz
+%===============================================================================
+% encoding: UTF-8
+%------------------------------------------------------------------------------
+% processing: make, make pdf, make clean
+%==============================================================================
+% Included files:
+%  xharmi00-bibliography.bib - bibliography
+%  xharmi00-chapters.tex - the thesis content
+%  xharmi00-appendices.tex - appendices
+%==============================================================================
+
+\documentclass[english, czech, zadani, odsaz]{fitthesis}
+
+% Basic packages are in template file fitthesis.cls.
+
+% Setting of a path to the pictures.
+\graphicspath{{figures/}{./figures/}}
+
+\renewcommand{\ttdefault}{lmtt} % set Latin Modern tt as tt
+
+% Disables function of the template which replaces quotation marks
+% to avoid unnecessary replacements in the API descriptions etc.
+\csdoublequotesoff
+
+% "hyperref" package create clickable links in pdf if you are using pdflatex.
+% Problem is that this package have to be introduced as the last one so it
+% can not be placed in the template file.
+\ifWis
+    \ifx\pdfoutput\undefined % we are not using pdflatex
+    \else
+        \usepackage[
+            unicode, colorlinks, hyperindex, plainpages=false, pdftex
+        ]{hyperref}
+        \definecolor{hrcolor-ref}{RGB}{223, 52, 30}
+        \definecolor{hrcolor-cite}{HTML}{2F8F00}
+        \definecolor{hrcolor-urls}{HTML}{092EAB}
+        \hypersetup{
+            linkcolor = hrcolor-ref,
+            citecolor = hrcolor-cite,
+            filecolor = magenta,
+            urlcolor = hrcolor-urls
+        }
+        \def\pdfBorderAttrs{/Border [0 0 0]} % without margins around links
+        \pdfcompresslevel=9
+    \fi
+\else % for the print clickable links will be black
+    \ifx\pdfoutput\undefined % we are not using pdflatex
+    \else
+        \usepackage[
+            unicode, colorlinks, hyperindex, plainpages=false, pdftex,
+            urlcolor=black, linkcolor=black, citecolor=black
+        ]{hyperref}
+        \definecolor{links}{rgb}{0, 0, 0}
+        \definecolor{anchors}{rgb}{0, 0, 0}
+        \def\AnchorColor{anchors}
+        \def\LinkColor{links}
+        \def\pdfBorderAttrs{/Border [0 0 0]} % without margins around links
+        \pdfcompresslevel=9
+    \fi
+\fi
+
+% This solves the problems with links which leads after the picture.
+\usepackage[all]{hypcap}
+
+% solves first/last row of the paragraph on the previous/next page
+\clubpenalty=10000
+\widowpenalty=10000
+
+\setlength{\parskip}{0pt}
+
+
+% Information about the thesis
+%-------------------------------------------------------------------------------
+\projectinfo{
+    % Thesis
+    project = {BP}, % thesis type
+    year = {2019}, % year of submission
+    date = \today, % submission date
+    faculty = {FIT}, % name of faculty
+    department = {UITS}, % appropriate abbreviation of the department
+%
+    % Thesis title
+    % thesis title in czech language
+    title.cs = {%
+        Statická analýza v~nástroji Facebook Infer zaměřená na detekci
+        porušení atomičnosti
+    },
+    % thesis title in czech language for reference
+    title.reference.cs = {%
+        Statická analýza v~nástroji Facebook Infer zaměřená na detekci
+        porušení atomičnosti.
+    },
+    % thesis title in english
+    title.en = {%
+        Static Analysis Using Facebook Infer to Find \\
+        Atomicity Violations
+    },
+    % thesis title in english for reference
+    title.reference.en = {%
+        Static Analysis Using Facebook Infer to Find Atomicity Violations.
+    },
+%
+    % Author
+    author.name = {Dominik}, % author name
+    author.surname = {Harmim}, % author surname
+%
+    % Supervisor
+    supervisor.name = {Tomáš}, % supervisor name
+    supervisor.surname = {Vojnar}, % supervisor surname
+    supervisor.title.p = {prof. Ing.}, % title before the name
+    supervisor.title.a = {Ph.D.}, % title after the name
+%
+    % Keywords
+    % keywords in czech language
+    keywords.cs = {%
+        statická analýza, analýza programů, abstraktní interpretace,
+        Facebook Infer, porušení atomicity, paralelní programy,
+        kontrakty pro souběžnost, atomické sekvence, atomicita
+    },
+    % keywords in english
+    keywords.en = {%
+        static analysis, programs analysis, abstract interpretation,
+        Facebook Infer, atomicity violation, concurrent programs,
+        contracts for concurrency, atomic sequences, atomicity
+    },
+%
+    % Abstract
+    % abstract in czech language
+    abstract.cs = {%
+        Cílem této práce je navrhnout statický analyzátor programů pro detekci
+        porušení atomicity. Navržený analyzátor\,---\,Atomer\,---\,je
+        implementován jako rozšíření pro Facebook Infer, což je volně
+        šířený a~snadno rozšířitelný nástroj, který umožňuje efektivní
+        modulární a~inkrementální analýzu. Analyzátor pracuje na úrovni
+        sekvencí volání funkcí. Navržené řešení je založeno na předpokladu,
+        že sekvence, které jsou jednou zavolány atomicky, by měly být
+        pravděpodobně volány atomicky vždy. Implementovaný analyzátor byl
+        úspěšně ověřen a~vyhodnocen jak na malých programech, vytvořených
+        pro tento účel, tak na veřejně dostupných testovacích programech,
+        které vznikly ze skutečných nízko úrovňových programů.
+    },
+    % abstract in english
+    abstract.en = {%
+        The goal of this thesis is to propose a~static
+        analyser of programs for detecting atomicity violations. The proposed
+        analyser\,---\,Atomer\,---\,is implemented as an extension
+        for Facebook Infer, which is an open-source and extendable static
+        analysis framework that promotes efficient modular and incremental
+        analysis. The analyser works on the level of sequences of function
+        calls. The proposed solution is based on the assumption that
+        sequences executed once atomically should probably be executed always
+        atomically. The implemented analyser has been successfully verified
+        and evaluated on both smaller programs created for this purpose as
+        well as publicly available benchmarks derived from real-life low-level
+        programs.
+    },
+%
+    % Declaration
+    declaration = {%
+        Hereby I~declare that this bachelor’s thesis was prepared as an
+        original author's work under the supervision of professor Tomáš Vojnar.
+        All the relevant information sources, which were used during the
+        preparation of this thesis, are properly cited and included in the
+        list of references.
+    },
+%
+    % Acknowledgement
+    acknowledgment = {%
+        I would like to thank my supervisor Tomáš Vojnar. Further, I would
+        like to thank Tomáš Fiedor for providing supplementary information and
+        for his assistance. I would also like to thank my colleagues Vladimír
+        Marcin and Ondřej Pavela for helpful discussions about the thesis.
+        Lastly, I thank for the support received from
+        H2020 ECSEL project Aquas.
+    }
+}
+
+
+\begin{document}
+    % Typesetting of the title pages
+    % --------------------------------------------------------------------------
+    \maketitle
+
+
+    % Table of contents
+    % --------------------------------------------------------------------------
+    {
+        \hypersetup{hidelinks}
+        \setcounter{tocdepth}{1}
+        \tableofcontents
+    }
+
+
+    \ifODSAZ
+        \setlength{\parskip}{0.5 \bigskipamount}
+    \else
+        \setlength{\parskip}{0pt}
+    \fi
+
+
+    % Skip the page in the two-sided mode
+    \iftwoside\cleardoublepage\fi
+
+
+    % Thesis text
+    % --------------------------------------------------------------------------
+    \input{xharmi00-chapters}
+
+
+    % Bibliography
+    % --------------------------------------------------------------------------
+    \makeatletter
+    \def\@openbib@code{\addcontentsline{toc}{chapter}{Bibliography}}
+    \makeatother
+    \bibliographystyle{englishiso}
+
+    \begin{flushleft}
+        \bibliography{xharmi00-bibliography}
+    \end{flushleft}
+
+
+    % Skip the page in the two-sided mode
+    \iftwoside\cleardoublepage\fi
+
+
+    % Appendices
+    % --------------------------------------------------------------------------
+    \appendix
+
+
+    % Appendices
+    \input{xharmi00-appendices}
+\end{document}

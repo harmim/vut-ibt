@@ -1,0 +1,13 @@
+/*.dvi
+/*.log
+/*.blg
+/*.bbl
+/*.toc
+/*.aux
+/*.out
+/*.lof
+/*.ptc
+/*.fdb_latexmk
+/*.fls
+/*.synctex.gz
+/xharmi00.tar.gz
