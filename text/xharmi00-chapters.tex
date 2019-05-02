@@ -4,35 +4,198 @@
 
 \chapter{Introduction}
 
-\cite{Pravidla}
+Bugs are an integral part of computer programs ever since the inception
+of the programming discipline. Unfortunately, they are often hidden
+in unexpected places, and they can lead to unexpected behaviour which
+may cause significant damage. Nowadays there are many possible
+ways of catching bugs in the development process. Dynamic analysis
+tools or tools for automated testing are often used. These methods
+are satisfactory in many cases. Nevertheless, they can still leave
+too many bugs undetected, because they are able to analyse only
+certain program flows, dependent on its input data. An alternative
+solution is a~\emph{static analysis}. Of course, it has some shortages
+as well. The big issue is \emph{scalability} on extensive codebases and
+considerable high rate of incorrectly reported errors (so-called 
+\emph{false positives}, also called \emph{false alarms}).
+
+Not long ago, Facebook introduced \emph{Facebook Infer}\,--\,a~tool for 
+creating \emph{highly scalable} \emph{compositional}, \emph{incremental},
+and \emph{interprocedural} static analysers. Facebook Infer is a~live tool 
+and it is still under the development. Anyway, it is in everyday use in
+Facebook itself, Spotify, Uber, Mozilla, WhatsApp and other well-known
+companies. Currently, Facebook Infer provides several analysers implemented
+as modules in the whole framework. These analysers check for various types
+of bugs, e.g., buffer overflows, thread-safety, null-dereferencing, or
+memory leaks. Facebook Infer also aims to create a~framework for building
+new analysers quickly and easily. The current version of Facebook Infer still
+misses better support for \emph{concurrency} bugs. While it provides a~fairly
+advanced \emph{data race} analyser, it is limited to Java programs only and 
+fails for C~programs, which require more through manipulation with locks. 
+
+In \emph{concurrent programs}, there are often \emph{atomicity requirements} 
+for execution of specific sequences of instructions. Violating these 
+requirements may cause many kinds of problems, such as unexpected
+behaviour, exceptions, segmentation faults, or other failures. 
+\emph{Atomicity violations} are usually not verified by compilers, 
+unlike syntactic or some sorts of semantic rules. Atomicity requirements,
+in most cases, are not even documented. It means that typically only 
+programmers must take care of following these requirements. In general, 
+it is very difficult to avoid errors in \emph{atomicity-dependent
+programs}, especially in large projects, and even harder and time-consuming 
+is finding and fixing these errors.
+
+In this thesis, there is described proposal, implementation, and experimental
+verification and evaluation of \emph{Atomer}\,---\,static analyser for
+finding atomicity violations\,---\,which is implemented as an extension for
+Facebook Infer. In particular, the concentration is put on an 
+\emph{atomic execution of sequences of function calls}, which is often 
+required, e.g., when using certain library calls. The implementation targets 
+to C/C++ programs that use \emph{PThreads} locks.
+
+The development of \emph{Atomer} has been discussed with developers of
+Facebook Infer, and it is a~part of the H2020 ECSEL project Aquas. Parts
+of this paper are taken over~\cite{excel2019FBInfer}, which I~wrote
+together with Vladimír Marcin and Ondřej Pavela. In~\cite{excel2019FBInfer},
+there was presented preliminary results of my thesis.
+
+The rest of the paper is organised as follows. In 
+Chapter~\ref{chap:preliminaries}, there are described all the topics
+which are necessary to understand before reading the rest of the paper. In
+particular, Section~\ref{sec:staticAnalysisAI} deals with
+a~\emph{static analysis} based on \emph{abstract interpretation}.
+Facebook Infer, which uses abstract interpretation, is described in
+Section~\ref{sec:fbinfer}. And in Section~\ref{sec:contracts}, there is
+described the concept of \emph{contracts for concurrency}. Proposal of a~static
+analyser for detection \emph{atomicity violations}, based on this concept, is
+described in Chapter~\ref{chap:proposal}. Its implementation is in
+Chapter~\ref{chap:implementation} and experimental results are presented
+in Chapter~\ref{chap:experiments}. Finally, Chapter~\ref{chap:conclusion}
+concludes the paper. Appendix~\ref{chap:memoryMedia} lists contents
+of attached memory media and Appendix~\ref{chap:manual} serves as an
+installation and user manual.
 
 
 
 \chapter{Preliminaries}
+\label{chap:preliminaries}
+
+This chapter explains the theoretical background on which stands the
+thesis. It also explains and describes the existing tools used in the
+thesis. Lastly, the chapter deals with existing solutions and principles
+which this thesis got inspired by.
+
+The aim of this thesis is to propose a~\emph{static analyser} and implement
+it in \emph{Facebook Infer}. So, in Section~\ref{sec:staticAnalysisAI},
+there is a~brief explanation of a~\emph{static analysis} itself, and then an 
+explanation of \emph{abstract interpretation} that is used in Facebook Infer.
+Facebook Infer, its principles and features illustrate 
+Section~\ref{sec:fbinfer}. The proposal of a~solution is based on the 
+concept of \emph{contracts for concurrency}, which is discussed and defined 
+in Section~\ref{sec:contracts}.
+
 
 \section{Static Analysis by Abstract Interpretation}
+\label{sec:staticAnalysisAI}
+
+According to~\cite{staticAnalysisMoller}, a~\emph{static analysis} of 
+programs is reasoning about the behaviour of computer programs without 
+actually executing them. It has been used since the 1970s for optimising
+compilers for generating effective code. More recently, it has proven 
+valuable also for automatic error detection, verification tools and it 
+is used in other tools that can help programmers. Intuitively,
+a~static program analyser is a~program that reasons about the behaviour
+of other programs. Nowadays, a~static analysis is one of the fundamental
+concepts of \emph{formal verification}. It aims to automatically answer
+questions about a~given program, such as e.g.~\cite{staticAnalysisMoller}:
+\begin{itemize}
+    \item
+        \textbf{Are certain operations executed \emph{atomically}?}
+        
+    \item
+        Does the program terminate on every input?
+        
+    \item 
+        Can the program \emph{deadlock}?
+        
+    \item 
+        Does there exist an input that leads to a~\emph{null-pointer 
+        dereference}, a~\emph{division-by-zero}, or an \emph{arithmetic 
+        overflow}?
+        
+    \item
+        Are all variable initialised before they are used?
+        
+    \item
+        Are arrays always accessed within their bound?
+        
+    \item
+        Does the program contain \emph{dead code}?
+        
+    \item 
+        Are all resources correctly released after their last
+        use?
+\end{itemize}
+It is well-known that testing, i.e., executing programs
+with some input data and examining the output, may expose errors, but it
+can not prove their absence. (It was also famously stated by Edsger W. 
+Dijkstra: \uv{\textit{Program testing can be used to show the presence of bugs, 
+but never to show their absence!}}.) However, a~static program analysis 
+can prove their absence\,---\,with some \emph{approximation}\,---\,it can 
+check \emph{all possible executions} of the programs and provide guarantees
+about their properties. Another advantage of static analysis is that the
+analysis can be performed during the development process, so the program
+does not have to be executable yet and it already can be analysed.
+The significant issue is how to ensure high precision and
+\emph{scalability} to be useful in practice. The biggest disadvantage is
+that static analysis can produce many \emph{false alarms}\footnote{
+\emph{False alarms}\,--\,incorrectly reported an error. Also called 
+\emph{false positives}.}, but it is often
+resolved by accepting \emph{unsoundness}\footnote{\emph{Soundness}\,--\,if
+a~verification method claims that a~system is correct according to a~given
+specification, it is truly correct.~\cite{favStaticAnalysis}}.
+
+Various forms of a~static analysis of programs have been invented, for
+instance~\cite{favStaticAnalysis}: bug pattern searching, data-flow 
+analysis, constraint-based analysis, type analysis, symbolic execution. And 
+one of the essential concept\,---\,\emph{abstract interpretation}\,---\,is
+detailed in Section~\ref{sec:ai}.
+
+There exist numerous tools for static analysis (often proprietary and
+difficult to openly evaluate or extend), e.g.: Coverity, Klockwork, CodeSonar,
+Loopus, phpstan, or \emph{Facebook Infer} (described in
+Section~\ref{sec:fbinfer}).
+
+
+\subsection{Abstract Interpretation}
+\label{sec:ai}
 
 
 \section{\texorpdfstring{Facebook Infer\,--\,Static Analysis Framework}{}}
+\label{sec:fbinfer}
 
 
 \section{Contracts for Concurrency}
+\label{sec:contracts}
 
 
 
 \chapter{Proposal of Static Analyser for Detecting Atomicity Violations}
+\label{chap:proposal}
 
 
 
-\chapter{Implementation of Analyser in Facebook Infer}
+\chapter{Implementation of the Analyser in Facebook Infer}
+\label{chap:implementation}
 
 
 
-\chapter{Experimental Verification and Evaluation of Analyser}
+\chapter{Experimental Verification and Evaluation of the Analyser}
+\label{chap:experiments}
 
 
 
 \chapter{Conclusion}
+\label{chap:conclusion}
 
 
 %===============================================================================
