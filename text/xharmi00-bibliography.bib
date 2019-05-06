@@ -73,10 +73,12 @@
     booktitle = {<<~Informatics\,---\,10~Years Back, 10~Years Ahead~>>},
     editor = {Wilhelm, Reinhard},
     year = {2001},
+    month = {March},
     series = {Lecture Notes in Computer Science},
     volume = {2000},
     pages = {138\,--\,156},
-    publisher = {Springer-Verlag}
+    publisher = {Springer-Verlag},
+    doi = {10.1007/3-540-44577-3_10}
 }
 
 @INPROCEEDINGS{AILatticeModelCousot,
@@ -90,10 +92,12 @@
         Conference Record of the Fourth Annual ACM SIGPLAN-SIGACT
         Symposium on Principles of Programming Languages
     },
+    series = {POPL'77},
     address = {Los Angeles, California},
     publisher = {ACM Press, New York, NY},
     pages = {238\,--\,252},
-    year = {1977}
+    year = {1977},
+    doi = {10.1145/512950.512973},
 }
 
 @MISC{AIInNutshellCousot,
@@ -127,7 +131,9 @@
         Science 631
     },
     publisher = {Springer-Verlag, Berlin, Germany},
-    year = {1992}
+    year = {1992},
+    month = {January},
+    doi = {10.1007/3-540-55844-6_101}
 }
 
 @INPROCEEDINGS{favLatticesAndFixpoints,
@@ -140,5 +146,196 @@
     year = {2018},
     note = {lecture notes}
 }
+
+@ARTICLE{staticRaceDetectorTruePositive,
+    author = {Gorogiannis, Nikos and O'Hearn, Peter W. and Sergey, Ilya},
+    title = {A~True Positives Theorem for a~Static Race Detector},
+    journal = {Proceedings of ACM Programming Languages},
+    volume = {3},
+    number = {POPL},
+    month = {January},
+    year = {2019},
+    issn = {2475-1421},
+    pages = {57:1\,--\,57:29},
+    doi = {10.1145/3290370}
+}
+
+@MISC{inferAISlides,
+    author = {Blackshear, Sam and Distefano, Dino and Villard, Jules},
+    title = {
+        Building your own compositional static analyzer 
+        with Infer.AI [online]
+    },
+    url = {https://fbinfer.com/downloads/pldi17-infer-ai-tutorial.pdf},
+    note = {PLDI 2017 [cit. 2019-05-03]}
+}
+
+@MISC{racerDOnline,
+    author = {Blackshear, Sam and O'Hearn, Peter W.},
+    title = {
+        Open-sourcing RacerD: Fast static race detection at scale [online]
+    },
+    url = {
+        https://code.fb.com/android/open-sourcing-racerd-fast-static-race-detection-at-scale
+    },
+    note = {2017-10-19 [cit. 2019-05-03]}
+}
+
+@BOOK{realWorldOCaml,
+    author = {Minsky, Yaron and Madhavapeddy, Anil and Hickey, Jason},
+    title = {Real world OCaml},
+    publisher = {O'Reilly Media},
+    address = {Sebastopol, CA},
+    year = {2013},
+    edition = {first},
+    ISBN = {144932391X}
+}
+
+@INPROCEEDINGS{inferBiabduction,
+    author = {
+        Calcagno, Cristiano and Distefano, Dino and O'Hearn, Peter W. and 
+        Yang, Hongseok
+    },
+    title = {Compositional Shape Analysis by Means of Bi-abduction},
+    booktitle = {
+        Proceedings of the 36th Annual ACM SIGPLAN-SIGACT Symposium on 
+        Principles of Programming Languages
+    },
+    series = {POPL'09},
+    year = {2009},
+    ISBN = {978-1-60558-379-2},
+    pages = {289\,--\,300},
+    doi = {10.1145/1480881.1480917},
+    publisher = {ACM},
+    address = {New York, NY, USA}
+}
+
+@INPROCEEDINGS{racerX,
+    author = {Engler, Dawson R. and Ashcraft, Ken},
+    title = {
+        RacerX: Effective, Static Detection of Race Conditions and Deadlocks
+    },
+    booktitle = {
+        Proceedings of the Nineteenth ACM Symposium on Operating Systems
+        Principles
+    },
+    series = {SOSP'03},
+    year = {2003},
+    ISBN = {1-58113-757-5},
+    pages = {237\,--\,252},
+    doi = {10.1145/945445.945468},
+    publisher = {ACM},
+    address = {New York, NY, USA}
+}
+
+@ARTICLE{racerD,
+    author = {
+        Blackshear, Sam and Gorogiannis, Nikos and O'Hearn, Peter W. and 
+        Sergey, Ilya
+    },
+    title = {RacerD: Compositional Static Race Detection},
+    journal = {Proceedings of ACM Programming Languages},
+    volume = {2},
+    number = {OOPSLA},
+    month = {October},
+    year = {2018},
+    issn = {2475-1421},
+    pages = {144:1\,--\,144:28},
+    doi = {10.1145/3276514}
+}
+
+@INPROCEEDINGS{dataflowAnalysisGraphReachability,
+    author = {Reps, Thomas and Horwitz, Susan and Sagiv, Mooly},
+    title = {Precise Interprocedural Dataflow Analysis via Graph Reachability},
+    booktitle = {
+        Proceedings of the 22Nd ACM SIGPLAN-SIGACT Symposium on Principles 
+        of Programming Languages
+    },
+    series = {POPL'95},
+    year = {1995},
+    ISBN = {0-89791-692-1},
+    pages = {49\,--\,61},
+    doi = {10.1145/199448.199462},
+    publisher = {ACM},
+    address = {New York, NY, USA}
+}
+
+@INBOOK{dataflowAnalysisApproaches,
+    author = {Sharir, Micha and Pnueli, Amir},
+    title = {Two approaches to interproceduraldata flow analysis},
+    booktitle = {Program Flow Analysis: Theory and Applications},
+    note = {eds., Muchnick, Steven S. and Jones, Neil D.},
+    chapter = {7},
+    pages = {189\,--\,211},
+    year = {1981},
+    ISBN = {0137296819},
+    publisher = {Prentice Hall Professional Technical Reference}
+}
+
+@MISC{inferboOnline,
+    author = {Yi, Kwangkeun},
+    title = {Inferbo: Infer-based buffer overrun analyzer [online]},
+    url = {
+        https://research.fb.com/inferbo-infer-based-buffer-overrun-analyzer
+    },
+    note = {2017-02-06 [cit. 2019-05-04]}
+}
+
+@INPROCEEDINGS{contracts2017,
+    author = {
+        Dias, Ricardo J. and Ferreira, Carla and Fiedor, Jan 
+        and Lourenço, João M. and Smrčka, Aleš and Sousa, Diogo G. and 
+        Vojnar, Tomáš
+    },
+    title = {Verifying Concurrent Programs Using Contracts},
+    booktitle = {
+        2017 IEEE International Conference on Software Testing, Verification 
+        and Validation (ICST)
+    },
+    publisher = {IEEE},
+    pages = {196\,--\,206},
+    ISBN = {9781509060313},
+    year = {2017},
+    month = {March},
+    doi = {10.1109/ICST.2017.25},
+    address = {Tokyo, Japan}
+}
+
+@ARTICLE{contracts2015,
+    author = {
+        Sousa, Diogo G. and Dias, Ricardo J. and Ferreira, Carla and
+        Lourenço, João M.
+    },
+    title = {Preventing Atomicity Violations with Contracts},
+    journal = {CoRR},
+    volume = {abs/1505.02951},
+    year = {2015},
+    eprint = {1505.02951}
+}
+
+@INPROCEEDINGS{controlFlowAnalysisAllen,
+    author = {Allen, Frances E.},
+    title = {Control Flow Analysis},
+    booktitle = {Proceedings of a Symposium on Compiler Optimization},
+    year = {1970},
+    pages = {1\,--\,19},
+    doi = {10.1145/800028.808479},
+    publisher = {ACM, New York, NY, USA},
+    address = {Urbana-Champaign, Illinois}
+}
+
+@ARTICLE{contract,
+    author = {Meyer, Bertrand},
+    title = {Applying "Design by Contract"},
+    journal = {Computer},
+    volume = {25},
+    number = {10},
+    month = {October},
+    year = {1992},
+    issn = {0018-9162},
+    pages = {40\,--\,51},
+    doi = {10.1109/2.161279}
+} 
+
 
 %===============================================================================

@@ -13,10 +13,12 @@
 %  xharmi00-appendices.tex - appendices
 %===============================================================================
 
+
 \documentclass[english, czech, zadani, odsaz]{fitthesis}
 
 % Basic packages are in template file fitthesis.cls.
 \usepackage{subcaption}
+\usepackage{wrapfig}
 
 % Setting of a path to the pictures.
 \graphicspath{{figures/}{./figures/}}
@@ -40,10 +42,8 @@
         \definecolor{hrcolor-cite}{HTML}{2F8F00}
         \definecolor{hrcolor-urls}{HTML}{092EAB}
         \hypersetup{
-            linkcolor = hrcolor-ref,
-            citecolor = hrcolor-cite,
-            filecolor = magenta,
-            urlcolor = hrcolor-urls
+            linkcolor=hrcolor-ref, citecolor=hrcolor-cite, filecolor=magenta,
+            urlcolor=hrcolor-urls
         }
         \def\pdfBorderAttrs{/Border [0 0 0]} % without margins around links
         \pdfcompresslevel=9
@@ -78,60 +78,64 @@
 %-------------------------------------------------------------------------------
 \projectinfo{
     % Thesis
-    project = {BP}, % thesis type
-    year = {2019}, % year of submission
-    date = \today, % submission date
-    faculty = {FIT}, % name of faculty
-    department = {UITS}, % appropriate abbreviation of the department
+    project={BP}, % thesis type
+    year={2019}, % year of submission
+    date=\today, % submission date
+    faculty={FIT}, % name of faculty
+    department={UITS}, % appropriate abbreviation of the department
 %
     % Thesis title
     % thesis title in czech language
-    title.cs = {%
+    title.cs={%
         Statická analýza v~nástroji Facebook Infer zaměřená na detekci
         porušení atomičnosti
     },
     % thesis title in czech language for reference
-    title.reference.cs = {%
+    title.reference.cs={%
         Statická analýza v~nástroji Facebook Infer zaměřená na detekci
         porušení atomičnosti.
     },
     % thesis title in english
-    title.en = {%
+    title.en={%
         Static Analysis Using Facebook Infer to Find \\
         Atomicity Violations
     },
     % thesis title in english for reference
-    title.reference.en = {%
+    title.reference.en={%
         Static Analysis Using Facebook Infer to Find Atomicity Violations.
     },
 %
     % Author
-    author.name = {Dominik}, % author name
-    author.surname = {Harmim}, % author surname
+    author.name={Dominik}, % author name
+    author.surname={Harmim}, % author surname
 %
     % Supervisor
-    supervisor.name = {Tomáš}, % supervisor name
-    supervisor.surname = {Vojnar}, % supervisor surname
-    supervisor.title.p = {prof. Ing.}, % title before the name
-    supervisor.title.a = {Ph.D.}, % title after the name
+    supervisor.name={Tomáš}, % supervisor name
+    supervisor.surname={Vojnar}, % supervisor surname
+    supervisor.title.p={prof. Ing.}, % title before the name
+    supervisor.title.a={Ph.D.}, % title after the name
 %
     % Keywords
     % keywords in czech language
-    keywords.cs = {%
+    keywords.cs={%
         statická analýza, analýza programů, abstraktní interpretace,
         Facebook Infer, porušení atomicity, paralelní programy,
-        kontrakty pro souběžnost, atomické sekvence, atomicita
+        kontrakty pro souběžnost, atomické sekvence, atomicita,
+        inkrementální analýza, modulární analýza, kompoziční analýza,
+        interprocedurální analýza
     },
     % keywords in english
-    keywords.en = {%
+    keywords.en={%
         static analysis, programs analysis, abstract interpretation,
         Facebook Infer, atomicity violation, concurrent programs,
-        contracts for concurrency, atomic sequences, atomicity
+        contracts for concurrency, atomic sequences, atomicity,
+        incremental analysis, modular analysis, compositional analysis,
+        interprocedural analysis
     },
 %
     % Abstract
     % abstract in czech language
-    abstract.cs = {%
+    abstract.cs={%
         Cílem této práce je navrhnout \emph{statický analyzátor} programů, 
         který bude sloužit pro detekci \emph{porušení atomicity}. Navržený
         analyzátor\,---\,\emph{Atomer}\,---\,je implementován jako rozšíření 
@@ -146,7 +150,7 @@
         programech, které vznikly ze skutečných nízko úrovňových programů.
     },
     % abstract in english
-    abstract.en = {%
+    abstract.en={%
         The goal of this thesis is to propose a~\emph{static analyser} of
         programs, which detects \emph{atomicity violations}. The proposed
         analyser\,---\,\emph{Atomer}\,---\,is implemented as an extension
@@ -163,7 +167,7 @@
     },
 %
     % Declaration
-    declaration = {%
+    declaration={%
         Hereby I~declare that this bachelor’s thesis was prepared as an
         original author's work under the supervision of professor Tomáš Vojnar.
         All the relevant information sources, which were used during the
@@ -172,7 +176,7 @@
     },
 %
     % Acknowledgement
-    acknowledgment = {%
+    acknowledgment={%
         I~would like to thank my supervisor Tomáš Vojnar. Further, I~would
         like to thank Tomáš Fiedor for providing supplementary information and
         for his assistance. I~would also like to thank my colleagues Vladimír

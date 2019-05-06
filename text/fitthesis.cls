@@ -1005,36 +1005,40 @@ Management}{\@fit@EN}%
 
 % BEGIN Jan Pluskal (ipluskal) listings
 
-\definecolor{bluekeywords}{rgb}{0.13,0.13,1}
-\definecolor{greencomments}{rgb}{0,0.5,0}
-\definecolor{redstrings}{rgb}{0.9,0,0}
+\definecolor{bluekeywords}{rgb}{.13, .13, 1}
+\definecolor{greencomments}{rgb}{0, .5, 0}
+\definecolor{redstrings}{rgb}{.9, 0, 0}
 
-\definecolor{gray}{rgb}{0.4,0.4,0.4}
-\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+\definecolor{gray}{rgb}{.4, .4, .4}
+\definecolor{darkblue}{rgb}{0, 0, .6}
+\definecolor{cyan}{rgb}{0, .6, .6}
 
 \lstset{
   basicstyle=\ttfamily,
+  backgroundcolor=\color{white},
   columns=fullflexible,
   showstringspaces=false,
   commentstyle=\color{gray}\upshape,
-  captionpos=b
+  captionpos=b,
+  tabsize=4,
+  keepspaces=true
 }
 
-\lstdefinestyle{csh}{language=[Sharp]C,
+\lstdefinestyle{csh}{
+  language=[Sharp]C,
   showspaces=false,
   showtabs=false,
   breaklines=false,
   showstringspaces=false,
   breakatwhitespace=true,
-  escapeinside={(*@}{@*)},
+  escapeinside={<@}{@>},
   commentstyle=\color{greencomments},
   keywordstyle=\color{bluekeywords},
   stringstyle=\color{redstrings},
   basicstyle=\ttfamily,
   captionpos=b,
   numbers=left,
-  frame=single,
+  frame=single
 }
 
 \lstdefinelanguage{XML}
@@ -1048,13 +1052,14 @@ Management}{\@fit@EN}%
   morekeywords={xmlns,version,type} % list your attributes here
 }
 
-\lstdefinestyle{npl}{language=c,
+\lstdefinestyle{c}{
+  language=c,
   showspaces=false,
   showtabs=false,
   breaklines=true,
   showstringspaces=false,
   breakatwhitespace=true,
-  escapeinside={(*@}{@*)},
+  escapeinside={<@}{@>},
   commentstyle=\color{greencomments},
   keywordstyle=\color{bluekeywords},
   stringstyle=\color{redstrings},
@@ -1062,17 +1067,20 @@ Management}{\@fit@EN}%
   captionpos=b,
   numbers=left,
   frame=single,
-  morekeywords={UINT8, UINT16, UINT32, INT8, INT16, INT32, Post, Properties, Protocol, AsciiString, String, StringTerm, BLOB, FormatString, this},
+  morekeywords={
+    UINT8, UINT16, UINT32, INT8, INT16, INT32, Post, Properties, Protocol,
+    AsciiString, String, StringTerm, BLOB, FormatString, this
+  }
 }
 
-
-\lstdefinestyle{c++}{language=c,
+\lstdefinestyle{c++}{
+  language=c,
   showspaces=false,
   showtabs=false,
   breaklines=true,
   showstringspaces=false,
   breakatwhitespace=true,
-  escapeinside={(*@}{@*)},
+  escapeinside={<@}{@>},
   commentstyle=\color{greencomments},
   keywordstyle=\color{bluekeywords},
   stringstyle=\color{redstrings},
@@ -1080,7 +1088,10 @@ Management}{\@fit@EN}%
   captionpos=b,
   numbers=left,
   frame=single,
-  morekeywords={UINT8, UINT16, UINT32, INT8, INT16, INT32, Post, Properties, Protocol, AsciiString, String, StringTerm, BLOB, FormatString, this},
+  morekeywords={
+    UINT8, UINT16, UINT32, INT8, INT16, INT32, Post, Properties, Protocol,
+    AsciiString, String, StringTerm, BLOB, FormatString, this
+  }
 }
 
 %END Jan Pluskal (ipluskal) listings
@@ -1089,8 +1100,8 @@ Management}{\@fit@EN}%
 % Příkazy pro TODO (3 alternativy - lze zvolit preferovanou)
 % commands for TODO (3 alternatives - preferred one can be selected)
 \newcommand{\todo}[1]{\textcolor{red}{\textbf{[[#1]]}}}
-%\usepackage[colorinlistoftodos,prependcaption,textsize=tiny, disable]{todonotes}
-%\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+% \usepackage[colorinlistoftodos,prependcaption,textsize=tiny, disable]{todonotes}
+% \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 
 \newcommand{\phony}[1]{\textcolor{gray}{#1}}
 \newcommand{\blind}[1]{\textcolor{gray}{\Blindtext[#1]}}
