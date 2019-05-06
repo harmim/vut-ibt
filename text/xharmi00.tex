@@ -136,14 +136,14 @@
     % Abstract
     % abstract in czech language
     abstract.cs={%
-        Cílem této práce je navrhnout \emph{statický analyzátor} programů, 
+        Cílem této práce je navrhnout \emph{statický analyzátor} programů,
         který bude sloužit pro detekci \emph{porušení atomicity}. Navržený
-        analyzátor\,---\,\emph{Atomer}\,---\,je implementován jako rozšíření 
+        analyzátor\,---\,\emph{Atomer}\,---\,je implementován jako rozšíření
         pro \emph{Facebook Infer}, což je volně šířený a~snadno rozšířitelný
-        nástroj, který umožňuje efektivní \emph{modulární} 
+        nástroj, který umožňuje efektivní \emph{modulární}
         a~\emph{inkrementální} analýzu. Analyzátor pracuje na úrovni
         \emph{sekvencí volání funkcí}. Navržené řešení je založeno na
-        předpokladu, že sekvence, které jsou \emph{jednou zavolány atomicky}, 
+        předpokladu, že sekvence, které jsou \emph{jednou zavolány atomicky},
         by měly být pravděpodobně volány \emph{atomicky vždy}. Implementovaný
         analyzátor byl úspěšně ověřen  a~vyhodnocen jak na malých programech,
         vytvořených pro tento účel, tak na veřejně dostupných testovacích
@@ -154,15 +154,15 @@
         The goal of this thesis is to propose a~\emph{static analyser} of
         programs, which detects \emph{atomicity violations}. The proposed
         analyser\,---\,\emph{Atomer}\,---\,is implemented as an extension
-        for \emph{Facebook Infer}, which is an open-source and extendable 
+        for \emph{Facebook Infer}, which is an open-source and extendable
         static analysis framework that promotes efficient \emph{modular} and
-        \emph{incremental} analysis. The analyser works on the level of 
-        \emph{sequences of function calls}. The proposed solution is based 
-        on the assumption that sequences executed \emph{once atomically} 
-        should probably be executed \emph{always atomically}. The 
-        implemented analyser has been successfully verified and evaluated 
-        on both smaller programs created for this purpose as well as 
-        publicly available benchmarks derived from real-life low-level 
+        \emph{incremental} analysis. The analyser works on the level of
+        \emph{sequences of function calls}. The proposed solution is based
+        on the assumption that sequences executed \emph{once atomically}
+        should probably be executed \emph{always atomically}. The
+        implemented analyser has been successfully verified and evaluated
+        on both smaller programs created for this purpose as well as
+        publicly available benchmarks derived from real-life low-level
         programs.
     },
 %

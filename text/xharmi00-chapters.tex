@@ -81,7 +81,7 @@ installation and user manual.
 
 This chapter explains the theoretical background on which stands the
 thesis. It also explains and describes the existing tools used in the
-thesis. Lastly, the chapter deals with principles which this thesis 
+thesis. Lastly, the chapter deals with principles which this thesis
 got inspired by.
 
 The aim of this thesis is to propose a~\emph{static analyser} and implement
@@ -405,7 +405,7 @@ guaranteed the \emph{soundness} of abstract interpretation.
 \label{sec:fbinfer}
 
 This section describes the principles and features of
-\emph{Facebook Infer}. The description is based on information provided 
+\emph{Facebook Infer}. The description is based on information provided
 on Facebook Infer website\footnote{\textbf{Facebook Infer}
 website\,--\,\url{https://fbinfer.com}.} and in~\cite{inferAISlides},
 \cite{projectPracticeMarcin2018}. Parts of this section are taken
@@ -424,7 +424,7 @@ over~\cite{excel2019FBInfer}.
 Facebook Infer is an open-source static analysis \emph{framework},
 which is able to discover various kinds of software bugs of a~given
 program, and the stress is put on \emph{scalability}.
-Elementary essence of this framework shows Figure~\ref{fig:infer}, below 
+Elementary essence of this framework shows Figure~\ref{fig:infer}, below
 is a~more detailed explanation of its architecture. Facebook Infer
 itself is implemented in \emph{OCaml}\footnote{\textbf{OCaml}
 website\,--\,\url{https://ocaml.org}.}\,--\,functional programming
@@ -434,15 +434,15 @@ official documentation\footnote{\textbf{OCaml
 documentation}\,--\,\url{http://caml.inria.fr/pub/docs/manual-ocaml}.},
 tutorials\footnote{\textbf{OCaml
 tutorials}\,--\,\url{https://ocaml.org/learn/tutorials}.}. Facebook Infer was
-originally a~standalone tool focused on \emph{sound verification} of 
-the absence of \emph{memory safety violations}, which has made its breakthrough 
+originally a~standalone tool focused on \emph{sound verification} of
+the absence of \emph{memory safety violations}, which has made its breakthrough
 thanks to a~powerful paper~\cite{inferBiabduction}.
 
 Facebook Infer is able to analyse programs written in several languages.
 In particular, it supports languages C, C++, Java, and Objective-C. Moreover,
-it is possible to extend Facebook Infer's \emph{frontend} for supporting 
-another languages. Currently, Facebook Infer contains many analyses focusing 
-on amount sorts of bugs, e.g., \emph{Inferbo} (buffer 
+it is possible to extend Facebook Infer's \emph{frontend} for supporting
+another languages. Currently, Facebook Infer contains many analyses focusing
+on amount sorts of bugs, e.g., \emph{Inferbo} (buffer
 overruns)~\cite{inferboOnline}; \emph{RacerD} (data races)~\cite{racerD},
 \cite{racerDOnline}, \cite{staticRaceDetectorTruePositive}; \emph{RacerX}
 (race conditions and deadlocks)~\cite{racerX}; and other analyses checks
@@ -453,18 +453,18 @@ resource leaks, etc.
 \subsection{Abstract Interpretation in Facebook Infer}
 
 Facebook Infer is a~general framework for a~static analysis of programs, it is
-based on \emph{abstract interpretation}, see Section~\ref{sec:AI}. It aims 
+based on \emph{abstract interpretation}, see Section~\ref{sec:AI}. It aims
 to find bugs rather than formal verification. It can be used to quickly develop
-new sorts of \emph{compositional} and \emph{incremental} analysers 
-(\emph{intraprocedural} or 
+new sorts of \emph{compositional} and \emph{incremental} analysers
+(\emph{intraprocedural} or
 \emph{interprocedural}~\cite{programAnalysisNielson}) based
 on the concept of function \emph{summaries}. In general, a~\emph{summary}
-is a~representation of \emph{preconditions} and \emph{postconditions} of 
-a~function. However, in practice, a~summary is a~custom data structure that 
-may be used for storing any information resulting from the analysis of 
+is a~representation of \emph{preconditions} and \emph{postconditions} of
+a~function. However, in practice, a~summary is a~custom data structure that
+may be used for storing any information resulting from the analysis of
 single functions. Facebook Infer generally does not work out the summaries
 in the course of the analysis along the \emph{Control Flow Graph}
-(\textbf{CFG})\footnote{\textbf{A~control flow graph (CFG)} is a~directed 
+(\textbf{CFG})\footnote{\textbf{A~control flow graph (CFG)} is a~directed
 graph in which the nodes represent basic blocks and the edges represent control flow paths.~\cite{controlFlowAnalysisAllen}} as it is done in classical analyses
 based on the concepts from~\cite{dataflowAnalysisGraphReachability},
 \cite{dataflowAnalysisApproaches}. Instead, Facebook Infer performs the
@@ -474,25 +474,25 @@ is analysed and a~summary is computed without knowledge of the
 call context. Since summaries worked out in different contexts are equal,
 this principle makes the analysis more scalable, but it can lead to
 a~loss of accuracy. Then, the summary of a~function is used at all of its
-call sites. In order to create new intraprocedural analyser in Facebook 
+call sites. In order to create new intraprocedural analyser in Facebook
 Infer, it is needed to define (listed items are described in more detail
 in Section~\ref{sec:AI}):
 \begin{enumerate}
-    \item 
-        An \emph{abstract domain}~$ Q $, i.e., the type of an 
+    \item
+        An \emph{abstract domain}~$ Q $, i.e., the type of an
         \emph{abstract state}.
-        
+
     \item
         Operator~$ \sqsubseteq $, i.e., an ordering of abstract states.
-        
+
     \item
         \emph{Join} operator~$ \circ $, i.e., the way of joining two abstract
         states.
-        
+
     \item
-        \emph{Widening} operator~$ \triangledown $, i.e., the way how to 
+        \emph{Widening} operator~$ \triangledown $, i.e., the way how to
         enforce termination of the abstract interpretation of iteration.
-        
+
     \item
         \emph{Transfer functions}~$ \tau $, i.e., a~transformer that
         takes an abstract state as input and produces an abstract state
@@ -501,24 +501,24 @@ in Section~\ref{sec:AI}):
 And in order to create an interprocedural analyser, it is required to
 additionally define:
 \begin{enumerate}
-    \item 
+    \item
         The type of function summaries.
-        
+
     \item
         The logic for using summaries in transfer functions, and the logic
         for transforming an intraprocedural abstract state to
         a~summary.
 \end{enumerate}
-The next important feature improving the scalability is 
+The next important feature improving the scalability is
 \emph{incrementality} of the analysis, it allows to analyse separate
-code changes only, instead of analysing the whole codebase. It is more 
-suitable for extensive and variable projects, where ordinary analysis 
-is not feasible. The incrementality is based on \emph{re-using summaries} 
+code changes only, instead of analysing the whole codebase. It is more
+suitable for extensive and variable projects, where ordinary analysis
+is not feasible. The incrementality is based on \emph{re-using summaries}
 of functions for which there is no change in them neither in the functions
 transitively invoked from them.
 
 \subsubsection*{
-    The Architecture of the Abstract Interpretation Framework in 
+    The Architecture of the Abstract Interpretation Framework in
     Facebook Infer
 }
 
@@ -526,7 +526,7 @@ transitively invoked from them.
     \centering
     \includegraphics[width=.65 \linewidth]{infer_architecture.pdf}
     \caption{
-        The architecture of Facebook Infer's abstract interpretation 
+        The architecture of Facebook Infer's abstract interpretation
         framework~\cite{inferAISlides}, \cite{projectPracticeMarcin2018}
     }
     \label{fig:inferArchitecture}
@@ -535,37 +535,37 @@ transitively invoked from them.
 The architecture of the abstract interpretation framework of Facebook
 Infer (\textbf{Infer.AI}) may be split into three major parts,
 as demonstrates Figure~\ref{fig:inferArchitecture}: a~\emph{frontend},
-an \emph{analysis scheduler} (and a~\emph{results database}), and a~set of 
-\emph{analyser plugins}. 
+an \emph{analysis scheduler} (and a~\emph{results database}), and a~set of
+\emph{analyser plugins}.
 
 The frontend compiles input programs into the \emph{Smallfoot Intermediate
 Language} (SIL) and represents them as the CFG. There is a~separate CFG
 representation for each analysed function. Nodes of this CFG are formed as
-instructions of SIL. SIL language consists of following underlying 
+instructions of SIL. SIL language consists of following underlying
 instructions:
 \begin{enumerate}
-    \item 
+    \item
         \texttt{LOAD}\,--\,reading into a~temporary variable.
-        
-    \item 
-        \texttt{STORE}\,--\,writing to a~program variable, 
+
+    \item
+        \texttt{STORE}\,--\,writing to a~program variable,
         a~field of a~structure, or an array.
-        
-    \item 
-        \texttt{PRUNE~e}~(often called 
+
+    \item
+        \texttt{PRUNE~e}~(often called
         \texttt{ASSUME})\,--\,a~condition~\texttt{e}.
-        
-    \item 
+
+    \item
         \texttt{CALL}\,--\,a~function call.
 \end{enumerate}
-The frontend allows one to propose \emph{language-independent} analyses 
-(to a certain extent) because it supports input programs to be written 
-in multiple languages. 
+The frontend allows one to propose \emph{language-independent} analyses
+(to a certain extent) because it supports input programs to be written
+in multiple languages.
 
-The next part of the architecture is the scheduler, which defines the 
-order of the analysis of single functions according to the appropriate 
+The next part of the architecture is the scheduler, which defines the
+order of the analysis of single functions according to the appropriate
 \emph{call graph}\footnote{\textbf{A~call graph} is \emph{directed graph}
-describing call dependencies among functions.}. The scheduler also checks 
+describing call dependencies among functions.}. The scheduler also checks
 \begin{wrapfigure}{r}{.45 \linewidth}
     \centering
     \vspace{-.5em}
@@ -577,29 +577,29 @@ describing call dependencies among functions.}. The scheduler also checks
     }
     \label{fig:inferCallGraph}
 \end{wrapfigure}
-if it is possible to analyse some functions simultaneously, which allows 
-Facebook Infer to run the analysis in parallel. For demonstrating the order 
-of the analysis in Facebook Infer and its incrementality, assume a~call 
-graph in Figure~\ref{fig:inferCallGraph}. At first, leaf functions 
-\texttt{P5} and \texttt{P6} are analysed. Further, the analysis goes on 
-towards the root of the call graph\,--\,\texttt{P\textsubscript{MAIN}}, 
-while takes into consideration the dependencies denotes by the edges. This 
+if it is possible to analyse some functions simultaneously, which allows
+Facebook Infer to run the analysis in parallel. For demonstrating the order
+of the analysis in Facebook Infer and its incrementality, assume a~call
+graph in Figure~\ref{fig:inferCallGraph}. At first, leaf functions
+\texttt{P5} and \texttt{P6} are analysed. Further, the analysis goes on
+towards the root of the call graph\,--\,\texttt{P\textsubscript{MAIN}},
+while takes into consideration the dependencies denotes by the edges. This
 order ensures that a~summary is available once a~nested function call is
 abstractly interpreted within the analysis. When there is a~subsequent code
-change, only directly changed functions and all the functions up the call 
+change, only directly changed functions and all the functions up the call
 path are re-analysed. For instance, if there is a~change of source code of
 function \texttt{P4}, Facebook Infer triggers re-analysation of functions
-\texttt{P4}, \texttt{P2}, and \texttt{P\textsubscript{MAIN}} only. 
+\texttt{P4}, \texttt{P2}, and \texttt{P\textsubscript{MAIN}} only.
 
-The last part of the architecture consists of the set of analyser plugins. 
-Each plugin performs the analysis by interpretation of SIL instructions. 
-Result of the analysis of each function (function summary) is stored to 
-the results database. Interpretation of SIL instructions (\emph{commands}) 
+The last part of the architecture consists of the set of analyser plugins.
+Each plugin performs the analysis by interpretation of SIL instructions.
+Result of the analysis of each function (function summary) is stored to
+the results database. Interpretation of SIL instructions (\emph{commands})
 is done using an \emph{abstract interpreter} (also called a~\emph{control
 interpreter}) and \emph{transfer functions} (also called a~\emph{command
-interpreter}). The transfer functions take an actual \emph{abstract state} 
-of an analysed function as input, and by applying the interpreting command 
-produce a~new abstract state. Then, the abstract interpreter interprets the 
+interpreter}). The transfer functions take an actual \emph{abstract state}
+of an analysed function as input, and by applying the interpreting command
+produce a~new abstract state. Then, the abstract interpreter interprets the
 command in \emph{abstract domain} according to the CFG. This workflow is
 simplified in Figure~\ref{fig:inferAnalysis}.
 
@@ -607,7 +607,7 @@ simplified in Figure~\ref{fig:inferAnalysis}.
     \centering
     \includegraphics[width=.65 \linewidth]{infer_analysis.pdf}
     \caption{
-        Facebook Infer's abstract interpretation 
+        Facebook Infer's abstract interpretation
         process~\cite{inferAISlides}, \cite{projectPracticeMarcin2018}
     }
     \label{fig:inferAnalysis}
@@ -617,15 +617,15 @@ simplified in Figure~\ref{fig:inferAnalysis}.
 \section{Contracts for Concurrency}
 \label{sec:contracts}
 
-This section introduces and defines the concept of \emph{contracts for 
-concurrency} described in~\cite{contracts2015}, \cite{contracts2017}. Parts 
+This section introduces and defines the concept of \emph{contracts for
+concurrency} described in~\cite{contracts2015}, \cite{contracts2017}. Parts
 of this section are taken over~\cite{excel2019FBInfer}. Listings in this
 section are pieces of programs written in ANSI~C\footnote{
 \textbf{ANSI~C}\,--\,standard for the C~programming language published by
 the \emph{ANSI} (American National Standards Institute).}.
 
 Respecting the \emph{protocol} of a~software module\,---\,delineates
-which sequences of functions are legal to invoke\,---\,is one of the 
+which sequences of functions are legal to invoke\,---\,is one of the
 requirements for the correct behaviour of the module. For example, a~module
 that deals with file system typically requires that the programmer using
 this module should call function \texttt{open} at first, followed by an
@@ -636,12 +636,12 @@ contract} (described in~\cite{contract}) enforces programs to meet
 such well-defined behaviours.~\cite{contracts2015}
 
 In \emph{concurrent programs}, contracts for concurrency allow one to define
-\emph{sequences of functions} that are required to be \emph{executed 
-atomically}, in order to avoid \emph{atomicity violations}. Such contracts 
-may be manually written by a~developer or it may be automatically generated 
-by a~program (analyser). These contracts can be used to verify the correctness 
-of programs as well as it can serve as useful documentation. A~program is 
-safe from \emph{atomicity violations} if the program respects a~contract and 
+\emph{sequences of functions} that are required to be \emph{executed
+atomically}, in order to avoid \emph{atomicity violations}. Such contracts
+may be manually written by a~developer or it may be automatically generated
+by a~program (analyser). These contracts can be used to verify the correctness
+of programs as well as it can serve as useful documentation. A~program is
+safe from \emph{atomicity violations} if the program respects a~contract and
 the contract is well defined and complete.
 
 Section~\ref{sec:basicContracts} defines the notion of \emph{basic contracts}
@@ -656,21 +656,21 @@ of basic contracts with \emph{spoilers} (i.e., extending by
 \subsection{Basic Contracts}
 \label{sec:basicContracts}
 
-In~\cite{contracts2017}, \cite{contracts2015}, a~\emph{basic contract} is 
-formally defined as follows. Let~$ \Sigma_\mathbb{M} $~be a~set of all 
-function names of a~software module. A~contract is 
-a~set~$ \mathbb{R} $~of \emph{clauses} where each clause 
+In~\cite{contracts2017}, \cite{contracts2015}, a~\emph{basic contract} is
+formally defined as follows. Let~$ \Sigma_\mathbb{M} $~be a~set of all
+function names of a~software module. A~contract is
+a~set~$ \mathbb{R} $~of \emph{clauses} where each clause
 $ \varrho\ \in \mathbb{R} $ is a~\emph{star-free regular
-expression}\footnote{\textbf{Star-free regular expressions} are 
-regular expressions using only the \emph{concatenation operators} 
-and \emph{alternative operators} ($ | $), without the 
+expression}\footnote{\textbf{Star-free regular expressions} are
+regular expressions using only the \emph{concatenation operators}
+and \emph{alternative operators} ($ | $), without the
 \emph{Kleene star operator} ($ * $).} over~$ \Sigma_\mathbb{M} $.
-A~\emph{contract violation} occurs if any of the sequences represented by 
-the contract clauses is interleaved with an execution of functions 
+A~\emph{contract violation} occurs if any of the sequences represented by
+the contract clauses is interleaved with an execution of functions
 from~$ \Sigma_\mathbb{M} $, in other words, each sequence defined by
 any clause~$ \varrho $~must be executed atomically, otherwise there
 is a~violation of the contract. The number of sequences specified by
-the contract is finite, because the contract is the union of 
+the contract is finite, because the contract is the union of
 \emph{star-free languages}.
 
 Consider the following example from~\cite{contracts2017}. There is
@@ -689,31 +689,31 @@ functions:
 \end{itemize}
 The module contains following clauses:
 \begin{enumerate}[label={$ (\varrho_{\arabic*}) $}]
-    \item 
+    \item
         \texttt{contains index\_of}
         \begin{itemize}
-            \item 
+            \item
                 Execution of \texttt{contains} followed by \texttt{index\_of}
                 should be atomic. Otherwise, the program may failed to
                 get the index, because after confirmation of its existence
                 in an array, it can be concurrently, e.g., removed.
         \end{itemize}
-    
-    \item 
+
+    \item
         \texttt{index\_of (get | set | remove)}
         \begin{itemize}
-            \item 
+            \item
                 Execution of \texttt{index\_of} follow by \texttt{get},
                 \texttt{set}, or \texttt{remove} should be atomic. Otherwise,
                 the obtained index may be outdated when it is used to access
                 an element, because a~concurrent change of an array may shift
                 the position of the element.
         \end{itemize}
-        
-    \item 
+
+    \item
         \texttt{size (get | set | remove)}
         \begin{itemize}
-            \item 
+            \item
                 Execution of \texttt{size} follow by \texttt{get},
                 \texttt{set}, or \texttt{remove} should be atomic. Otherwise,
                 the size of an array may be invalid when accessing an array,
@@ -722,10 +722,10 @@ The module contains following clauses:
                 anymore (e.g., \texttt{index < size}).
         \end{itemize}
 
-    \item 
+    \item
         \texttt{add (get | index\_of)}
         \begin{itemize}
-            \item 
+            \item
                 Execution of \texttt{add} followed by \texttt{get} or
                 \texttt{index\_of} should be atomic. Otherwise, the added
                 element may no longer exists or its position in an array
@@ -768,10 +768,10 @@ Listing~\ref{list:contractsReplace}. There is a~function \texttt{replace}
 that replaces item~\texttt{a}~in an array by item~\texttt{b}. Implementation
 of this function contains two atomicity violations:
 \begin{enumerate}[label={(\roman*)}]
-    \item 
+    \item
         item~\texttt{a}~does not need to exist anymore when \texttt{index\_of}
         is called,
-        
+
     \item
         the index acquired can be obsolete when \texttt{set} is called.
 \end{enumerate}
@@ -785,7 +785,7 @@ arguments \texttt{array} and \texttt{element}, \texttt{index\_of} and
 \texttt{index\_of} is used as the argument \texttt{index} of function
 \texttt{set}.
 
-In order to consider \emph{function call parameters} and \emph{return values} 
+In order to consider \emph{function call parameters} and \emph{return values}
 of functions in contracts, the basic contracts are extended by dependencies
 between functions in~\cite{contracts2017} as follows. Function call parameters
 and return values are expressed as \emph{meta-variables}. Further, if a~contract
@@ -794,19 +794,19 @@ the return value of multiple calls in a~given call sequence, it can be expressed
 by using the same meta-variable at the position of all these parameters
 and/or return values.
 
-Clause~$ \varrho_5 $~can be extended as follows (repeated use of 
+Clause~$ \varrho_5 $~can be extended as follows (repeated use of
 meta-variables \texttt{X/Y/Z} requiring to appear the same objects
-\texttt{o\textsubscript{1}/o\textsubscript{2}/o\textsubscript{3}} at the 
+\texttt{o\textsubscript{1}/o\textsubscript{2}/o\textsubscript{3}} at the
 positions of \texttt{X/Y/Z}).
-$$ 
+$$
     (\varrho^\prime_5)\ \text{\texttt{
         contains(X,Y) Z=index\_of(X,Y) set(X,Z,\_))
-    }} 
+    }}
 $$
 The underscore means a \emph{free meta-variable} that does not restrict
 the the contract clause.
 
-With this extension, it is possible to extend contract from 
+With this extension, it is possible to extend contract from
 Section~\ref{sec:basicContracts} as follows:
 \begin{enumerate}[label={$ (\varrho^\prime_{\arabic*}) $}]
     \tt
