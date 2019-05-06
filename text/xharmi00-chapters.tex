@@ -559,7 +559,7 @@ instructions:
         \texttt{CALL}\,--\,a~function call.
 \end{enumerate}
 The frontend allows one to propose \emph{language-independent} analyses
-(to a certain extent) because it supports input programs to be written
+(to a~certain extent) because it supports input programs to be written
 in multiple languages.
 
 The next part of the architecture is the scheduler, which defines the
@@ -776,7 +776,7 @@ of this function contains two atomicity violations:
         the index acquired can be obsolete when \texttt{set} is called.
 \end{enumerate}
 A~basic contract from Section~\ref{sec:basicContracts} could cover
-this scenario by a clause:
+this scenario by a~clause:
 $$ (\varrho_5)\ \text{\texttt{contains index\_of set}} $$
 However, it is too restrictive because it is required to be executed
 atomically only if \texttt{contains} and \texttt{index\_of} have the same
@@ -803,7 +803,7 @@ $$
         contains(X,Y) Z=index\_of(X,Y) set(X,Z,\_))
     }}
 $$
-The underscore means a \emph{free meta-variable} that does not restrict
+The underscore means a~\emph{free meta-variable} that does not restrict
 the the contract clause.
 
 With this extension, it is possible to extend contract from
