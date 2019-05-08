@@ -342,15 +342,19 @@ basic components of abstract interpretation are as follows:
 
 \subsubsection*{Fixpoints and Fixpoint Approximation}
 
-In~\cite{favLatticesAndFixpoints}, there is a~\emph{fixpoint} defined as:
-\begin{itemize}
-    \item
-        let $ (A, \leq_A) $ be a~\emph{lattice}~\cite{favLatticesAndFixpoints},
+\begin{definition}
+    In~\cite{favLatticesAndFixpoints}, there is a~\emph{fixpoint} defined as:
+    \begin{itemize}
+        \item
+            let $ (A, \leq_A) $ be
+            a~\emph{lattice}~\cite{favLatticesAndFixpoints},
 
-    \item
-        an element $ a \in A $ is a~\textbf{fixpoint} of a~function
-        $ f : A \rightarrow A $ if and only if $ \boldsymbol{f(a) = a} $.
-\end{itemize}
+        \item
+            an element $ a \in A $ is a~\textbf{fixpoint} of a~function
+            $ f : A \rightarrow A $ if and only if $ \boldsymbol{f(a) = a} $.
+    \end{itemize}
+\end{definition}
+
 Computation of the \emph{most precise abstract fixpoint} is not generally
 guaranteed to terminate in certain cases, such as loops. The solution is
 to approximate the fixpoint using \emph{widening} (over-approximation of
@@ -363,39 +367,43 @@ in~\cite{programAnalysisNielson}, \cite{wideningNarrowingCousot}.
 
 \subsubsection*{Formal Definition of Abstract Interpretation}
 
-According to~\cite{AILatticeModelCousot}, \cite{favAI},
-\textbf{abstract interpretation}~$ \boldsymbol{I} $~of a~program~$ P $~with
-the instruction set~$ S $~is a~tuple
-$$ \boldsymbol{I = (Q, \circ, \sqsubseteq, \top, \bot, \tau)} $$
-where
-\begin{itemize}
-    \item
-        $ \boldsymbol{Q} $~is the \emph{abstract domain} (domain of
-        \emph{abstract states}),
+\begin{definition}
+    According to~\cite{AILatticeModelCousot}, \cite{favAI},
+    \textbf{abstract interpretation}~$ \boldsymbol{I} $~of a~program~$ P $~with
+    the instruction set~$ S $~is a~tuple
+    $$ \boldsymbol{I = (Q, \circ, \sqsubseteq, \top, \bot, \tau)} $$
+    where
+    \begin{itemize}
+        \item
+            $ \boldsymbol{Q} $~is the \emph{abstract domain} (domain of
+            \emph{abstract states}),
 
-    \item
-        $ \boldsymbol{\circ}~\text{:}~Q \times Q \rightarrow Q $ is the \emph{join
-        operator} for accumulation of abstract states,
+        \item
+            $ \boldsymbol{\circ}~\text{:}~Q \times Q \rightarrow Q $
+            is the \emph{join operator} for accumulation of abstract states,
 
-    \item
-        $ \text{(}\boldsymbol{\sqsubseteq}\text{)} \subseteq Q \times Q $ is an
-        ordering defined as $ x \sqsubseteq y \Leftrightarrow x \circ y = y $ in
-        $ (Q, \circ, \top) $,
+        \item
+            $ \text{(}\boldsymbol{\sqsubseteq}\text{)} \subseteq Q \times Q $ is
+            an ordering defined as
+            $ x \sqsubseteq y \Leftrightarrow x \circ y = y $ in
+            $ (Q, \circ, \top) $,
 
-    \item
-        $ \boldsymbol{\top} \in Q $ is the \emph{supremum} of~$ Q $,
+        \item
+            $ \boldsymbol{\top} \in Q $ is the \emph{supremum} of~$ Q $,
 
-    \item
-        $ \boldsymbol{\bot} \in Q $ is the \emph{infimum} of~$ Q $,
+        \item
+            $ \boldsymbol{\bot} \in Q $ is the \emph{infimum} of~$ Q $,
 
-    \item
-        $ \boldsymbol{\tau}~\text{:}~S \times Q \rightarrow Q $
-        defines the \emph{abstract transformers} for specific instructions,
+        \item
+            $ \boldsymbol{\tau}~\text{:}~S \times Q \rightarrow Q $
+            defines the \emph{abstract transformers} for specific instructions,
 
-    \item
-        $ (Q, \circ, \top) $ is a~\emph{complete
-        semilattice}~\cite{favLatticesAndFixpoints}, \cite{favAI}.
-\end{itemize}
+        \item
+            $ (Q, \circ, \top) $ is a~\emph{complete
+            semilattice}~\cite{favLatticesAndFixpoints}, \cite{favAI}.
+    \end{itemize}
+\end{definition}
+
 Using so-called \emph{Galois connections}~(\cite{programAnalysisNielson},
 \cite{wideningNarrowingCousot}, \cite{favAI}, \cite{AICousotWeb}) can be
 guaranteed the \emph{soundness} of abstract interpretation.
@@ -416,7 +424,10 @@ over~\cite{excel2019FBInfer}.
     \includegraphics[width=.7 \linewidth]{infer.pdf}
     \caption{
         A~static analysis in Facebook Infer
-        (\url{http://www.codeandyou.com/2015/06/infer-static-analyzer-for-java-c-and.html})
+        (\url{%
+            http://www.codeandyou.com/2015/06/%
+            infer-static-analyzer-for-java-c-and.html%
+        })
     }
     \label{fig:infer}
 \end{figure}
@@ -465,8 +476,9 @@ may be used for storing any information resulting from the analysis of
 single functions. Facebook Infer generally does not work out the summaries
 in the course of the analysis along the \emph{Control Flow Graph}
 (\textbf{CFG})\footnote{\textbf{A~control flow graph (CFG)} is a~directed
-graph in which the nodes represent basic blocks and the edges represent control flow paths.~\cite{controlFlowAnalysisAllen}} as it is done in classical analyses
-based on the concepts from~\cite{dataflowAnalysisGraphReachability},
+graph in which the nodes represent basic blocks and the edges represent control
+flow paths.~\cite{controlFlowAnalysisAllen}} as it is done in classical
+analyses based on the concepts from~\cite{dataflowAnalysisGraphReachability},
 \cite{dataflowAnalysisApproaches}. Instead, Facebook Infer performs the
 analysis of a~program \emph{function-by-function along the call tree},
 starting from its leafs (demonstrated later). Therefore a~function
@@ -578,18 +590,22 @@ describing call dependencies among functions.}. The scheduler also checks
     \label{fig:inferCallGraph}
 \end{wrapfigure}
 if it is possible to analyse some functions simultaneously, which allows
-Facebook Infer to run the analysis in parallel. For demonstrating the order
-of the analysis in Facebook Infer and its incrementality, assume a~call
-graph in Figure~\ref{fig:inferCallGraph}. At first, leaf functions
-\texttt{P5} and \texttt{P6} are analysed. Further, the analysis goes on
-towards the root of the call graph\,--\,\texttt{P\textsubscript{MAIN}},
-while takes into consideration the dependencies denotes by the edges. This
-order ensures that a~summary is available once a~nested function call is
-abstractly interpreted within the analysis. When there is a~subsequent code
-change, only directly changed functions and all the functions up the call
-path are re-analysed. For instance, if there is a~change of source code of
-function \texttt{P4}, Facebook Infer triggers re-analysation of functions
-\texttt{P4}, \texttt{P2}, and \texttt{P\textsubscript{MAIN}} only.
+Facebook Infer to run the analysis in parallel.
+
+\begin{example}
+    For demonstrating the order of the analysis in Facebook Infer and its
+    incrementality, assume a~call graph in Figure~\ref{fig:inferCallGraph}.
+    At first, leaf functions \texttt{F5} and \texttt{F6} are analysed. Further,
+    the analysis goes on towards the root of the call
+    graph\,--\,\texttt{F\textsubscript{MAIN}}, while takes into consideration
+    the dependencies denotes by the edges. This order ensures that a~summary
+    is available once a~nested function call is abstractly interpreted within
+    the analysis. When there is a~subsequent code change, only directly changed
+    functions and all the functions up the call path are re-analysed. For
+    instance, if there is a~change of source code of function \texttt{F4},
+    Facebook Infer triggers re-analysation of functions \texttt{F4},
+    \texttt{F2}, and \texttt{F\textsubscript{MAIN}} only.
+\end{example}
 
 The last part of the architecture consists of the set of analyser plugins.
 Each plugin performs the analysis by interpretation of SIL instructions.
@@ -625,30 +641,30 @@ section are pieces of programs written in ANSI~C\footnote{
 the \emph{ANSI} (American National Standards Institute).}.
 
 Respecting the \emph{protocol} of a~software module\,---\,delineates
-which sequences of functions are legal to invoke\,---\,is one of the
+which \emph{sequences of functions} are legal to invoke\,---\,is one of the
 requirements for the correct behaviour of the module. For example, a~module
-that deals with file system typically requires that the programmer using
+that deals with file system typically requires that a~programmer using
 this module should call function \texttt{open} at first, followed by an
-arbitrary number of functions \texttt{read} and \texttt{write}, and at last,
-call function \texttt{close}. A~program utilising such module that does
-not follow this protocol is incorrect. The methodology of \emph{design by
-contract} (described in~\cite{contract}) enforces programs to meet
+optional number of functions \texttt{read} and \texttt{write}, and at last,
+call function \texttt{close}. A~program utilising such a~module that does
+not follow this protocol is erroneous. The methodology of \emph{design by
+contract} (described in~\cite{contract}) requires programs to meet
 such well-defined behaviours.~\cite{contracts2015}
 
-In \emph{concurrent programs}, contracts for concurrency allow one to define
-\emph{sequences of functions} that are required to be \emph{executed
+In \emph{concurrent programs}, contracts for concurrency allow one to specify
+\emph{sequences of functions} that are needed to be \emph{executed
 atomically}, in order to avoid \emph{atomicity violations}. Such contracts
-may be manually written by a~developer or it may be automatically generated
+may be manually specified by a~developer or it may be automatically generated
 by a~program (analyser). These contracts can be used to verify the correctness
-of programs as well as it can serve as useful documentation. A~program is
-safe from \emph{atomicity violations} if the program respects a~contract and
-the contract is well defined and complete.
+of programs as well as they can serve as helpful documentation. A~program is
+safe from atomicity violations if the program follows the contract and
+the contract is well-defined and complete.
 
-Section~\ref{sec:basicContracts} defines the notion of \emph{basic contracts}
-for concurrency. Further, Section~\ref{sec:parameterContracts} defines
-contracts extended to reflect the \emph{data flow} between functions (i.e.,
+Section~\ref{sec:basicContracts} defines the notion of \emph{basic contracts
+for concurrency}. Further, Section~\ref{sec:parameterContracts} defines
+contracts extended to consider the \emph{data flow} between functions (i.e.,
 a~sequence of function calls must be atomic only if they handle the
-same data). Above that, paper~\cite{contracts2017} extends the notion
+same data). Above that, paper~\cite{contracts2017} extends the idea
 of basic contracts with \emph{spoilers} (i.e., extending by
 \emph{contextual information}).
 
@@ -656,91 +672,132 @@ of basic contracts with \emph{spoilers} (i.e., extending by
 \subsection{Basic Contracts}
 \label{sec:basicContracts}
 
-In~\cite{contracts2017}, \cite{contracts2015}, a~\emph{basic contract} is
-formally defined as follows. Let~$ \Sigma_\mathbb{M} $~be a~set of all
-function names of a~software module. A~contract is
-a~set~$ \mathbb{R} $~of \emph{clauses} where each clause
-$ \varrho\ \in \mathbb{R} $ is a~\emph{star-free regular
-expression}\footnote{\textbf{Star-free regular expressions} are
-regular expressions using only the \emph{concatenation operators}
-and \emph{alternative operators} ($ | $), without the
-\emph{Kleene star operator} ($ * $).} over~$ \Sigma_\mathbb{M} $.
-A~\emph{contract violation} occurs if any of the sequences represented by
-the contract clauses is interleaved with an execution of functions
-from~$ \Sigma_\mathbb{M} $, in other words, each sequence defined by
-any clause~$ \varrho $~must be executed atomically, otherwise there
-is a~violation of the contract. The number of sequences specified by
-the contract is finite, because the contract is the union of
-\emph{star-free languages}.
+\begin{definition}
+    In~\cite{contracts2017}, \cite{contracts2015}, a~\emph{basic contract} is
+    formally defined as follows. Let~$ \Sigma_\mathbb{M} $~be a~set of all
+    function names of a~software module. A~contract is
+    a~set~$ \mathbb{R} $~of \emph{clauses} where each clause
+    $ \varrho\ \in \mathbb{R} $ is a~\emph{star-free regular
+    expression}\footnote{\textbf{Star-free regular expressions} are
+    regular expressions using only the \emph{concatenation operators}
+    and the \emph{alternative operators} ($ | $), without the
+    \emph{Kleene star operator} ($ * $).} over~$ \Sigma_\mathbb{M} $.
+    A~\emph{contract violation} occurs if any of the sequences expressed by
+    the contract clauses are interleaved with the execution of functions
+    from~$ \Sigma_\mathbb{M} $, in other words, each sequence specified by
+    any clause~$ \varrho $~must be executed atomically, otherwise, there
+    is a~violation of the contract. The number of sequences defined by
+    a~contract is finite since the contract is the union of
+    \emph{star-free languages}.
+\end{definition}
 
-Consider the following example from~\cite{contracts2017}. There is
-a~module with implementation of a~resizable array with the following
-functions:
-\begin{itemize}[label=]
-    \tt
+\begin{example}
+    Consider the following example from~\cite{contracts2017},
+    \cite{contracts2015}. There is a~module with the implementation of
+    a~resizable array with the listed functions:
+    \begin{enumerate}[label={$ f_{\arabic*} $:}]
+        \tt
 
-    \item void add(char *array, char element)
-    \item bool contains(char *array, char element)
-    \item int index\_of(char *array, char element)
-    \item char get(char *array, int index)
-    \item void set(char *array, int index, char element)
-    \item void remove(char *array, int index)
-    \item int size(char *array)
-\end{itemize}
-The module contains following clauses:
-\begin{enumerate}[label={$ (\varrho_{\arabic*}) $}]
-    \item
-        \texttt{contains index\_of}
-        \begin{itemize}
-            \item
-                Execution of \texttt{contains} followed by \texttt{index\_of}
-                should be atomic. Otherwise, the program may failed to
-                get the index, because after confirmation of its existence
-                in an array, it can be concurrently, e.g., removed.
-        \end{itemize}
+        \item
+            \textcolor{bluekeywords}{void} add(%
+                \textcolor{bluekeywords}{char} *array,
+                \textcolor{bluekeywords}{char} element%
+            )
 
-    \item
-        \texttt{index\_of (get | set | remove)}
-        \begin{itemize}
-            \item
-                Execution of \texttt{index\_of} follow by \texttt{get},
-                \texttt{set}, or \texttt{remove} should be atomic. Otherwise,
-                the obtained index may be outdated when it is used to access
-                an element, because a~concurrent change of an array may shift
-                the position of the element.
-        \end{itemize}
+        \item
+            \textcolor{bluekeywords}{bool} contains(%
+                \textcolor{bluekeywords}{char} *array,
+                \textcolor{bluekeywords}{char} element%
+            )
 
-    \item
-        \texttt{size (get | set | remove)}
-        \begin{itemize}
-            \item
-                Execution of \texttt{size} follow by \texttt{get},
-                \texttt{set}, or \texttt{remove} should be atomic. Otherwise,
-                the size of an array may be invalid when accessing an array,
-                because of a~concurrent change of the array. This can be
-                in issue, since a~given index is not in valid range
-                anymore (e.g., \texttt{index < size}).
-        \end{itemize}
+        \item
+            \textcolor{bluekeywords}{int} index\_of(%
+                \textcolor{bluekeywords}{char} *array,
+                \textcolor{bluekeywords}{char} element%
+            )
 
-    \item
-        \texttt{add (get | index\_of)}
-        \begin{itemize}
-            \item
-                Execution of \texttt{add} followed by \texttt{get} or
-                \texttt{index\_of} should be atomic. Otherwise, the added
-                element may no longer exists or its position in an array
-                may be changed, when the program tries to get information
-                about it.
-        \end{itemize}
-\end{enumerate}
+        \item
+            \textcolor{bluekeywords}{char} get(%
+                \textcolor{bluekeywords}{char} *array,
+                \textcolor{bluekeywords}{int} index%
+            )
+
+        \item
+            \textcolor{bluekeywords}{void} set(%
+                \textcolor{bluekeywords}{char} *array,
+                \textcolor{bluekeywords}{int} index,
+                \textcolor{bluekeywords}{char} element%
+            )
+
+        \item
+            \textcolor{bluekeywords}{void} remove(%
+                \textcolor{bluekeywords}{char} *array,
+                \textcolor{bluekeywords}{int} index%
+            )
+
+        \item
+            \textcolor{bluekeywords}{int} size(%
+                \textcolor{bluekeywords}{char} *array%
+            )
+    \end{enumerate}
+    The module's contract contains the following clauses:
+    \begin{enumerate}[label={$ (\varrho_{\arabic*}) $}]
+        \item
+            \texttt{contains index\_of}
+            \begin{itemize}[label=]
+                \item
+                    The execution of \texttt{contains} followed by the execution
+                    of \texttt{index\_of} should be atomic. Otherwise, the program
+                    may fail to get the index, because after verification of
+                    the presence of an element in an array, it can be
+                    concurrently, e.g., removed.
+            \end{itemize}
+
+        \item
+            \texttt{index\_of (get | set | remove)}
+            \begin{itemize}[label=]
+                \item
+                    The execution of \texttt{index\_of} follow by the execution
+                    of \texttt{get}, \texttt{set}, or \texttt{remove} should be
+                    atomic. Otherwise, the received index may be outdated when it
+                    is applied to address an element, because a~concurrent
+                    modification of
+                    an array may shift the position of the element.
+            \end{itemize}
+
+        \item
+            \texttt{size (get | set | remove)}
+            \begin{itemize}[label=]
+                \item
+                    The execution of \texttt{size} followed by the execution of
+                    \texttt{get}, \texttt{set}, or \texttt{remove} should be
+                    atomic. Otherwise, the size of an array may be void when
+                    accessing an array, because of a~concurrent change of the
+                    array. This can be an issue since a~given index is not in
+                    a~valid range anymore (e.g., testing \texttt{index < size}).
+            \end{itemize}
+
+        \item
+            \texttt{add (get | index\_of)}
+            \begin{itemize}[label=]
+                \item
+                    The execution of \texttt{add} followed by the execution of
+                    \texttt{get} or \texttt{index\_of} should be atomic.
+                    Otherwise, the added element does not have to longer exist
+                    or its position in an array can be changed, when the program
+                    attempts to obtain information about it.
+            \end{itemize}
+    \end{enumerate}
+\end{example}
 
 The above definition of contracts for concurrency is quite limited in
-some cases and can consider valid concurrent programs as incorrect (reports
-\emph{false alarms}). Hence, in Section~\ref{sec:parameterContracts},
-there is defined an extension with \emph{parameters}, which considering the
-data flow between function calls. And in~\cite{contracts2017}, there
-is defined another extension with \emph{spoilers}, which considering
-contextual information of function function calls.
+some circumstances and can consider valid concurrent programs as erroneous
+(reports \emph{false alarms}). Hence, in Section~\ref{sec:parameterContracts},
+there is defined an extension of contracts for concurrency with
+\emph{parameters}, which takes into consideration the data flow within
+function calls. And in~\cite{contracts2017}, \cite{contracts2015}, there is
+defined another extension with \emph{spoilers}, which considering contextual
+information of function calls.
 
 
 \subsection{Contracts with Parameters}
@@ -763,58 +820,60 @@ void replace(char *array, char a, char b)
 }
 \end{lstlisting}
 
-Consider the following example from~\cite{contracts2017}, as demonstrates
-Listing~\ref{list:contractsReplace}. There is a~function \texttt{replace}
-that replaces item~\texttt{a}~in an array by item~\texttt{b}. Implementation
-of this function contains two atomicity violations:
-\begin{enumerate}[label={(\roman*)}]
-    \item
-        item~\texttt{a}~does not need to exist anymore when \texttt{index\_of}
-        is called,
+\begin{example}
+    Consider the following example from~\cite{contracts2017},
+    \cite{contracts2015}, as demonstrates Listing~\ref{list:contractsReplace}.
+    There is a~function \texttt{replace} that replaces item~\texttt{a}~in an
+    array by item~\texttt{b}. Implementation of this function comprises two
+    atomicity violations:
+    \begin{enumerate}[label={(\roman*)}]
+        \item
+            when \texttt{index\_of} is invoked, item~\texttt{a}~does not need to
+            be in the array anymore;
 
-    \item
-        the index acquired can be obsolete when \texttt{set} is called.
-\end{enumerate}
-A~basic contract from Section~\ref{sec:basicContracts} could cover
-this scenario by a~clause:
-$$ (\varrho_5)\ \text{\texttt{contains index\_of set}} $$
-However, it is too restrictive because it is required to be executed
-atomically only if \texttt{contains} and \texttt{index\_of} have the same
-arguments \texttt{array} and \texttt{element}, \texttt{index\_of} and
-\texttt{set} have the same arguments \texttt{array}, and the returned value of
-\texttt{index\_of} is used as the argument \texttt{index} of function
-\texttt{set}.
+        \item
+            the acquired index can be obsolete when \texttt{set} is invoked.
+    \end{enumerate}
+    A~basic contract defined in Section~\ref{sec:basicContracts} could cover
+    this scenario by clause~$ \varrho_5 $:
+    $$ (\varrho_5)\ \text{\texttt{contains index\_of set}} $$
+    Nevertheless, it is too restrictive because it is required to be executed
+    atomically only if \texttt{contains} and \texttt{index\_of} have the same
+    arguments \texttt{array} and \texttt{element}, \texttt{index\_of} and
+    \texttt{set} have the same argument \texttt{array}, and the returned value of
+    \texttt{index\_of} is used as the argument \texttt{index} of function
+    \texttt{set}.
+\end{example}
 
-In order to consider \emph{function call parameters} and \emph{return values}
-of functions in contracts, the basic contracts are extended by dependencies
-between functions in~\cite{contracts2017} as follows. Function call parameters
-and return values are expressed as \emph{meta-variables}. Further, if a~contract
-should be enforced only if the same object appears as an argument or as
-the return value of multiple calls in a~given call sequence, it can be expressed
-by using the same meta-variable at the position of all these parameters
-and/or return values.
+In order to respect function call \emph{parameters} and \emph{return values}
+of functions in contracts, the basic contracts are further extended by
+dependencies among functions in~\cite{contracts2017}, \cite{contracts2015}
+as follows. Function call parameters and return values are expressed as
+\emph{meta-variables}. Further, if a~contract should be required exclusively
+if the same object emerges as an argument or as the return value of multiple
+calls in a~given call sequence, it may be denoted by using the same
+meta-variable at the position of all these occurrences of parameters and
+return values.
 
-Clause~$ \varrho_5 $~can be extended as follows (repeated use of
-meta-variables \texttt{X/Y/Z} requiring to appear the same objects
-\texttt{o\textsubscript{1}/o\textsubscript{2}/o\textsubscript{3}} at the
-positions of \texttt{X/Y/Z}).
+Clause~$ \varrho_5 $~can be extended as follows (repeated application of
+meta-variables \texttt{X/Y/Z} requiring the same objects
+\texttt{o\textsubscript{1}/o\textsubscript{2}/o\textsubscript{3}} to be used
+at the positions of \texttt{X/Y/Z}):
 $$
-    (\varrho^\prime_5)\ \text{\texttt{
-        contains(X,Y) Z=index\_of(X,Y) set(X,Z,\_))
+    (\varrho^\prime_5) \text{\texttt{
+        contains(X,Y) Z=index\_of(X,Y) set(X,Z,\_)
     }}
 $$
-The underscore means a~\emph{free meta-variable} that does not restrict
-the the contract clause.
+The underscore indicates a~\emph{free meta-variable} that does not restrict
+the contract clause.
 
-With this extension, it is possible to extend contract from
-Section~\ref{sec:basicContracts} as follows:
+With the extension described above, it is possible to extend the contract
+from Section~\ref{sec:basicContracts} as follows:
 \begin{enumerate}[label={$ (\varrho^\prime_{\arabic*}) $}]
     \tt
 
     \item contains(X,Y) index\_of(X,Y)
     \item Y=index\_of(X,\_) (get(X,Y) | set(X,Y,\_) | remove(X,Y))
-    \item Y=size(X) (get(X,Y) | set(X,Y,\_) | remove(X,Y))
-    \item add(X,Y) (get(X,Y) | index\_of(X,Y))
 \end{enumerate}
 
 

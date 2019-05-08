@@ -19,11 +19,18 @@
 % Basic packages are in template file fitthesis.cls.
 \usepackage{subcaption}
 \usepackage{wrapfig}
+\usepackage{amsthm}
 
 % Setting of a path to the pictures.
 \graphicspath{{figures/}{./figures/}}
 
+\renewcommand{\rmdefault}{lmr} % set Latin Modern Roman as rm
+\renewcommand{\sfdefault}{qhv} % set TeX Gyre Heros as sf
 \renewcommand{\ttdefault}{lmtt} % set Latin Modern tt as tt
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
 
 % Disables function of the template which replaces quotation marks
 % to avoid unnecessary replacements in the API descriptions etc.
@@ -164,6 +171,15 @@
         on both smaller programs created for this purpose as well as
         publicly available benchmarks derived from real-life low-level
         programs.
+    },
+    % Extended abstract
+    extendedabstract={%
+        \todo{
+            Do tohoto odstavce bude zapsán rozšířený výtah (abstrakt) práce
+            v~českém jazyce.
+        }
+
+        \blind{5}
     },
 %
     % Declaration
