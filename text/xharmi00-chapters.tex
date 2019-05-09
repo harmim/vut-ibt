@@ -13,7 +13,7 @@ tools or tools for automated testing are often used. These methods
 are satisfactory in many cases. Nevertheless, they can still leave
 too many bugs undetected, because they are able to analyse only
 certain program flows, dependent on its input data. An alternative
-solution is a~\emph{static analysis}. Of course, it has some shortages
+solution is \emph{static analysis}. Of course, it has some shortages
 as well. The big issue is \emph{scalability} on extensive codebases and
 considerable high rate of incorrectly reported errors (so-called
 \emph{false positives}, also called \emph{false alarms}).
@@ -50,7 +50,7 @@ finding atomicity violations\,---\,which is implemented as an extension for
 Facebook Infer. In particular, the concentration is put on an
 \emph{atomic execution of sequences of function calls}, which is often
 required, e.g., when using certain library calls. The implementation targets
-to C/C++ programs that use \emph{PThreads} locks.
+to C/C++ programs that use \emph{PThread} locks.
 
 The development of Atomer has been discussed with developers of
 Facebook Infer, and it is a~part of the H2020 ECSEL project Aquas. Parts
@@ -62,12 +62,12 @@ The rest of the paper is organised as follows. In
 Chapter~\ref{chap:preliminaries}, there are described all the topics
 which are necessary to understand before reading the rest of the paper. In
 particular, Section~\ref{sec:staticAnalysisAI} deals with
-a~\emph{static analysis} based on \emph{abstract interpretation}.
+\emph{static analysis} based on \emph{abstract interpretation}.
 Facebook Infer, which uses abstract interpretation, is described in
 Section~\ref{sec:fbinfer}. And in Section~\ref{sec:contracts}, there is
-described the concept of \emph{contracts for concurrency}. A~proposal of a~static
-analyser for detection of \emph{atomicity violations}, based on this concept, is
-described in Chapter~\ref{chap:proposal}. Its implementation is in
+described the concept of \emph{contracts for concurrency}. A~proposal of
+a~static analyser for detection of \emph{atomicity violations}, based on this
+concept, is described in Chapter~\ref{chap:proposal}. Its implementation is in
 Chapter~\ref{chap:implementation} and experimental results are presented
 in Chapter~\ref{chap:experiments}. Finally, Chapter~\ref{chap:conclusion}
 concludes the paper. Appendix~\ref{chap:memoryMedia} lists contents
@@ -86,7 +86,7 @@ got inspired by.
 
 The aim of this thesis is to propose a~\emph{static analyser} and implement
 it in \emph{Facebook Infer}. So, in Section~\ref{sec:staticAnalysisAI},
-there is a~brief explanation of a~\emph{static analysis} itself, and then an
+there is a~brief explanation of \emph{static analysis} itself, and then an
 explanation of \emph{abstract interpretation} that is used in Facebook Infer.
 Facebook Infer, its principles and features illustrate
 Section~\ref{sec:fbinfer}. A~proposal of a~solution is based on the
@@ -97,7 +97,7 @@ in Section~\ref{sec:contracts}.
 \section{Static Analysis by Abstract Interpretation}
 \label{sec:staticAnalysisAI}
 
-According to~\cite{staticAnalysisMoller}, a~\emph{static analysis} of
+According to~\cite{staticAnalysisMoller}, \emph{static analysis} of
 programs is reasoning about the behaviour of computer programs without
 actually executing them. It has been used since the 1970s for optimising
 compilers for generating effective code. More recently, it has proven
@@ -107,7 +107,7 @@ a~static program analyser is a~program that reasons about the behaviour
 of other programs, in other words, a~static program analyser checks if the
 \emph{program semantics} of a~given program fulfils the given
 \emph{specification}, as illustrates Figure~\ref{fig:staticAnalysis}
-\cite{AIBasedFormalMethodsCousot}. Nowadays, a~static analysis is one of
+\cite{AIBasedFormalMethodsCousot}. Nowadays, static analysis is one of
 the fundamental concepts of \emph{formal verification}. It aims to
 automatically answer questions about a~given program, such as
 e.g.~\cite{staticAnalysisMoller}:
@@ -144,7 +144,7 @@ e.g.~\cite{staticAnalysisMoller}:
     \centering
     \includegraphics[width=.4 \linewidth]{static_analysis.pdf}
     \caption{%
-        A~static program analysis~\cite{AIBasedFormalMethodsCousot}
+        Static program analysis~\cite{AIBasedFormalMethodsCousot}
     }
     \label{fig:staticAnalysis}
 \end{figure}
@@ -153,28 +153,28 @@ It is well-known that testing, i.e., executing programs
 with some input data and examining the output, may expose errors, but it
 can not prove their absence. (It was also famously stated by Edsger W.
 Dijkstra: \uv{\textit{Program testing can be used to show the presence of bugs,
-but never to show their absence!}}.) However, a~static program analysis
+but never to show their absence!}}.) However, static program analysis
 can prove their absence\,---\,with some \emph{approximation}\,---\,it can
 check \emph{all possible executions} of the programs and provide guarantees
-about their properties. Another advantage of a~static analysis is that the
+about their properties. Another advantage of static analysis is that the
 analysis can be performed during the development process, so the program
 does not have to be executable yet and it already can be analysed.
 The significant issue is how to ensure high precision and
 \emph{scalability} to be useful in practice. The biggest disadvantage is
-that a~static analysis can produce many \emph{false alarms}\footnote{%
+that static analysis can produce many \emph{false alarms}\footnote{%
 \textbf{False alarms}\,--\,incorrectly reported an error. Also called
 \emph{false positives}.}, but it is often
 resolved by accepting \emph{unsoundness}\footnote{\textbf{Soundness}\,--\,if
 a~verification method claims that a~system is correct according to a~given
 specification, it is truly correct.~\cite{favStaticAnalysis}}.
 
-Various forms of a~static analysis of programs have been invented, for
+Various forms of static analysis of programs have been invented, for
 instance~\cite{favStaticAnalysis}: bug pattern searching, data-flow
 analysis, constraint-based analysis, type analysis, symbolic execution. And
 one of the essential concept\,---\,\emph{abstract interpretation}\,---\,is
 detailed in Section~\ref{sec:AI}.
 
-There exist numerous tools for a~static analysis (often proprietary and
+There exist numerous tools for static analysis (often proprietary and
 difficult to openly evaluate or extend), e.g.: Coverity, Klockwork, CodeSonar,
 Loopus, phpstan, or \emph{Facebook Infer} (described in
 Section~\ref{sec:fbinfer}).
@@ -360,7 +360,7 @@ guaranteed to terminate in certain cases, such as loops. The solution is
 to approximate the fixpoint using \emph{widening} (over-approximation of
 a~fixpoint) and \emph{narrowing} (improves an approximation of
 a~fixpoint)~\cite{favAI}, \cite{projectPracticeMarcin2018}.
-Most program properties can be represented as fixpoints. This reduces a~program
+Most program properties can be represented as fixpoints. This reduces program
 analysis to the fixpoint approximation~\cite{AICousotWeb}. Further
 information about fixpoint approximation can be found
 in~\cite{programAnalysisNielson}, \cite{wideningNarrowingCousot}.
@@ -440,7 +440,7 @@ thanks to a~powerful paper~\cite{inferBiabduction}.
     \centering
     \includegraphics[width=.7 \linewidth]{infer.pdf}
     \caption{%
-        A~static analysis in Facebook Infer
+        Static analysis in Facebook Infer
         (\url{%
             http://www.codeandyou.com/2015/06/%
             infer-static-analyzer-for-java-c-and.html%
@@ -463,7 +463,7 @@ resource leaks, etc.
 
 \subsection{Abstract Interpretation in Facebook Infer}
 
-Facebook Infer is a~general framework for a~static analysis of programs, it is
+Facebook Infer is a~general framework for static analysis of programs, it is
 based on \emph{abstract interpretation}, see Section~\ref{sec:AI}. It aims
 to find bugs rather than formal verification. It can be used to quickly develop
 new sorts of \emph{compositional} and \emph{incremental} analysers
@@ -747,10 +747,10 @@ of basic contracts with \emph{spoilers} (i.e., extending by
             \begin{itemize}[label=]
                 \item
                     The execution of \texttt{contains} followed by the execution
-                    of \texttt{index\_of} should be atomic. Otherwise, the program
-                    may fail to get the index, because after verification of
-                    the presence of an element in an array, it can be
-                    concurrently, e.g., removed.
+                    of \texttt{index\_of} should be atomic. Otherwise,
+                    the program may fail to get the index, because after
+                    verification of the presence of an element in an array, it
+                    can be concurrently, e.g., removed.
             \end{itemize}
 
         \item
@@ -759,8 +759,8 @@ of basic contracts with \emph{spoilers} (i.e., extending by
                 \item
                     The execution of \texttt{index\_of} follow by the execution
                     of \texttt{get}, \texttt{set}, or \texttt{remove} should be
-                    atomic. Otherwise, the received index may be outdated when it
-                    is applied to address an element, because a~concurrent
+                    atomic. Otherwise, the received index may be outdated when
+                    it is applied to address an element, because a~concurrent
                     modification of
                     an array may shift the position of the element.
             \end{itemize}
@@ -823,8 +823,8 @@ information of function calls.
     Nevertheless, it is too restrictive because it is required to be executed
     atomically only if \texttt{contains} and \texttt{index\_of} have the same
     arguments \texttt{array} and \texttt{element}, \texttt{index\_of} and
-    \texttt{set} have the same argument \texttt{array}, and the returned value of
-    \texttt{index\_of} is used as the argument \texttt{index} of function
+    \texttt{set} have the same argument \texttt{array}, and the returned value
+    of \texttt{index\_of} is used as the argument \texttt{index} of function
     \texttt{set}.
 \end{example}
 
@@ -892,7 +892,7 @@ proposed principle is based on the assumption that sequences executed
 The chapter also assessments already existing solutions in this area.
 
 At first, Section~\ref{sec:assessmentOfExistingAnalysers} deals with
-existing approaches and tools for finding atomicity violations, theirs
+existing approaches and tools for finding atomicity violations, their
 advantages, disadvantages, features, availability, and so on. Then,
 the proposal itself is introduced in Section~\ref{sec:proposal}. Parts of
 this chapter are taken over~\cite{excel2019FBInfer}. Listings in this
@@ -906,19 +906,19 @@ chapter are pieces of exemplary programs written in ANSI~C (assume
 
 The proposed solution is slightly inspired by ideas from~\cite{contracts2017},
 \cite{contracts2015}. In these papers, there is described a~proposal
-and an implementation of a~\emph{static validation} for finding
+and implementation of a~\emph{static validation} for finding
 \emph{atomicity violations}, which is based on \emph{grammars} and
 \emph{parsing trees}. In paper~\cite{contracts2017}, there is also described
-and implemented a~dynamic approach of this validation. The authors
+and implemented a~dynamic approach to this validation. The authors
 of~\cite{contracts2017} and~\cite{contracts2015} implemented a~stand-alone
-prototype tool\footnote{\textbf{Gluon}\,---\,a~tool for a~static verification of
+prototype tool\footnote{\textbf{Gluon}\,---\,a~tool for static verification of
 \emph{contracts for concurrency} (see Section~\ref{sec:contracts}) in Java
 programs\,---\,\url{https://github.com/trxsys/gluon}.} for analysing programs
 written in Java. It led to some promising experimental results but the
 \emph{scalability} of the tool was still limited. Moreover, the tool
 from~\cite{contracts2017} and~\cite{contracts2015} is no more developed. That
-is why was mad the decision to get inspired by~\cite{contracts2017}
-and~\cite{contracts2015}, and reimplement the analysis in \emph{Facebook Infer}
+is why was made the decision to get inspired by~\cite{contracts2017}
+and~\cite{contracts2015} and reimplement the analysis in \emph{Facebook Infer}
 redesigning it in accordance with the principles of Facebook Infer (described in
 Section~\ref{sec:fbinfer}), which should make it more scalable. In the end, due
 to adapting the analysis for the context of Facebook Infer, implementation of
@@ -926,12 +926,12 @@ the analysis within this thesis is significantly different
 from~\cite{contracts2017} and~\cite{contracts2015}, as it is presented in
 Chapter~\ref{chap:implementation}. Furthermore, unlike~\cite{contracts2017}
 and~\cite{contracts2015}, the implementation aims at programs written
-in C/C++ languages using \emph{POSIX Threads (PThreads)} locks for
+in C/C++ languages using \emph{POSIX Thread (PThread)} locks for
 \emph{synchronisation of concurrent threads}.
 
-In Facebook Infer, there is already implemented an analysis called
+In Facebook Infer, there is already implemented analysis called
 \emph{Lock Consistency Violation}\footnote{\textbf{Lock Consistency
-Violation}\,---\,an atomicity violations analysis in Facebook
+Violation}\,---\,atomicity violations analysis in Facebook
 Infer\,---\,\url{https://fbinfer.com/docs/%
 checkers-bug-types.html\#LOCK_CONSISTENCY_VIOLATION}.}. It is part of
 \emph{RacerD}~\cite{racerD}, \cite{racerDOnline},
@@ -939,22 +939,22 @@ checkers-bug-types.html\#LOCK_CONSISTENCY_VIOLATION}.}. It is part of
 violations for writes/reads on single variables that are required to
 be executed atomically. Atomer is different, it finds atomicity
 violations for \emph{sequences of functions} that are required to be
-executed atomically, i.e., it checks whether \emph{contracts for 
+executed atomically, i.e., it checks whether \emph{contracts for
 concurrency} (see Section~\ref{sec:contracts}) hold.
 
 
 \section{Proposal of the Analyser}
 \label{sec:proposal}
 
-The proposal of the analyser is based on the concept of \emph{contracts 
+The proposal of the analyser is based on the concept of \emph{contracts
 for concurrency} described in Section~\ref{sec:contracts}. In particular,
 the proposal considers only \emph{basic contracts} described in
-Section~\ref{sec:basicContracts}. \emph{Parameters} of functions and theirs
-\emph{return values}\,---\,expressed in \emph{contracts with parameters}
+Section~\ref{sec:basicContracts}. Parameters of functions and their
+return values\,---\,expressed in \emph{contracts with parameters}
 (see Section~\ref{sec:parameterContracts})\,---\,are not taken into
 consideration.
 
-In general, basic contracts for concurrency allow one to define 
+In general, basic contracts for concurrency allow one to define
 \emph{sequences of functions} that are required to be \emph{executed
 atomically}, as it is explained in more detail in Section~\ref{sec:contracts}.
 Atomer is able to automatically derive candidates for such contracts, and
@@ -965,12 +965,12 @@ are done statically. The proposed analysis is divided into two parts
     \item
         Detection of \emph{atomic sequences}, which is described in
         Section~\ref{sec:proposalPhase1}.
-    
+
     \item
         Detection of \emph{atomicity violations} (violations of the atomic
         sequences), which is described in Section~\ref{sec:proposalPhase2}.
 \end{enumerate}
-These phases of the analysis and its workflow illustrates
+These phases of the analysis and its workflow illustrate
 Figure~\ref{fig:analyserPhases}.
 
 \begin{figure}[hbt]
@@ -995,32 +995,33 @@ a~program. The assumption is that if it is once needed to execute
 a~sequence atomically, it should probably be always executed atomically.
 
 The detection of sequences of calls to be executed atomically is based on
-analysing all paths through the CFG of a~function and generating all 
+analysing all paths through the CFG of a~function and generating all
 pairs~\textbf{(A,~B)} of sets of function calls such that: \textbf{A}~is
-a~\emph{reduced sequence} of function calls that appear between the 
+a~\emph{reduced sequence} of function calls that appear between the
 beginning of the function being analysed and the first lock or between an
 unlock and a~subsequent lock (or between an unlock and the end of the function
 being analysed), and \textbf{B}~is a~reduced sequence of function calls that
 follow the calls from~\textbf{A}~and that appear between a~lock and an unlock
 (or between a~lock and the end of the function being analysed). Here, by
-a~reduced sequence it is meant a~sequence in which the first appearance 
-of each function is recorded only. The reason is to ensure \emph{finiteness} 
+a~reduced sequence, it is meant a~sequence in which the first appearance
+of each function is recorded only. The reason is to ensure \emph{finiteness}
 of the sequences and of the analysis. The \emph{summary} of a~function
 then consists of:
 \begin{enumerate}[label={(\roman*)}]
     \item
         the set of all the~\textbf{B}~sequences and
-    
+
     \item
-        the set of \emph{concatenations} of all 
-        the~\textbf{A}~and \textbf{B}~sequences with removal of duplicate 
-        function calls.
+        the set of \emph{concatenations} of all
+        the~\textbf{A}~and \textbf{B}~sequences with the removal of
+        duplicate function calls.
 \end{enumerate}
-The latter is recorded for the purpose of analysing functions higher in the 
-call hierarchy since locks/unlocks can appear in such a~higher-level function.
+The latter is recorded for the purpose of analysing functions higher in the
+\emph{call hierarchy} since locks/unlocks can appear in such
+a~\emph{higher-level function}.
 
 \begin{example}
-    For instance, an analysis of the function~\texttt{g}~from
+    For instance, the analysis of the function~\texttt{g}~from
     Listing~\ref{list:analyserPhase1} produces the following sequences:
     $$
         \overbrace{%
@@ -1042,25 +1043,25 @@ call hierarchy since locks/unlocks can appear in such a~higher-level function.
             (\text{\sout{\texttt{f1}~\texttt{f3}~\texttt{f3}}})
         }^\text{\sout{\textbf{B\textsubscript{3}}}}
     $$
-    The parentheses are used to indicate an atomic sequence. The 
-    strikethrough of the functions~\texttt{f1} and \texttt{f3} denotes 
-    a~removal of already recorded function calls in 
-    the~\textbf{A}~and \textbf{B}~sequences. The strikethrough of the 
+    The parentheses are used to indicate an atomic sequence. The
+    strikethrough of the functions~\texttt{f1} and \texttt{f3} denotes
+    the removal of already recorded function calls in
+    the~\textbf{A}~and \textbf{B}~sequences. The strikethrough of the
     entire sequence~\texttt{f1}~(\texttt{f1}~\texttt{f3}~\texttt{f3})
-    means discarding sequences already seen before. The derivated sets for 
+    means discarding sequences already seen before. The derivated sets for
     the function~\texttt{g}~are then as follows:
     \begin{enumerate}[label={(\roman*)}]
         \item
            \{(\texttt{f1}~\texttt{f2}),~(\texttt{f1}~\texttt{f3})\}, i.e.,
            \textbf{B\textsubscript{1}}~and \textbf{B\textsubscript{2}};
-    
+
         \item
             \{\texttt{f1}~\texttt{f2}~\texttt{f3}\}, i.e.,
             concatenation of~\textbf{A\textsubscript{1}},
             \textbf{B\textsubscript{1}}, \textbf{A\textsubscript{2}},
-            and \textbf{B\textsubscript{2}} with removal of duplicate
+            and \textbf{B\textsubscript{2}} with the removal of duplicate
             function calls.
-    
+
     \end{enumerate}
 \end{example}
 
@@ -1097,18 +1098,18 @@ void g(void)
     Analysing Functions Using Results of the Analysis of Nested Functions
 }
 
-Further, it is demonstrated how results of the analysis of \emph{nasted
-functions} are used durning the detection of atomic sequences. The
-result of the analysis of a~nasted function is used as follows. When
+Further, it is demonstrated how the results of the analysis of \emph{nested
+functions} are used during the detection of atomic sequences. The
+result of the analysis of a~nested function is used as follows. When
 calling an already analysed function, one plugs all the sequences from the
-second component of its summary into the 
+second component of its summary into the
 current~\textbf{A}~or~\textbf{B}~sequence.
 
 \begin{example}
     This example shows how the function~\texttt{h}~from
-    Listing~\ref{list:analyserPhase1Nested} would be analysed using the 
-    result of the analysis of the function~\texttt{g}~from 
-    Listing~\ref{list:analyserPhase1}. So the analysis of the 
+    Listing~\ref{list:analyserPhase1Nested} would be analysed using the
+    result of the analysis of the function~\texttt{g}~from
+    Listing~\ref{list:analyserPhase1}. So the analysis of the
     function~\texttt{h}~produces the following sequence:
     $$
         \text{%
@@ -1122,7 +1123,7 @@ current~\textbf{A}~or~\textbf{B}~sequence.
     \begin{enumerate}[label={(\roman*)}]
         \item
             \{(\texttt{g}~\texttt{f1}~\texttt{f2}~\texttt{f3})\};
-    
+
         \item
             \{\texttt{f1}~\texttt{g}~\texttt{f2}~\texttt{f3}\}.
     \end{enumerate}
@@ -1132,7 +1133,7 @@ current~\textbf{A}~or~\textbf{B}~sequence.
     style=c, label={list:analyserPhase1Nested}, float=hbt,
     caption={%
         An example of a~code for an illustration of the derivation of
-        sequences of functions called atomically with nested function
+        sequences of functions called atomically with a~nested function
         call (function~\texttt{g} is defined in
         Listing~\ref{list:analyserPhase1})
     }
@@ -1150,7 +1151,7 @@ void h(void)
 \subsubsection{Cases Where Lock/Unlock Calls Are Not Paired in a~Function}
 
 For treating cases where lock/unlock calls are \emph{not paired} in
-a~function\,---\,as demonstrates 
+a~function\,---\,as demonstrates
 Listing~\ref{list:analyserPhase1NotPairedLock}\,---\,two solutions
 have been proposed:
 \begin{enumerate}
@@ -1161,10 +1162,10 @@ have been proposed:
         Listing~\ref{list:analyserPhase1NotPairedLock}, the first component
         of its summary (i.e., atomic sequences) would be \{(\texttt{a})\}.
         Subsequently, all unlock calls not preceded by a~lock are
-        ignored. So the first component of the function~\texttt{y}~from
-        Listing~\ref{list:analyserPhase1NotPairedLock} would be an
-        empty set.
-    
+        ignored. So the first component of a~summary of the
+        function~\texttt{y}~from
+        Listing~\ref{list:analyserPhase1NotPairedLock} would be an empty set.
+
     \item
         Addition of two further items to the summaries:
         \begin{enumerate}[label={(\alph*)}]
@@ -1176,18 +1177,18 @@ have been proposed:
         \end{enumerate}
         For the example from Listing~\ref{list:analyserPhase1NotPairedLock},
         this would give:
-        \begin{enumerate}[label={(\alph*)}]
+        \begin{itemize}
             \item
                 for~\texttt{x}:~\{(\texttt{f1}\},
 
             \item
                 for~\texttt{y}:~\{\texttt{f2})\}.
-        \end{enumerate}
+        \end{itemize}
         The above sequences would have to be glued to the sequences
         captured higher in the call hierarchy. Calls of the
-        function~\texttt{f1} and \texttt{f2} will also appear in
-        the second component of the function summary (i.e., the sequence
-        of all called functions).
+        functions~\texttt{f1} and \texttt{f2} will also appear in
+        the second component of the function summaries (i.e., the sequences
+        of all functions called).
 \end{enumerate}
 
 \begin{lstlisting}[
@@ -1215,28 +1216,29 @@ void main(void)
 }
 \end{lstlisting}
 
-At the end, the first approach of treating such cases described above has
-been chosen. The reason is that it is much more easier for implementation.
-However, in future, it can be improved by implementing the second approach.
+In the end, the first approach of treating such cases described above has
+been chosen. The reason is that it is much easier for implementation.
+However, in future, the analysis can be improved by implementing the second
+approach.
 
 \subsubsection{Summary of Detection of Atomic Sequences and Future Work}
 
-The above detection of atomic sequences has been implemented, as it is 
-described in Section~\ref{sec:implementationPhase1}. Furthermore, it has 
+The above detection of atomic sequences has been implemented, as it is
+described in Section~\ref{sec:implementationPhase1}. Furthermore, it has
 been successfully verified on a~set of sample programs created for
 this purpose. The verification is presented in
 Section~\ref{sec:experimentsPhase1}. The derived sequences of calls
 assumed to execute atomically, i.e., the \textbf{B}~sequences, from the
-summaries of all analysed functions are stored into a~file, which is used 
+summaries of all analysed functions are stored into a~file, which is used
 during \textbf{Phase~2}, described below in Section~\ref{sec:proposalPhase2}.
 There are some possibilities for further extending and improving
-\textbf{Phase~1}, e.g., working with nested locks; distinguishing the 
-different locks used (currently, we do not distinguish between the locks at
-all); consider contracts for concurrency with parameters defined in
-Section~\ref{sec:parameterContracts} or other extension of contracts for
-concurrency discussed in Section~\ref{sec:contracts}; or extending the 
-detection for other types of locks for synchronisation of concurrent
-threads/processes. On the other hand, to further enhance the 
+\textbf{Phase~1}, e.g., working with \emph{nested locks}; distinguishing the
+\emph{different locks} used (currently, it is not distinguished between the
+locks at all); consider \emph{contracts for concurrency with parameters}
+defined in Section~\ref{sec:parameterContracts} or other extensions of
+contracts for concurrency discussed in Section~\ref{sec:contracts}; or
+extending the detection for \emph{other types of locks} for synchronisation
+of concurrent threads/processes. On the other hand, to further enhance the
 \emph{scalability}, it seems promising to replace working with the
 \textbf{A}~and~\textbf{B}~sequence by working with sets of calls: sacrificing
 some precision but gaining the speed.
@@ -1245,16 +1247,16 @@ some precision but gaining the speed.
 \subsection{Phase 2: Detection of Atomicity Violations}
 \label{sec:proposalPhase2}
 
-In the second phase of the analysis, i.e., when \emph{detecting 
-violations} of the atomic sequences obtained from \textbf{Phase~1} 
+In the second phase of the analysis, i.e., when \emph{detecting
+violations} of the atomic sequences obtained from \textbf{Phase~1}
 (see Section~\ref{sec:proposalPhase1}), the analysis looks for pairs of
-functions that should be called atomically (or just for single functions 
-if there is only one function call in an atomic sequence) while this is 
+functions that should be called atomically (or just for single functions
+if there is only one function call in an atomic sequence) while this is
 not the case on some path through the CFG.
 
 \begin{example}
-    For example, the result of the first phase is the following set of 
-    functions called atomically: 
+    For example, assume that the result of the first phase is the following
+    set of functions called atomically:
     $$
         \text{%
             \{(\texttt{f1}~\texttt{f2}~\texttt{f3}),
@@ -1264,10 +1266,10 @@ not the case on some path through the CFG.
     Then the analysis will look
     for the following pairs of functions that are not called atomically:
     \begin{itemize}
-        \item \texttt{f1}~\texttt{f2};
-        \item \texttt{f2}~\texttt{f3};
-        \item \texttt{f1}~\texttt{f3};
-        \item \texttt{f3}~\texttt{f4}.
+        \item \texttt{f1}~\texttt{f2}
+        \item \texttt{f2}~\texttt{f3}
+        \item \texttt{f1}~\texttt{f3}
+        \item \texttt{f3}~\texttt{f4}
     \end{itemize}
 \end{example}
 
@@ -1278,17 +1280,18 @@ Section~\ref{sec:proposalPhase1}. For detailed examples see verification
 experiments in Section~\ref{sec:experimentsPhase2}.
 
 \begin{example}
-    For instance, assume the functions~\texttt{a}~and~\texttt{b}~from
+    For a~demonstration of the detection of an atomicity violation, assume
+    the functions~\texttt{a}~and~\texttt{b}~from
     Listing~\ref{list:analyserPhase2}. The set of atomic sequences of the
     function~\texttt{a}~is \{(\texttt{f2}~\texttt{f3})\}. In the function
-    \texttt{b}, an atomicity violation is detected because the 
-    functions~\texttt{a}~and~\texttt{b}~are not called atomically (under
+    \texttt{b}, an atomicity violation is detected because the
+    functions~\texttt{f2} and \texttt{f3} are not called atomically (under
     a~lock).
 \end{example}
 
 \begin{lstlisting}[
     style=c, label={list:analyserPhase2}, float=hbt,
-    caption={Example of atomicity violation}
+    caption={Example of an atomicity violation}
 ]
 void a(void)
 {
@@ -1297,7 +1300,7 @@ void a(void)
     <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
     f2(); f3();
     <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
-    
+
     f4();
 }
 
@@ -1309,19 +1312,20 @@ void b(void)
 
 \subsubsection{Summary of Detection of Atomicity Violations and Future Work}
 
-As well as first phase of the analysis, \textbf{Phase~2} has been implemented,
-as it is described in Section~\ref{sec:implementationPhase2}. And it has been
-also successfully verified on a~set of sample purposeful programs. This
-verification is described in Section~\ref{sec:experimentsPhase2}.
-Experimental evaluation of the analysis as a~whole analyser is then
-depicts in Section~\ref{sec:experiments}. \textbf{Phase~2} also has 
-a~potential for further enhancing. It is possible to extend this phase
-with all the improvements discussed in Section~\ref{sec:proposalPhase1}.
-Moreover, it is able to improve this phase by working with sets instead
-of pair, when looking for functions that should be called atomically.
-The next idea is to consider atomic sequences from the first phase only
-if they appear in an atomic block more than, e.g., three times. It would
-strengthen certainty that this sequence should be called atomically.
+As well as the first phase of the analysis, \textbf{Phase~2} has been
+implemented, as it is described in Section~\ref{sec:implementationPhase2}.
+And it has been also successfully verified on a~set of sample purposeful
+programs. This verification is described in
+Section~\ref{sec:experimentsPhase2}. Experimental evaluation of the analysis
+as a~whole analyser is then depicts in Section~\ref{sec:experiments}.
+\textbf{Phase~2} also has the potential for further enhancing. It is possible
+to extend this phase with all the improvements discussed in
+Section~\ref{sec:proposalPhase1}. Moreover, it is possible to improve
+this phase by working with sets instead of pairs, when looking for functions
+that should be called atomically. The next idea is to consider atomic
+sequences from the first phase only if they appear in an atomic block more
+than, e.g., three times. It would strengthen certainty that this sequence
+should be called atomically.
 
 
 
