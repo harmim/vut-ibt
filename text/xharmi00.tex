@@ -14,13 +14,15 @@
 %===============================================================================
 
 
-\documentclass[english, czech, zadani, odsaz]{fitthesis}
+\documentclass[english, zadani, odsaz]{fitthesis}
 
 % Basic packages are in template file fitthesis.cls.
 \usepackage{subcaption}
 \usepackage{wrapfig}
 \usepackage{amsthm}
 \usepackage[normalem]{ulem}
+\usepackage[ruled, algochapter, lined, longend, linesnumbered]{algorithm2e}
+\usepackage{tocloft}
 
 % Setting of a path to the pictures.
 \graphicspath{{figures/}{./figures/}}
@@ -29,9 +31,13 @@
 \renewcommand{\sfdefault}{qhv} % set TeX Gyre Heros as sf
 \renewcommand{\ttdefault}{lmtt} % set Latin Modern tt as tt
 
+% Definition and example theorems.
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}{Example}[section]
+
+% Algorithm margin.
+\setlength{\algomargin}{2em}
 
 % Disables function of the template which replaces quotation marks
 % to avoid unnecessary replacements in the API descriptions etc.
@@ -79,6 +85,14 @@
 \clubpenalty=10000
 \widowpenalty=10000
 
+% Hyphenation of czech words.
+\hyphenation{a-to-mic-ky}
+\hyphenation{a-to-mi-ci-ty}
+
+% Line spacing in the list of contents.
+\renewcommand\cftchapafterpnum{\vskip .3em}
+\renewcommand\cftsecafterpnum{\vskip .5em}
+
 \setlength{\parskip}{0pt}
 
 
@@ -101,7 +115,7 @@
     % thesis title in czech language for reference
     title.reference.cs={%
         Statická analýza v~nástroji Facebook Infer zaměřená na detekci
-        porušení atomičnosti.
+        porušení atomičnosti
     },
     % thesis title in english
     title.en={%
@@ -110,7 +124,7 @@
     },
     % thesis title in english for reference
     title.reference.en={%
-        Static Analysis Using Facebook Infer to Find Atomicity Violations.
+        Static Analysis Using Facebook Infer to Find Atomicity Violations
     },
 %
     % Author
@@ -151,11 +165,12 @@
         nástroj, který umožňuje efektivní \emph{modulární}
         a~\emph{inkrementální} analýzu. Analyzátor pracuje na úrovni
         \emph{sekvencí volání funkcí}. Navržené řešení je založeno na
-        předpokladu, že sekvence, které jsou \emph{jednou zavolány atomicky},
-        by měly být pravděpodobně volány \emph{atomicky vždy}. Implementovaný
-        analyzátor byl úspěšně ověřen  a~vyhodnocen jak na malých programech,
-        vytvořených pro tento účel, tak na veřejně dostupných testovacích
-        programech, které vznikly ze skutečných nízko úrovňových programů.
+        předpokladu, že sekvence, které jsou \emph{jednou zavolány
+        atomicky}, by měly být pravděpodobně volány \emph{atomicky
+        vždy}. Implementovaný analyzátor byl úspěšně ověřen  a~vyhodnocen jak na
+        malých programech, vytvořených pro tento účel, tak na veřejně dostupných
+        testovacích programech, které vznikly ze skutečných nízko úrovňových
+        programů.
     },
     % abstract in english
     abstract.en={%
@@ -195,8 +210,10 @@
         like to thank Tomáš Fiedor for providing supplementary information and
         for his assistance. I~would also like to thank my colleagues Vladimír
         Marcin and Ondřej Pavela for helpful discussions about my thesis.
-        Lastly, I~thank for the support received from
-        H2020 ECSEL project Aquas.
+        Furthermore, I~would like to thank Nikos Gorogiannis and Sam
+        Blackshear from Infer team at Facebook for useful discussions
+        about the development of my analyser. Lastly, I~thank for the
+        support received from H2020 ECSEL project Aquas.
     }
 }
 
