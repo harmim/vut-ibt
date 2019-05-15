@@ -42,12 +42,12 @@
 
 - [ ] Kontrolovat, nad jakými objekty se volají atomické funkce?
 
-- [ ] Vymyslet název mého nástroje.
+- [x] Vymyslet název mého nástroje.
 
-- [ ] Vytvořit nějaký soubor `AtomicityAnalysis`, který se bude spouštět
+- [x] Vytvořit nějaký soubor `AtomicityAnalysis`, který se bude spouštět
   po detekční fázi.
 
-- [ ] Zkusit detekční fázi spustit na nějakých existujících programech.
+- [x] Zkusit detekční fázi spustit na nějakých existujících programech.
 
 - [x] Upravit výpis detekční fáze na standardní výstup a udělt výpis atomických
   sekvencí do nějakého souboru.

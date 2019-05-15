@@ -8,55 +8,55 @@ Bugs are an integral part of computer programs ever since the inception
 of the programming discipline. Unfortunately, they are often hidden
 in unexpected places, and they can lead to unexpected behaviour which
 may cause significant damage. Nowadays there are many possible
-ways of catching bugs in the development process. Dynamic analysis
-tools or tools for automated testing are often used. These methods
-are satisfactory in many cases. Nevertheless, they can still leave
+ways of catching bugs in the development process. Dynamic analysers
+or tools for automated testing are often used. These methods
+are satisfactory in many cases, nevertheless, they can still leave
 too many bugs undetected, because they are able to analyse only
 certain program flows, dependent on its input data. An alternative
-solution is \emph{static analysis}. Of course, it has some shortages
-as well. The big issue is \emph{scalability} on extensive codebases and
+solution is \emph{static analysis} that has its own shortcomings as 
+well. The main issue is the \emph{scalability} on extensive codebases and
 considerable high rate of incorrectly reported errors (so-called
-\emph{false positives}, also called \emph{false alarms}).
+\emph{false positives} or \emph{false alarms}).
 
-Not long ago, Facebook introduced \emph{Facebook Infer}\,--\,a~tool for
+Recently, Facebook introduced \emph{Facebook Infer}\,--\,a~tool for
 creating \emph{highly scalable} \emph{compositional}, \emph{incremental},
-and \emph{interprocedural} static analysers. Facebook Infer is a~live tool
-and it is still under the development. Anyway, it is in everyday use in
-Facebook itself, Spotify, Uber, Mozilla, WhatsApp and other well-known
-companies. Currently, Facebook Infer provides several analysers implemented
+and \emph{interprocedural} static analysers. Facebook Infer has grown
+considerably in its possibilities, but it is still under active development 
+by many teams across the globe. It is employed every day not only in
+Facebook itself, but also in other companies, such as Spotify, Uber, Mozilla, 
+or Amazon. Currently, Facebook Infer provides several analysers implemented
 as modules in the whole framework. These analysers check for various types
-of bugs, e.g., buffer overflows, thread-safety, null-dereferencing, or
-memory leaks. Facebook Infer also aims to create a~framework for building
-new analysers quickly and easily. The current version of Facebook Infer still
-misses better support for \emph{concurrency} bugs. While it provides a~fairly
-advanced \emph{data race} analyser, it is limited to Java programs only and
-fails for C~programs, which require more through manipulation with locks.
+of bugs, such as buffer overflows, thread-safety, null-dereferencing, or
+memory leaks. But most importantly Facebook Infer is a~framework for building
+new analysers quickly and easily. Unfortunately, the current version of 
+Facebook Infer still lacks better support for \emph{concurrency} bugs. 
+While it provides a~fairly advanced \emph{data race} analyser, it is 
+limited to Java programs only and fails for C~programs, which require 
+more through manipulation with locks.
 
 In \emph{concurrent programs}, there are often \emph{atomicity requirements}
 for execution of specific sequences of instructions. Violating these
 requirements may cause many kinds of problems, such as unexpected
 behaviour, exceptions, segmentation faults, or other failures.
 \emph{Atomicity violations} are usually not verified by compilers,
-unlike syntactic or some sorts of semantic rules. Atomicity requirements,
-in most cases, are not even documented. It means that typically only
-programmers must take care of following these requirements. In general,
-it is very difficult to avoid errors in \emph{atomicity-dependent
-programs}, especially in large projects, and even harder and time-consuming
-is finding and fixing these errors.
+unlike syntactic or some sorts of semantic rules. Moreover, atomicity
+requirements, in most cases, are not even documented at all. So in the
+end, programmers themselves must abide by these requirements and usually
+lack any tool support. And in general, it is difficult to avoid
+errors in \emph{atomicity-dependent programs}, especially in large projects, 
+and even harder and time-consuming is finding and fixing them.
 
-In this thesis, there is described proposal, implementation, and experimental
-verification and evaluation of \emph{Atomer}\,---\,static analyser for
-finding atomicity violations\,---\,which is implemented as an extension for
-Facebook Infer. In particular, the concentration is put on an
-\emph{atomic execution of sequences of function calls}, which is often
-required, e.g., when using certain library calls. The implementation targets
-to C/C++ programs that use \emph{PThread} locks.
+In this thesis, there is proposed the \emph{Atomer}\,---\,the static 
+analyser for finding atomicity violations\,---\,which is implemented as 
+an extension for Facebook Infer. In particular, the concentration is put 
+on an \emph{atomic execution of sequences of function calls}, which is often
+required, e.g., when using certain library calls. The implementation
+particularly targets C/C++ programs that use \emph{PThread} locks.
 
 The development of Atomer has been discussed with developers of
 Facebook Infer, and it is a~part of the H2020 ECSEL project Aquas. Parts
-of this paper are taken over~\cite{excel2019FBInfer}, which I~wrote
-together with Vladimír Marcin and Ondřej Pavela. In~\cite{excel2019FBInfer},
-there were presented preliminary results of my thesis.
+of this thesis and preliminary results are taken from~\cite{excel2019FBInfer},
+which was written in collaboration with Vladimír Marcin and Ondřej Pavela.
 
 The rest of the paper is organised as follows. In
 Chapter~\ref{chap:prelim}, there are described all the topics
@@ -111,7 +111,7 @@ of other programs, in other words, a~static program analyser checks if the
 \emph{specification}, as illustrates Figure~\ref{fig:statAnalysis}
 \cite{AIBasedFormalMethodsCousot}. Nowadays, static analysis is one of
 the fundamental concepts of \emph{formal verification}. It aims to
-automatically answer questions about a~given program, such as
+automatically answer questions about a~given program such as
 e.g.~\cite{staticAnalysisMoller}:
 \begin{itemize}
     \item
@@ -419,7 +419,7 @@ This section describes the principles and features of
 on Facebook Infer website\footnote{\textbf{Facebook Infer}
 website\,--\,\url{https://fbinfer.com}.} and in~\cite{inferAISlides},
 \cite{projectPracticeMarcin2018}. Parts of this section are taken
-over~\cite{excel2019FBInfer}.
+from~\cite{excel2019FBInfer}.
 
 Facebook Infer is an open-source\footnote{\textbf{Open-source repository of
 Facebook Infer} on GitHub\,--\,\url{https://github.com/facebook/infer}.}
@@ -639,7 +639,7 @@ simplified in Figure~\ref{fig:inferAnalysis}.
 
 This section introduces and defines the concept of \emph{contracts for
 concurrency} described in~\cite{contracts2015}, \cite{contracts2017}. Parts
-of this section are taken over~\cite{excel2019FBInfer}. Listings in this
+of this section are taken from~\cite{excel2019FBInfer}. Listings in this
 section are pieces of programs written in ANSI~C\footnote{%
 \textbf{ANSI~C}\,--\,standard for the C~programming language published by
 the \emph{ANSI} (American National Standards Institute).}.
@@ -882,7 +882,7 @@ from Section~\ref{sec:basicContracts} as follows:
 
 
 
-\chapter{Proposal of Static Analyser for Detecting Atomicity Violations}
+\chapter{Atomicity Violations Detector}
 \label{chap:proposal}
 
 This chapter describes a~proposal of a~static program analyser for
@@ -895,18 +895,18 @@ proposed principle is based on the assumption that sequences executed
 \emph{once atomically} should probably be executed \emph{always atomically}.
 The chapter also assessments already existing solutions in this area.
 
-At first, Section~\ref{sec:existAnalysers} deals with
+At first, Section~\ref{sec:relWork} deals with
 existing approaches and tools for finding atomicity violations, their
 advantages, disadvantages, features, availability, and so on. Then,
-the proposal itself is introduced in Section~\ref{sec:proposal}. Parts of
-this chapter are taken over~\cite{excel2019FBInfer}. Listings in this
+the proposal itself is introduced in Section~\ref{sec:design}. Parts of
+this chapter are taken from~\cite{excel2019FBInfer}. Listings in this
 chapter are pieces of exemplary programs written in ANSI~C (assume
 \emph{PThread} locks and the existence of an initialised global variable
 \texttt{lock} of a~type \texttt{pthread\_mutex\_t}).
 
 
-\section{Assessment of Existing Analysers for Atomicity-Related Errors}
-\label{sec:existAnalysers}
+\section{Related Work}
+\label{sec:relWork}
 
 The proposed solution is slightly inspired by ideas from~\cite{contracts2017},
 \cite{contracts2015}. In these papers, there is described a~proposal
@@ -947,8 +947,8 @@ executed atomically, i.e., it checks whether \emph{contracts for
 concurrency} (see Section~\ref{sec:contracts}) hold.
 
 
-\section{Proposal of the Analyser}
-\label{sec:proposal}
+\section{Analysis and Design}
+\label{sec:design}
 
 The proposal of the analyser is based on the concept of \emph{contracts
 for concurrency} described in Section~\ref{sec:contracts}. In particular,
@@ -968,11 +968,11 @@ are done statically. The proposed analysis is divided into two parts
 \begin{enumerate}[label={\textbf{Phase \arabic*}:}, leftmargin=6em]
     \item
         Detection of \emph{atomic sequences}, which is described in
-        Section~\ref{sec:proposalPhase1}.
+        Section~\ref{sec:designPhase1}.
 
     \item
         Detection of \emph{atomicity violations} (violations of the atomic
-        sequences), which is described in Section~\ref{sec:proposalPhase2}.
+        sequences), which is described in Section~\ref{sec:designPhase2}.
 \end{enumerate}
 These phases of the analysis and its workflow illustrate
 Figure~\ref{fig:analyserPhases}.
@@ -986,10 +986,10 @@ Figure~\ref{fig:analyserPhases}.
 
 
 \subsection{Phase 1: Detection of Atomic Sequences}
-\label{sec:proposalPhase1}
+\label{sec:designPhase1}
 
 Before the detection of \emph{atomicity violations}
-(Section~\ref{sec:proposalPhase2}) may begin, it is required to have
+(Section~\ref{sec:designPhase2}) may begin, it is required to have
 contracts introduced in Section~\ref{sec:contracts}. \textbf{Phase 1}
 of Atomer is able to produce such contracts, i.e., it detects
 \emph{sequences of functions} that should be \emph{executed atomically}.
@@ -1235,7 +1235,7 @@ in Section~\ref{sec:expResPhase1} of Appendix~\ref{chap:expRes}. The derived
 sequences of calls assumed to execute atomically, i.e., the
 \textbf{B}~sequences, from the summaries of all analysed functions are
 stored into a~file, which is used during \textbf{Phase~2}, described
-below in Section~\ref{sec:proposalPhase2}. There are some possibilities
+below in Section~\ref{sec:designPhase2}. There are some possibilities
 for further extending and improving \textbf{Phase~1}, e.g., working with
 \emph{nested locks}; distinguishing the \emph{different locks} used
 (currently, it is not distinguished between the locks at all); consider
@@ -1250,11 +1250,11 @@ some precision but gaining the speed.
 
 
 \subsection{Phase 2: Detection of Atomicity Violations}
-\label{sec:proposalPhase2}
+\label{sec:designPhase2}
 
 In the second phase of the analysis, i.e., when \emph{detecting
 violations} of the atomic sequences obtained from \textbf{Phase~1}
-(see Section~\ref{sec:proposalPhase1}), the analysis looks for pairs of
+(see Section~\ref{sec:designPhase1}), the analysis looks for pairs of
 functions that should be called atomically (or just for single functions
 if there is only one function call in an atomic sequence) while this is
 not the case on some path through the CFG.
@@ -1281,7 +1281,7 @@ not the case on some path through the CFG.
 The analysis of functions with nested function calls and cases
 where lock/unlock calls are not paired in a~function are handled
 the analogical way as it is handled in \textbf{Phase~1} described in
-Section~\ref{sec:proposalPhase1}. For detailed examples see verification
+Section~\ref{sec:designPhase1}. For detailed examples see verification
 experiments in Section~\ref{sec:expResPhase2} of Appendix~\ref{chap:expRes}.
 
 \begin{example}
@@ -1324,7 +1324,7 @@ programs. This verification is described in
 Section~\ref{sec:exp} and in Section~\ref{sec:expResPhase2} of
 Appendix~\ref{chap:expRes}. \textbf{Phase~2} also has the potential for
 further enhancing. It is possible to extend this phase with all the
-improvements discussed in Section~\ref{sec:proposalPhase1}. Moreover, it
+improvements discussed in Section~\ref{sec:designPhase1}. Moreover, it
 is possible to improve this phase by working with sets instead of pairs,
 when looking for functions that should be called atomically. The next idea
 is to consider atomic sequences from the first phase only if they appear
@@ -1333,10 +1333,7 @@ certainty that this sequence should be called atomically.
 
 
 
-\chapter{\texorpdfstring{%
-    Implementation of the Analyser in Facebook Infer and Experimental
-    Verification and Evaluation
-}{}}
+\chapter{Implementation and Evaluation}
 \label{chap:implementExp}
 
 This chapter describes the implementation of the \emph{static analyser}
@@ -1347,9 +1344,9 @@ and using listings with codes written in \emph{OCaml}, which is an
 implementation language of Facebook Infer. Section~\ref{sec:implementPhase1},
 respectively Section~\ref{sec:implementPhase2}, then describes an
 implementation of the \emph{detection of atomic sequences} defined in
-Section~\ref{sec:proposalPhase1}, respectively an implementation of the
+Section~\ref{sec:designPhase1}, respectively an implementation of the
 \emph{detection of atomicity violations} defined in
-Section~\ref{sec:proposalPhase2}. Subsequently, Section~\ref{sec:exp}
+Section~\ref{sec:designPhase2}. Subsequently, Section~\ref{sec:exp}
 covers experimental verification and evaluation of the analyser.
 
 The implementation of the analyser can be found publicly on
@@ -1371,7 +1368,7 @@ a~different mechanism for synchronisation.
 
 \textbf{Phase~1}, i.e., the detection of atomic sequences and \textbf{Phase~2},
 i.e., the detection of atomicity violations (these phases are described
-in Chapter~\ref{sec:proposal}) are implemented as separated analysers
+in Chapter~\ref{sec:design}) are implemented as separated analysers
 in Facebook Infer. The output of the first phase is the input of
 the second phase (as demonstrates Figure~\ref{fig:analyserPhases}). Both of
 these analysers are registered as extensions of Facebook Infer in a~file
@@ -1481,7 +1478,7 @@ let widen ~prev:prevAstate ~next:nextAstate ~num_iters:_ =
 \section{Implementation of Detection of Atomic Sequences}
 \label{sec:implementPhase1}
 
-The proposal of this phase is described in Section~\ref{sec:proposalPhase1}.
+The proposal of this phase is described in Section~\ref{sec:designPhase1}.
 It runs only if it is specified a~command line argument
 \texttt{{-}{-}atomic-sequences}. It detects \emph{sequences of functions}
 that should be \emph{executed atomically}. These sequences are printed into
@@ -1528,7 +1525,7 @@ the \emph{widening operator} are defined at the beginning of
 Chapter~\ref{chap:implementExp}.
 
 
-\subsection{Abstract Domain of Detection of Atomic Sequences}
+\subsection{Abstract Domain of the Detection of Atomic Sequences}
 \label{sec:implementPhase1Domain}
 
 In this section, at first, it is described the definition of an
@@ -1537,7 +1534,9 @@ working with the abstract state. Furthermore, it is described
 a~\emph{summary} of functions in this phase of the analysis and
 corresponding functions working with the summary.
 
-\subsubsection{Abstract State of Domain of Detection of Atomic Sequences}
+\subsubsection{%
+    Abstract State of the Domain of the Detection of Atomic Sequences
+}
 
 The abstract state is of a~type of \texttt{TSet}. \texttt{TSet} is a~module
 representing a~\textbf{set of structures}. This structure has the following
@@ -1547,7 +1546,7 @@ fields:
         \texttt{firstOccurrences}\,--\,it is of a~type of a~\textbf{list of
         strings}. It captures the \emph{first occurrences} of function calls
         in the~\textbf{A}~or~\textbf{B}~sequences defined in
-        Section~\ref{sec:proposalPhase1}. In other words, it captures
+        Section~\ref{sec:designPhase1}. In other words, it captures
         the first occurrences of function calls inside or outside
         \emph{atomic blocks}.
 
@@ -1611,7 +1610,9 @@ functions modifies all elements of the abstract state):
         of all such captured sequences within an analysed function.
 \end{itemize}
 
-\subsubsection{Function Summary of Domain of Detection of Atomic Sequences}
+\subsubsection{%
+    Function Summary of the Domain of the Detection of Atomic Sequences
+}
 
 The summary is of a~type of \textbf{structure}. The structure has the
 following fields:
@@ -1704,7 +1705,7 @@ with the summary. These functions are described below:
 \end{algorithm}
 
 
-\subsection{Output of Detection of Atomic Sequences}
+\subsection{Output of the Detection of Atomic Sequences}
 \label{sec:implementPhase1Out}
 
 The output of \textbf{Phase~1} are sequences of functions that should
@@ -1760,10 +1761,10 @@ Section~\ref{sec:implementPhase2}.
 \end{algorithm}
 
 
-\section{Implementation of Detection of Atomicity Violations}
+\section{Implementation of the Detection of Atomicity Violations}
 \label{sec:implementPhase2}
 
-The proposal of this phase is described in Section~\ref{sec:proposalPhase2}.
+The proposal of this phase is described in Section~\ref{sec:designPhase2}.
 It runs only if it is specified a~command line argument
 \texttt{{-}{-}atomicity-violations}. It detects \emph{atomicity violations},
 i.e., violations of the \emph{atomic sequences} obtained from \textbf{Phase~1}.
@@ -1819,7 +1820,7 @@ operator}, and the \emph{widening operator} are defined at the beginning of
 Chapter~\ref{chap:implementExp}.
 
 
-\subsection{Abstract Domain of Detection of Atomicity Violations}
+\subsection{Abstract Domain of the Detection of Atomicity Violations}
 \label{sec:implementPhase2Domain}
 
 In this section, at first, it is explained how the abstract domain of this
@@ -1828,7 +1829,9 @@ state along with functions working with it. In the end, it is described
 a~summary of functions in this phase of the analysis and corresponding
 functions working with the summary.
 
-\subsubsection{Initialisation of Domain of Detection of Atomicity Violations}
+\subsubsection{%
+    Initialisation of the Domain of the Detection of Atomicity Violations
+}
 
 Before analysing each function, i.e., at the beginning of the function
 \texttt{analyse\_procedure}, the abstract domain is initialised. The
@@ -1859,7 +1862,9 @@ file, is stored into the field \texttt{atomicPairs} of the structure
 structure when the atomic sequence contains just one function call.
 This structure is globally accessible throughout the analysis.
 
-\subsubsection{Abstract State of Domain of Detection of Atomicity Violations}
+\subsubsection{%
+    Abstract State of the Domain of the Detection of Atomicity Violations
+}
 
 The abstract state is of a~type of \texttt{TSet}. \texttt{TSet} is a~module
 representing a~\textbf{set of structures}. This structure has the following
@@ -1964,7 +1969,7 @@ working with the abstract state. The functions are described below
 \end{algorithm}
 
 \subsubsection{%
-    Function Summary of Domain of Detection of Atomicity Violations
+    Function Summary of the Domain of the Detection of Atomicity Violations
 }
 
 The summary is of a~type of \textbf{structure}. This structure contains
@@ -2039,11 +2044,7 @@ Algorithm~\ref{alg:reportAtomViolations}.
 \end{algorithm}
 
 
-\section[%
-    Experimental Verification and Evaluation of the Analyser
-]{\texorpdfstring{%
-    Experimental Verification and Evaluation of the \\ Analyser
-}{}}
+\section{Experimental Verification and Evaluation}
 \label{sec:exp}
 
 \todo{TODO}

@@ -22,7 +22,6 @@
 \usepackage{amsthm}
 \usepackage[normalem]{ulem}
 \usepackage[ruled, algochapter, lined, longend, linesnumbered]{algorithm2e}
-\usepackage{tocloft}
 
 % Setting of a path to the pictures.
 \graphicspath{{figures/}{./figures/}}
@@ -89,10 +88,6 @@
 \hyphenation{a-to-mic-ky}
 \hyphenation{a-to-mi-ci-ty}
 
-% Line spacing in the list of contents.
-\renewcommand\cftchapafterpnum{\vskip .3em}
-\renewcommand\cftsecafterpnum{\vskip .5em}
-
 \setlength{\parskip}{0pt}
 
 
@@ -158,8 +153,8 @@
     % Abstract
     % abstract in czech language
     abstract.cs={%
-        Cílem této práce je navrhnout \emph{statický analyzátor} programů,
-        který bude sloužit pro detekci \emph{porušení atomicity}. Navržený
+        Cílem této práce je navrhnout \emph{statický analyzátor}, který bude
+        sloužit pro detekci \emph{porušení atomicity}. Navržený
         analyzátor\,---\,\emph{Atomer}\,---\,je implementován jako rozšíření
         pro \emph{Facebook Infer}, což je volně šířený a~snadno rozšířitelný
         nástroj, který umožňuje efektivní \emph{modulární}
@@ -174,8 +169,8 @@
     },
     % abstract in english
     abstract.en={%
-        The goal of this thesis is to propose a~\emph{static analyser} of
-        programs, which detects \emph{atomicity violations}. The proposed
+        The goal of this thesis is to propose a~\emph{static analyser}, 
+        which detects \emph{atomicity violations}. The proposed
         analyser\,---\,\emph{Atomer}\,---\,is implemented as an extension
         for \emph{Facebook Infer}, which is an open-source and extendable
         static analysis framework that promotes efficient \emph{modular} and

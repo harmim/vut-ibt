@@ -1,18 +1,20 @@
-# Bakalářská práce
-### Statická analýza v nástroji Facebook Infer zaměřená na detekci porušení atomičnosti
-
----
-
 # Bachelor's Thesis
 ### Static Analysis Using Facebook Infer to Find Atomicity Violations
 
 ---
 
-##### Autor: Dominik Harmim <xharmi00@stud.fit.vutbr.cz>
+# Bakalářská práce
+### Statická analýza v nástroji Facebook Infer zaměřená na detekci porušení atomičnosti
 
-##### Vedoucí: [Prof. Ing. Tomáš Vojnar, Ph.D.](http://www.fit.vutbr.cz/~vojnar/.cs) (UITS FIT VUT) <vojnar@fit.vutbr.cz>
+---
 
-##### Zadání:
+##### Author: Dominik Harmim <xharmi00@stud.fit.vutbr.cz>
+
+##### Supervisor: [prof. Ing. Tomáš Vojnar, Ph.D.](http://www.fit.vutbr.cz/~vojnar) (UITS FIT VUT) <vojnar@fit.vutbr.cz>
+
+##### Reviewer: [Ing. Aleš Smrčka, Ph.D.](http://www.fit.vutbr.cz/~smrcka) (UITS FIT VUT) <smrcka@fit.vutbr.cz>
+
+##### Specification:
 1. Prostudujte principy statické analýzy založené na abstraktní interpretaci.
    Zvláštní pozornost věnujte přístupům zaměřeným na odhalování problémů v
    synchronizaci paralelních procesů.
@@ -26,13 +28,13 @@
 5. Shrňte dosažené výsledky a diskutujte možnosti jejich dalšího rozvoje
    v budoucnu.
 
-##### Kategorie: Analýza a testování softwaru
+##### Category: Software analysis and testing
 
-##### Implementační jazyk: [OCaml](https://ocaml.org)
+##### Implementation language: [OCaml](https://ocaml.org)
 
-##### Volně šířený software: [Facebook Infer](https://fbinfer.com)
+##### Free software: [Facebook Infer](https://fbinfer.com)
 
-##### Literatura:
+##### Literature:
 - Nielson, F., Nielson, H.R., Hankin, C.: Principles of Program Analysis,
   Springer-Verlag, 2005.
 - Blackshear, S., O'Hearn, P.: Open-Sourcing RacerD: Fast Static Race Detection
@@ -50,16 +52,16 @@
 ---
 
 - [TODO list](./TODO.md)
-- [Implementace](./IMPLEMENTACE.md)
+- [Implementation](./IMPLEMENTATION.md)
 
-##### Odkazy:
+##### Useful links:
 - [Facebook Infer](https://fbinfer.com)
 - [Facebook Infer GitHub](https://github.com/facebook/infer)
 - [OCaml](https://ocaml.org)
 - [Real Wolrd OCaml](https://v1.realworldocaml.org/v1/en/html/index.html)
-- [Abstraktni interpretace - Patrick Cousot intro](https://www.di.ens.fr/~cousot/AI/IntroAbsInt.html)
+- [Abstract interpretation - Patrick Cousot intro](https://www.di.ens.fr/~cousot/AI/IntroAbsInt.html)
 - [Facebook Infer lab](https://github.com/facebook/infer/tree/master/infer/src/labs)
-- [Facebook Infer prezentace](https://fbinfer.com/downloads/pldi17-infer-ai-tutorial.pdf)
+- [Facebook Infer presentation](https://fbinfer.com/downloads/pldi17-infer-ai-tutorial.pdf)
 - [Facebook Infer INSTALL](https://github.com/facebook/infer/blob/master/INSTALL.md)
 - [Facebook Infer CONTRIBUTING](https://github.com/facebook/infer/blob/master/CONTRIBUTING.md)
 - [Open-sourcing RacerD: Fast static race detection at scale](https://code.fb.com/android/open-sourcing-racerd-fast-static-race-detection-at-scale)
