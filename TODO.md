@@ -51,3 +51,5 @@
 
 - [x] Upravit výpis detekční fáze na standardní výstup a udělt výpis atomických
   sekvencí do nějakého souboru.
+
+- [ ] Ignorovat speciální volání funkcí, které vytváří Infer.

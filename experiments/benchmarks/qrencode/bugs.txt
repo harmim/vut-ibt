@@ -1,0 +1,709 @@
+Found 88 issues
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1219: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1217.       {
+  1218.         if(!(bstream->data == ((unsigned char *)NULL)))
+  1219. >         free((void *)bstream->data);
+  1220.   
+  1221.         bstream->length = length;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1219: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  1217.       {
+  1218.         if(!(bstream->data == ((unsigned char *)NULL)))
+  1219. >         free((void *)bstream->data);
+  1220.   
+  1221.         bstream->length = length;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1263: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1261.           memcpy((void *)data, (const void *)bstream->data, (unsigned long int)bstream->length);
+  1262.           memcpy((void *)(data + (signed long int)bstream->length), (const void *)arg->data, (unsigned long int)arg->length);
+  1263. >         free((void *)bstream->data);
+  1264.           bstream->length = bstream->length + arg->length;
+  1265.           bstream->data = data;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1325: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1323.     if(!(bstream == ((struct anonymous$9 *)NULL)))
+  1324.     {
+  1325. >     free((void *)bstream->data);
+  1326.       free((void *)bstream);
+  1327.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1326: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1324.     {
+  1325.       free((void *)bstream->data);
+  1326. >     free((void *)bstream);
+  1327.     }
+  1328.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1631: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1629.       if(filler == ((struct anonymous$6 *)NULL))
+  1630.       {
+  1631. >       free((void *)frame);
+  1632.         return (unsigned char *)(void *)0;
+  1633.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1650: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1648.           if(p == ((unsigned char *)NULL))
+  1649.           {
+  1650. >           free((void *)filler);
+  1651.             free((void *)frame);
+  1652.             return (unsigned char *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1651: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1649.           {
+  1650.             free((void *)filler);
+  1651. >           free((void *)frame);
+  1652.             return (unsigned char *)(void *)0;
+  1653.           }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1657: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1655.           *p = (unsigned char)((signed int)(unsigned char)(i & 0x7f) | 0x80);
+  1656.         }
+  1657. >       free((void *)filler);
+  1658.         return frame;
+  1659.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1631: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  1629.       if(filler == ((struct anonymous$6 *)NULL))
+  1630.       {
+  1631. >       free((void *)frame);
+  1632.         return (unsigned char *)(void *)0;
+  1633.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1683: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1681.       if(filler == ((struct anonymous$6 *)NULL))
+  1682.       {
+  1683. >       free((void *)frame);
+  1684.         return (unsigned char *)(void *)0;
+  1685.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1701: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1699.           {
+  1700.             fprintf(stderr, "Frame filler run over the frame!\n");
+  1701. >           free((void *)filler);
+  1702.             return frame;
+  1703.           }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1707: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1705.           *p = (unsigned char)((signed int)(unsigned char)(i & 0x7f) | 0x80);
+  1706.         }
+  1707. >       free((void *)filler);
+  1708.         return frame;
+  1709.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1683: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  1681.       if(filler == ((struct anonymous$6 *)NULL))
+  1682.       {
+  1683. >       free((void *)frame);
+  1684.         return (unsigned char *)(void *)0;
+  1685.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1813: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1811.         {
+  1812.           maxScore = score;
+  1813. >         free((void *)bestMask);
+  1814.           bestMask = mask;
+  1815.           void *return_value_malloc$2;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1823: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1821.       }
+  1822.   
+  1823. >     free((void *)mask);
+  1824.       return bestMask;
+  1825.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1823: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  1821.       }
+  1822.   
+  1823. >     free((void *)mask);
+  1824.       return bestMask;
+  1825.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1858: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1856.     if(!(raw == ((struct anonymous$5 *)NULL)))
+  1857.     {
+  1858. >     free((void *)raw->datacode);
+  1859.       free((void *)raw->ecccode);
+  1860.       free((void *)raw->rsblock);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1859: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1857.     {
+  1858.       free((void *)raw->datacode);
+  1859. >     free((void *)raw->ecccode);
+  1860.       free((void *)raw->rsblock);
+  1861.       free((void *)raw);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1860: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1858.       free((void *)raw->datacode);
+  1859.       free((void *)raw->ecccode);
+  1860. >     free((void *)raw->rsblock);
+  1861.       free((void *)raw);
+  1862.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1861: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1859.       free((void *)raw->ecccode);
+  1860.       free((void *)raw->rsblock);
+  1861. >     free((void *)raw);
+  1862.     }
+  1863.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1907: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1905.       if(raw->datacode == ((unsigned char *)NULL))
+  1906.       {
+  1907. >       free((void *)raw);
+  1908.         return (struct anonymous$5 *)(void *)0;
+  1909.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1918: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1916.         if(raw->ecccode == ((unsigned char *)NULL))
+  1917.         {
+  1918. >         free((void *)raw->datacode);
+  1919.           free((void *)raw);
+  1920.           return (struct anonymous$5 *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1919: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  1917.         {
+  1918.           free((void *)raw->datacode);
+  1919. >         free((void *)raw);
+  1920.           return (struct anonymous$5 *)(void *)0;
+  1921.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1918: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  1916.         if(raw->ecccode == ((unsigned char *)NULL))
+  1917.         {
+  1918. >         free((void *)raw->datacode);
+  1919.           free((void *)raw);
+  1920.           return (struct anonymous$5 *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1989: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'memset' should be called atomically.
+  1987.     else
+  1988.     {
+  1989. >     memset((void *)frame, 0, (unsigned long int)(width * width));
+  1990.       putFinderPattern$link1(frame, width, 0, 0);
+  1991.       p = frame;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1990: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'memset' and 'putFinderPattern$link1' should be called atomically.
+  1988.     {
+  1989.       memset((void *)frame, 0, (unsigned long int)(width * width));
+  1990. >     putFinderPattern$link1(frame, width, 0, 0);
+  1991.       p = frame;
+  1992.       y = 0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1990: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'putFinderPattern$link1' and '__variable_initialization' should be called atomically.
+  1988.     {
+  1989.       memset((void *)frame, 0, (unsigned long int)(width * width));
+  1990. >     putFinderPattern$link1(frame, width, 0, 0);
+  1991.       p = frame;
+  1992.       y = 0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2389: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  2387.         {
+  2388.           minDemerit = demerit;
+  2389. >         free((void *)bestMask);
+  2390.           bestMask = mask;
+  2391.           void *return_value_malloc$5;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2399: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  2397.       }
+  2398.   
+  2399. >     free((void *)mask);
+  2400.       return bestMask;
+  2401.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2399: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  2397.       }
+  2398.   
+  2399. >     free((void *)mask);
+  2400.       return bestMask;
+  2401.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2792: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  2790.     {
+  2791.       QRcode_free(entry->code);
+  2792. >     free((void *)entry);
+  2793.     }
+  2794.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3099: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3097.         {
+  3098.           QRraw_free(raw);
+  3099. >         free((void *)frame);
+  3100.           return (struct anonymous$1 *)(void *)0;
+  3101.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3151: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3149.             qrcode=QRcode_new(version, width, masked);
+  3150.             if(qrcode == ((struct anonymous$1 *)NULL))
+  3151. >             free((void *)masked);
+  3152.   
+  3153.           }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3159: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3157.           ;
+  3158.           QRraw_free(raw);
+  3159. >         free((void *)filler);
+  3160.           free((void *)frame);
+  3161.           return qrcode;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3160: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3158.           QRraw_free(raw);
+  3159.           free((void *)filler);
+  3160. >         free((void *)frame);
+  3161.           return qrcode;
+  3162.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3151: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  3149.             qrcode=QRcode_new(version, width, masked);
+  3150.             if(qrcode == ((struct anonymous$1 *)NULL))
+  3151. >             free((void *)masked);
+  3152.   
+  3153.           }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3235: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3233.         {
+  3234.           MQRraw_free(raw);
+  3235. >         free((void *)frame);
+  3236.           return (struct anonymous$1 *)(void *)0;
+  3237.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3294: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3292.           ;
+  3293.           MQRraw_free(raw);
+  3294. >         free((void *)filler);
+  3295.           free((void *)frame);
+  3296.           return qrcode;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3295: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3293.           MQRraw_free(raw);
+  3294.           free((void *)filler);
+  3295. >         free((void *)frame);
+  3296.           return qrcode;
+  3297.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3451: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3449.     if(!(qrcode == ((struct anonymous$1 *)NULL)))
+  3450.     {
+  3451. >     free((void *)qrcode->data);
+  3452.       free((void *)qrcode);
+  3453.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3452: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3450.     {
+  3451.       free((void *)qrcode->data);
+  3452. >     free((void *)qrcode);
+  3453.     }
+  3454.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3484: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3482.     {
+  3483.       QRinput_free(entry->input);
+  3484. >     free((void *)entry);
+  3485.     }
+  3486.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3528: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3526.       if(n->data == ((unsigned char *)NULL))
+  3527.       {
+  3528. >       free((void *)n);
+  3529.         return (struct _QRinput_List *)(void *)0;
+  3530.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3528: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  3526.       if(n->data == ((unsigned char *)NULL))
+  3527.       {
+  3528. >       free((void *)n);
+  3529.         return (struct _QRinput_List *)(void *)0;
+  3530.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3548: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3546.     if(!(entry == ((struct _QRinput_List *)NULL)))
+  3547.     {
+  3548. >     free((void *)entry->data);
+  3549.       BitStream_free(entry->bstream);
+  3550.       free((void *)entry);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3550: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3548.       free((void *)entry->data);
+  3549.       BitStream_free(entry->bstream);
+  3550. >     free((void *)entry);
+  3551.     }
+  3552.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3587: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3585.         if(entry->data == ((unsigned char *)NULL))
+  3586.         {
+  3587. >         free((void *)entry);
+  3588.           return (struct _QRinput_List *)(void *)0;
+  3589.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3587: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  3585.         if(entry->data == ((unsigned char *)NULL))
+  3586.         {
+  3587. >         free((void *)entry);
+  3588.           return (struct _QRinput_List *)(void *)0;
+  3589.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3614: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3612.     {
+  3613.       memcpy((void *)data, (const void *)entry->data, (unsigned long int)bytes);
+  3614. >     free((void *)entry->data);
+  3615.       entry->data = data;
+  3616.       entry->size = bytes;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3688: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3686.         QRinput_InputList_freeEntry(list);
+  3687.       }
+  3688. >     free((void *)s);
+  3689.     }
+  3690.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3865: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3863.               padbuf[(signed long int)i] = (unsigned char)((i & 1) != 0 ? 0x11 : 0xec);
+  3864.             ret=BitStream_appendBytes(padding, padlen, padbuf);
+  3865. >           free((void *)padbuf);
+  3866.             if(!(ret >= 0))
+  3867.               goto DONE;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:3954: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  3952.               padbuf[(signed long int)i] = (unsigned char)((i & 1) != 0 ? 0x11 : 0xec);
+  3953.             ret=BitStream_appendBytes(padding, padlen, padbuf);
+  3954. >           free((void *)padbuf);
+  3955.             if(!(ret >= 0))
+  3956.               goto DONE;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:4978: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  4976.         QRinput_List_freeEntry(list);
+  4977.       }
+  4978. >     free((void *)input);
+  4979.     }
+  4980.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5601: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5599.     if(!(raw == ((struct anonymous$4 *)NULL)))
+  5600.     {
+  5601. >     free((void *)raw->datacode);
+  5602.       free((void *)raw->ecccode);
+  5603.       free((void *)raw->rsblock);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5602: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5600.     {
+  5601.       free((void *)raw->datacode);
+  5602. >     free((void *)raw->ecccode);
+  5603.       free((void *)raw->rsblock);
+  5604.       free((void *)raw);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5603: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5601.       free((void *)raw->datacode);
+  5602.       free((void *)raw->ecccode);
+  5603. >     free((void *)raw->rsblock);
+  5604.       free((void *)raw);
+  5605.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5604: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5602.       free((void *)raw->ecccode);
+  5603.       free((void *)raw->rsblock);
+  5604. >     free((void *)raw);
+  5605.     }
+  5606.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5658: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5656.       if(raw->datacode == ((unsigned char *)NULL))
+  5657.       {
+  5658. >       free((void *)raw);
+  5659.         return (struct anonymous$4 *)(void *)0;
+  5660.       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5674: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5672.         if(raw->ecccode == ((unsigned char *)NULL))
+  5673.         {
+  5674. >         free((void *)raw->datacode);
+  5675.           free((void *)raw);
+  5676.           return (struct anonymous$4 *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5675: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5673.         {
+  5674.           free((void *)raw->datacode);
+  5675. >         free((void *)raw);
+  5676.           return (struct anonymous$4 *)(void *)0;
+  5677.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5674: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  5672.         if(raw->ecccode == ((unsigned char *)NULL))
+  5673.         {
+  5674. >         free((void *)raw->datacode);
+  5675.           free((void *)raw);
+  5676.           return (struct anonymous$4 *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5794: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentMarker' and 'QRspec_getVersionPattern' should be called atomically.
+  5792.       if(version >= 7)
+  5793.       {
+  5794. >       verinfo=QRspec_getVersionPattern(version);
+  5795.         p = frame + (signed long int)(width * (width - 11));
+  5796.         v = verinfo;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5791: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentPattern' and 'QRspec_putAlignmentMarker' should be called atomically.
+  5789.         q = q + (signed long int)width;
+  5790.       }
+  5791. >     QRspec_putAlignmentPattern(version, frame, width);
+  5792.       if(version >= 7)
+  5793.       {
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5747: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'memset' should be called atomically.
+  5745.     else
+  5746.     {
+  5747. >     memset((void *)frame, 0, (unsigned long int)(width * width));
+  5748.       putFinderPattern(frame, width, 0, 0);
+  5749.       putFinderPattern(frame, width, width - 7, 0);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5748: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'memset' and 'putFinderPattern' should be called atomically.
+  5746.     {
+  5747.       memset((void *)frame, 0, (unsigned long int)(width * width));
+  5748. >     putFinderPattern(frame, width, 0, 0);
+  5749.       putFinderPattern(frame, width, width - 7, 0);
+  5750.       putFinderPattern(frame, width, 0, width - 7);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5748: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'putFinderPattern' and '__variable_initialization' should be called atomically.
+  5746.     {
+  5747.       memset((void *)frame, 0, (unsigned long int)(width * width));
+  5748. >     putFinderPattern(frame, width, 0, 0);
+  5749.       putFinderPattern(frame, width, width - 7, 0);
+  5750.       putFinderPattern(frame, width, 0, width - 7);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5749: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'putFinderPattern' and '__variable_initialization' should be called atomically.
+  5747.       memset((void *)frame, 0, (unsigned long int)(width * width));
+  5748.       putFinderPattern(frame, width, 0, 0);
+  5749. >     putFinderPattern(frame, width, width - 7, 0);
+  5750.       putFinderPattern(frame, width, 0, width - 7);
+  5751.       p = frame;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5750: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'putFinderPattern' and '__variable_initialization' should be called atomically.
+  5748.       putFinderPattern(frame, width, 0, 0);
+  5749.       putFinderPattern(frame, width, width - 7, 0);
+  5750. >     putFinderPattern(frame, width, 0, width - 7);
+  5751.       p = frame;
+  5752.       q = frame + (signed long int)(width * (width - 7));
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6553: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6551.   
+  6552.       ret=Split_splitString(newstr, input, hint);
+  6553. >     free((void *)newstr);
+  6554.     }
+  6555.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6704: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6702.   extern void free_rs_char(struct _RS *rs)
+  6703.   {
+  6704. >   free((void *)rs->alpha_to);
+  6705.     free((void *)rs->index_of);
+  6706.     free((void *)rs->genpoly);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6705: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6703.   {
+  6704.     free((void *)rs->alpha_to);
+  6705. >   free((void *)rs->index_of);
+  6706.     free((void *)rs->genpoly);
+  6707.     free((void *)rs);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6706: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6704.     free((void *)rs->alpha_to);
+  6705.     free((void *)rs->index_of);
+  6706. >   free((void *)rs->genpoly);
+  6707.     free((void *)rs);
+  6708.   }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6707: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6705.     free((void *)rs->index_of);
+  6706.     free((void *)rs->genpoly);
+  6707. >   free((void *)rs);
+  6708.   }
+  6709.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6792: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6790.                 if(rs->alpha_to == ((unsigned char *)NULL))
+  6791.                 {
+  6792. >                 free((void *)rs);
+  6793.                   rs = (struct _RS *)(void *)0;
+  6794.                 }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6802: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6800.                   if(rs->index_of == ((unsigned char *)NULL))
+  6801.                   {
+  6802. >                   free((void *)rs->alpha_to);
+  6803.                     free((void *)rs);
+  6804.                     rs = (struct _RS *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6803: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6801.                   {
+  6802.                     free((void *)rs->alpha_to);
+  6803. >                   free((void *)rs);
+  6804.                     rs = (struct _RS *)(void *)0;
+  6805.                   }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6825: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6823.                     if(!(sr == 1))
+  6824.                     {
+  6825. >                     free((void *)rs->alpha_to);
+  6826.                       free((void *)rs->index_of);
+  6827.                       free((void *)rs);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6826: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6824.                     {
+  6825.                       free((void *)rs->alpha_to);
+  6826. >                     free((void *)rs->index_of);
+  6827.                       free((void *)rs);
+  6828.                       rs = (struct _RS *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6827: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6825.                       free((void *)rs->alpha_to);
+  6826.                       free((void *)rs->index_of);
+  6827. >                     free((void *)rs);
+  6828.                       rs = (struct _RS *)(void *)0;
+  6829.                     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6837: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6835.                       if(rs->genpoly == ((unsigned char *)NULL))
+  6836.                       {
+  6837. >                       free((void *)rs->alpha_to);
+  6838.                         free((void *)rs->index_of);
+  6839.                         free((void *)rs);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6838: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6836.                       {
+  6837.                         free((void *)rs->alpha_to);
+  6838. >                       free((void *)rs->index_of);
+  6839.                         free((void *)rs);
+  6840.                         rs = (struct _RS *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6839: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6837.                         free((void *)rs->alpha_to);
+  6838.                         free((void *)rs->index_of);
+  6839. >                       free((void *)rs);
+  6840.                         rs = (struct _RS *)(void *)0;
+  6841.                       }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6788: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'calloc' and 'malloc' should be called atomically.
+  6786.                 rs->nn = (1 << symsize) - 1;
+  6787.                 rs->pad = pad;
+  6788. >               return_value_malloc$2=malloc(sizeof(unsigned char) /*1ul*/  * (unsigned long int)(rs->nn + 1));
+  6789.                 rs->alpha_to = (unsigned char *)return_value_malloc$2;
+  6790.                 if(rs->alpha_to == ((unsigned char *)NULL))
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6792: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  6790.                 if(rs->alpha_to == ((unsigned char *)NULL))
+  6791.                 {
+  6792. >                 free((void *)rs);
+  6793.                   rs = (struct _RS *)(void *)0;
+  6794.                 }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6802: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  6800.                   if(rs->index_of == ((unsigned char *)NULL))
+  6801.                   {
+  6802. >                   free((void *)rs->alpha_to);
+  6803.                     free((void *)rs);
+  6804.                     rs = (struct _RS *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6825: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  6823.                     if(!(sr == 1))
+  6824.                     {
+  6825. >                     free((void *)rs->alpha_to);
+  6826.                       free((void *)rs->index_of);
+  6827.                       free((void *)rs);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6837: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  6835.                       if(rs->genpoly == ((unsigned char *)NULL))
+  6836.                       {
+  6837. >                       free((void *)rs->alpha_to);
+  6838.                         free((void *)rs->index_of);
+  6839.                         free((void *)rs);
+
+Summary of the reports
+
+  ATOMICITY_VIOLATION: 88

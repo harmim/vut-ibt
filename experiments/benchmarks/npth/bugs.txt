@@ -1,0 +1,213 @@
+Found 26 issues
+
+npth-1.2_build_tests_.libs_t-mutex.c:999: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__errno_location' and 'sem_wait' should be called atomically.
+  997.     do
+  998.     {
+  999. >     res=sem_wait(sceptre);
+  1000.       if(!(res >= 0))
+  1001.       {
+
+npth-1.2_build_tests_.libs_t-mutex.c:1011: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sem_wait' and '__infer_skip' should be called atomically.
+  1009.     while(tmp_if_expr$3);
+  1010.     /* assertion !res */
+  1011. >   assert(!(res != 0));
+  1012.     signed int *return_value___errno_location$4;
+  1013.     return_value___errno_location$4=__errno_location();
+
+npth-1.2_build_tests_.libs_t-mutex.c:1077: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1075.     enter_npth();
+  1076.     res=accept(s, addr, addrlen);
+  1077. >   leave_npth();
+  1078.     return res;
+  1079.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1097: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1095.     enter_npth();
+  1096.     err=pthread_cond_timedwait(cond, mutex, abstime);
+  1097. >   leave_npth();
+  1098.     return err;
+  1099.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1108: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1106.     enter_npth();
+  1107.     err=pthread_cond_wait(cond, mutex);
+  1108. >   leave_npth();
+  1109.     return err;
+  1110.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1119: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1117.     enter_npth();
+  1118.     res=connect(s, addr, addrlen);
+  1119. >   leave_npth();
+  1120.     return res;
+  1121.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1158: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1156.     enter_npth();
+  1157.     pthread_exit(retval);
+  1158. >   leave_npth();
+  1159.   }
+  1160.   
+
+npth-1.2_build_tests_.libs_t-mutex.c:1205: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1203.     }
+  1204.   
+  1205. >   leave_npth();
+  1206.     return 0;
+  1207.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1222: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1220.       enter_npth();
+  1221.       err=pthread_join(thread, retval);
+  1222. >     leave_npth();
+  1223.       return err;
+  1224.     }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1258: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1256.       enter_npth();
+  1257.       err=pthread_mutex_timedlock(mutex, abstime);
+  1258. >     leave_npth();
+  1259.       return err;
+  1260.     }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1267: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1265.   void npth_protect(void)
+  1266.   {
+  1267. >   leave_npth();
+  1268.   }
+  1269.   
+
+npth-1.2_build_tests_.libs_t-mutex.c:1277: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1275.     enter_npth();
+  1276.     res=pselect(nfd, rfds, wfds, efds, timeout, sigmask);
+  1277. >   leave_npth();
+  1278.     return res;
+  1279.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1288: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1286.     enter_npth();
+  1287.     res=read(fd, buf, nbytes);
+  1288. >   leave_npth();
+  1289.     return res;
+  1290.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1301: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1299.     return_value_recvmsg$1=recvmsg(fd, msg, flags);
+  1300.     res = (signed int)return_value_recvmsg$1;
+  1301. >   leave_npth();
+  1302.     return res;
+  1303.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1318: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1316.       enter_npth();
+  1317.       err=pthread_rwlock_rdlock(rwlock);
+  1318. >     leave_npth();
+  1319.       return err;
+  1320.     }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1336: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1334.       enter_npth();
+  1335.       err=pthread_rwlock_timedrdlock(rwlock, abstime);
+  1336. >     leave_npth();
+  1337.       return err;
+  1338.     }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1354: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1352.       enter_npth();
+  1353.       err=pthread_rwlock_timedwrlock(rwlock, abstime);
+  1354. >     leave_npth();
+  1355.       return err;
+  1356.     }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1372: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1370.       enter_npth();
+  1371.       err=pthread_rwlock_wrlock(rwlock);
+  1372. >     leave_npth();
+  1373.       return err;
+  1374.     }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1384: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1382.     enter_npth();
+  1383.     res=select(nfd, rfds, wfds, efds, timeout);
+  1384. >   leave_npth();
+  1385.     return res;
+  1386.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1397: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1395.     return_value_sendmsg$1=sendmsg(fd, msg, flags);
+  1396.     res = (signed int)return_value_sendmsg$1;
+  1397. >   leave_npth();
+  1398.     return res;
+  1399.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1482: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1480.     enter_npth();
+  1481.     res=sleep(sec);
+  1482. >   leave_npth();
+  1483.     return res;
+  1484.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1493: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1491.     enter_npth();
+  1492.     res=system(cmd);
+  1493. >   leave_npth();
+  1494.     return res;
+  1495.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1511: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1509.     enter_npth();
+  1510.     res=usleep(usec);
+  1511. >   leave_npth();
+  1512.     return res;
+  1513.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1522: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1520.     enter_npth();
+  1521.     res=waitpid(pid, status, options);
+  1522. >   leave_npth();
+  1523.     return res;
+  1524.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1533: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1531.     enter_npth();
+  1532.     res=write(fd, buf, nbytes);
+  1533. >   leave_npth();
+  1534.     return res;
+  1535.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1555: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
+  1553.     arg = startup->arg;
+  1554.     free((void *)startup);
+  1555. >   leave_npth();
+  1556.     result=start_routine(arg);
+  1557.     enter_npth();
+
+Summary of the reports
+
+  ATOMICITY_VIOLATION: 26

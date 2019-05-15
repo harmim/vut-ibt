@@ -1,0 +1,13 @@
+Found 1 issue
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:6746: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'snd_pcm_access_name' and 'snd_pcm_format_name' should be called atomically.
+  6744.       return_value_snd_pcm_access_name$1=snd_pcm_access_name(lhandle->access);
+  6745.       const char *return_value_snd_pcm_format_name$2;
+  6746. >     return_value_snd_pcm_format_name$2=snd_pcm_format_name(lhandle->format);
+  6747.       snd_output_printf(loop->state, "    access = %s, format = %s, rate = %u, channels = %u\n", return_value_snd_pcm_access_name$1, return_value_snd_pcm_format_name$2, lhandle->rate, lhandle->channels);
+  6748.       snd_output_printf(loop->state, "    buffer_size = %u, period_size = %u, avail_min = %li\n", lhandle->buffer_size, lhandle->period_size, lhandle->avail_min);
+
+Summary of the reports
+
+  ATOMICITY_VIOLATION: 1

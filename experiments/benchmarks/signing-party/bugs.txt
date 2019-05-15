@@ -1,0 +1,13 @@
+Found 1 issue
+
+signing-party-2.2_keyanalyze_keyanalyze.c:892: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'fprintf' and 'fflush' should be called atomically.
+  890.           {
+  891.             fprintf(fpstat, "%d sigs imported...\n", numsigs);
+  892. >           fflush(fpstat);
+  893.           }
+  894.   
+
+Summary of the reports
+
+  ATOMICITY_VIOLATION: 1

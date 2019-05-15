@@ -1,0 +1,109 @@
+Found 13 issues
+
+glfw-2.7.9_tests_events.c:4366: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  4364.       newsize = width * height * image->BytesPerPixel;
+  4365.       void *return_value_malloc$1;
+  4366. >     return_value_malloc$1=malloc((unsigned long int)newsize);
+  4367.       data = (unsigned char *)return_value_malloc$1;
+  4368.       if(data == ((unsigned char *)NULL))
+
+glfw-2.7.9_tests_events.c:4793: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  4791.             _glfwJoy[(signed long int)joy_count].NumButtons = (signed int)ret_data;
+  4792.             void *return_value_malloc$1;
+  4793. >           return_value_malloc$1=malloc(sizeof(float) /*4ul*/  * (unsigned long int)_glfwJoy[(signed long int)joy_count].NumAxes);
+  4794.             _glfwJoy[(signed long int)joy_count].Axis = (float *)return_value_malloc$1;
+  4795.             if(_glfwJoy[(signed long int)joy_count].Axis == ((float *)NULL))
+
+glfw-2.7.9_tests_events.c:4801: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  4799.             {
+  4800.               void *return_value_malloc$2;
+  4801. >             return_value_malloc$2=malloc(sizeof(char) /*1ul*/  * (unsigned long int)_glfwJoy[(signed long int)joy_count].NumButtons);
+  4802.               _glfwJoy[(signed long int)joy_count].Button = (unsigned char *)return_value_malloc$2;
+  4803.               if(_glfwJoy[(signed long int)joy_count].Button == ((unsigned char *)NULL))
+
+glfw-2.7.9_tests_events.c:5167: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5165.     union anonymous$9 *cond;
+  5166.     void *return_value_malloc$1;
+  5167. >   return_value_malloc$1=malloc(sizeof(union anonymous$9) /*48ul*/ );
+  5168.     cond = (union anonymous$9 *)return_value_malloc$1;
+  5169.     if(cond == ((union anonymous$9 *)NULL))
+
+glfw-2.7.9_tests_events.c:5185: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5183.     union anonymous$8 *mutex;
+  5184.     void *return_value_malloc$1;
+  5185. >   return_value_malloc$1=malloc(sizeof(union anonymous$8) /*40ul*/ );
+  5186.     mutex = (union anonymous$8 *)return_value_malloc$1;
+  5187.     if(mutex == ((union anonymous$8 *)NULL))
+
+glfw-2.7.9_tests_events.c:5490: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5488.     {
+  5489.       void *return_value_malloc$1;
+  5490. >     return_value_malloc$1=malloc(sizeof(signed int) /*4ul*/  * (unsigned long int)viscount);
+  5491.       rgbarray = (signed int *)return_value_malloc$1;
+  5492.       rgbcount = 0;
+
+glfw-2.7.9_tests_events.c:5527: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5525.         sizelist=XRRConfigSizes(sc, &sizecount);
+  5526.         void *return_value_malloc$2;
+  5527. >       return_value_malloc$2=malloc(sizeof(struct _glfwResolution) /*8ul*/  * (unsigned long int)sizecount);
+  5528.         resarray = (struct _glfwResolution *)return_value_malloc$2;
+  5529.         k = 0;
+
+glfw-2.7.9_tests_events.c:5543: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5541.         rescount = 1;
+  5542.         void *return_value_malloc$3;
+  5543. >       return_value_malloc$3=malloc(sizeof(struct _glfwResolution) /*8ul*/  * (unsigned long int)rescount);
+  5544.         resarray = (struct _glfwResolution *)return_value_malloc$3;
+  5545.         (resarray + (signed long int)0)->width = (&((struct anonymous$65 *)dpy)->screens[(signed long int)screen])->width;
+
+glfw-2.7.9_tests_events.c:6011: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'pthread_cond_timedwait' should be called atomically.
+  6009.   
+  6010.       wait.tv_sec = currenttime.tv_sec + dt_sec;
+  6011. >     pthread_cond_timedwait((union anonymous$9 *)cond, (union anonymous$8 *)mutex, &wait);
+  6012.     }
+  6013.   }
+
+glfw-2.7.9_tests_events.c:6121: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6119.   
+  6120.         void *return_value_malloc$2;
+  6121. >       return_value_malloc$2=malloc((unsigned long int)cmapsize);
+  6122.         cmap = (unsigned char *)return_value_malloc$2;
+  6123.         if(cmap == ((unsigned char *)NULL))
+
+glfw-2.7.9_tests_events.c:6140: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6138.       pixsize2 = h.width * h.height * bpp2;
+  6139.       void *return_value_malloc$3;
+  6140. >     return_value_malloc$3=malloc((unsigned long int)pixsize2);
+  6141.       pix = (unsigned char *)return_value_malloc$3;
+  6142.       if(pix == ((unsigned char *)NULL))
+
+glfw-2.7.9_tests_events.c:7183: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  7181.       }
+  7182.       void *return_value_malloc$3;
+  7183. >     return_value_malloc$3=malloc(sizeof(struct anonymous$6) /*64ul*/  * (unsigned long int)count);
+  7184.       result = (struct anonymous$6 *)return_value_malloc$3;
+  7185.       if(result == ((struct anonymous$6 *)NULL))
+
+glfw-2.7.9_tests_events.c:8617: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  8615.           newsize = img->Width * img->Height * img->BytesPerPixel;
+  8616.           void *return_value_malloc$1;
+  8617. >         return_value_malloc$1=malloc((unsigned long int)newsize);
+  8618.           data = (unsigned char *)return_value_malloc$1;
+  8619.           if(data == ((unsigned char *)NULL))
+
+Summary of the reports
+
+  ATOMICITY_VIOLATION: 13

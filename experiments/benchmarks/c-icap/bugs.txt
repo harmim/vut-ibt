@@ -1,0 +1,1397 @@
+Found 174 issues
+
+c-icap-0.4.2_tests_.libs_test_cache.c:5385: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5383.   static void _os_free(void *ptr)
+  5384.   {
+  5385. >   free(ptr);
+  5386.   }
+  5387.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:5393: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5391.   {
+  5392.     void *return_value_malloc$1;
+  5393. >   return_value_malloc$1=malloc((unsigned long int)size);
+  5394.     return return_value_malloc$1;
+  5395.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:5762: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  5760.         default:
+  5761.         {
+  5762. >         free((void *)m);
+  5763.           return (struct mutex_itm *)(void *)0;
+  5764.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:5741: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5739.     struct mutex_itm *m;
+  5740.     void *return_value_malloc$1;
+  5741. >   return_value_malloc$1=malloc(sizeof(struct mutex_itm) /*24ul*/ );
+  5742.     m = (struct mutex_itm *)return_value_malloc$1;
+  5743.     if(m == ((struct mutex_itm *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:5808: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  5806.     {
+  5807.       void *return_value_malloc$1;
+  5808. >     return_value_malloc$1=malloc(sizeof(struct ci_mem_allocator) /*56ul*/ );
+  5809.       alc = (struct ci_mem_allocator *)return_value_malloc$1;
+  5810.       alc->must_free = 1;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:5999: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  5997.     rdata->count = rdata->count + 1;
+  5998.     signed int return_value_strcmp$1;
+  5999. >   return_value_strcmp$1=strcmp(rdata->name, name);
+  6000.     if(return_value_strcmp$1 == 0)
+  6001.     {
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6229: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6227.     {
+  6228.       void *return_value_malloc$1;
+  6229. >     return_value_malloc$1=malloc(sizeof(struct ci_specs_list) /*24ul*/ );
+  6230.       spec_entry = (struct ci_specs_list *)return_value_malloc$1;
+  6231.       if(spec_entry == ((struct ci_specs_list *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6360: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6358.     {
+  6359.       void *return_value_malloc$1;
+  6360. >     return_value_malloc$1=malloc(sizeof(struct ci_access_entry) /*24ul*/ );
+  6361.       access_entry = (struct ci_access_entry *)return_value_malloc$1;
+  6362.       if(access_entry == ((struct ci_access_entry *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6404: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6402.           cur = spec_list;
+  6403.           spec_list = spec_list->next;
+  6404. >         free((void *)cur);
+  6405.         }
+  6406.         free((void *)access_entry);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6406: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6404.           free((void *)cur);
+  6405.         }
+  6406. >       free((void *)access_entry);
+  6407.       }
+  6408.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6467: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6465.           }
+  6466.   
+  6467. >         free((void *)acl_type);
+  6468.           return 0;
+  6469.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6475: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6473.       else
+  6474.         spec=ci_acl_spec_new(name, acl_type, param, &types_list, &specs_list);
+  6475. >     free((void *)acl_type);
+  6476.       if(spec == ((struct ci_acl_spec *)NULL))
+  6477.       {
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6484: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'free' and 'printf' should be called atomically.
+  6482.   
+  6483.           if(!(CI_DEBUG_STDOUT == 0))
+  6484. >           printf("Error in acl:%s! Maybe the acl type \"%s\" does not exists!\n", name, acl_type);
+  6485.   
+  6486.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6568: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6566.           if(spec->parameter == ((char *)NULL))
+  6567.           {
+  6568. >           free((void *)spec);
+  6569.             return (struct ci_acl_spec *)(void *)0;
+  6570.           }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6554: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6552.     {
+  6553.       void *return_value_malloc$1;
+  6554. >     return_value_malloc$1=malloc(sizeof(struct ci_acl_spec) /*64ul*/ );
+  6555.       spec = (struct ci_acl_spec *)return_value_malloc$1;
+  6556.       if(spec == ((struct ci_acl_spec *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6619: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6617.       {
+  6618.         void *return_value_malloc$1;
+  6619. >       return_value_malloc$1=malloc(sizeof(struct ci_acl_data) /*16ul*/ );
+  6620.         new_data = (struct ci_acl_data *)return_value_malloc$1;
+  6621.         if(new_data == ((struct ci_acl_data *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6662: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6660.       dhead = dhead->next;
+  6661.       ops->free(dtmp->data, default_allocator);
+  6662. >     free((void *)dtmp);
+  6663.     }
+  6664.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6696: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'strcmp' and 'printf' should be called atomically.
+  6694.   
+  6695.           if(!(CI_DEBUG_STDOUT == 0))
+  6696. >           printf("Checking name:%s with specname %s\n", name, (const void *)spec->name);
+  6697.   
+  6698.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6746: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'strcmp' and 'printf' should be called atomically.
+  6744.   
+  6745.           if(!(CI_DEBUG_STDOUT == 0))
+  6746. >           printf("The acl type %s already defined\n", (const void *)type->name);
+  6747.   
+  6748.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6795: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  6793.   {
+  6794.     void *return_value_malloc$1;
+  6795. >   return_value_malloc$1=malloc((unsigned long int)32 * sizeof(struct ci_acl_type) /*56ul*/ );
+  6796.     list->acl_type_list = (struct ci_acl_type *)return_value_malloc$1;
+  6797.     list->acl_type_list_size = 32;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6806: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  6804.   signed int ci_acl_typelist_release(struct ci_acl_type_list *list)
+  6805.   {
+  6806. >   free((void *)list->acl_type_list);
+  6807.     list->acl_type_list_size = 0;
+  6808.     list->acl_type_list_num = 0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6828: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  6826.     {
+  6827.       signed int return_value_strcmp$1;
+  6828. >     return_value_strcmp$1=strcmp((list->acl_type_list + (signed long int)i)->name, name);
+  6829.       if(return_value_strcmp$1 == 0)
+  6830.         return (const struct ci_acl_type *)&list->acl_type_list[(signed long int)i];
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6990: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'ci_buffer_free' should be called atomically.
+  6988.       ci_mem_allocator_destroy(array->alloc);
+  6989.   
+  6990. >   ci_buffer_free(buffer);
+  6991.   }
+  6992.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6990: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  6988.       ci_mem_allocator_destroy(array->alloc);
+  6989.   
+  6990. >   ci_buffer_free(buffer);
+  6991.   }
+  6992.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:6988: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  6986.     assert(buffer != NULL);
+  6987.     if(!(array->alloc == ((struct ci_mem_allocator *)NULL)))
+  6988. >     ci_mem_allocator_destroy(array->alloc);
+  6989.   
+  6990.     ci_buffer_free(buffer);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7035: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  7033.       if(packer == ((struct ci_mem_allocator *)NULL))
+  7034.       {
+  7035. >       ci_buffer_free(buffer);
+  7036.         return (struct ci_array *)(void *)0;
+  7037.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7046: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  7044.         if(array == ((struct ci_array *)NULL))
+  7045.         {
+  7046. >         ci_buffer_free(buffer);
+  7047.           ci_mem_allocator_destroy(packer);
+  7048.           return (struct ci_array *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7047: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  7045.         {
+  7046.           ci_buffer_free(buffer);
+  7047. >         ci_mem_allocator_destroy(packer);
+  7048.           return (struct ci_array *)(void *)0;
+  7049.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7047: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'printf' and 'ci_mem_allocator_destroy' should be called atomically.
+  7045.         {
+  7046.           ci_buffer_free(buffer);
+  7047. >         ci_mem_allocator_destroy(packer);
+  7048.           return (struct ci_array *)(void *)0;
+  7049.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7115: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  7113.     {
+  7114.       signed int return_value_strcmp$1;
+  7115. >     return_value_strcmp$1=strcmp((array->items + (signed long int)i)->name, name);
+  7116.       if(return_value_strcmp$1 == 0)
+  7117.         return (array->items + (signed long int)i)->value;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7254: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  7252.     len = ((len + 3) / 4) * 3 + 1;
+  7253.     void *return_value_malloc$2;
+  7254. >   return_value_malloc$2=malloc((unsigned long int)len * sizeof(char) /*1ul*/ );
+  7255.     result = (char *)return_value_malloc$2;
+  7256.     if(result == ((char *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7485: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  7483.     if(block == ((struct mem_buffer_block *)NULL))
+  7484.     {
+  7485. >     return_value_malloc$2=malloc((unsigned long int)size);
+  7486.       block = (struct mem_buffer_block *)return_value_malloc$2;
+  7487.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7630: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  7628.   
+  7629.             else
+  7630. >             free((void *)block);
+  7631.             if(CI_DEBUG_LEVEL >= 8)
+  7632.             {
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7644: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  7642.   
+  7643.           else
+  7644. >           free((void *)block);
+  7645.       }
+  7646.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7637: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'free' and 'printf' should be called atomically.
+  7635.   
+  7636.               if(!(CI_DEBUG_STDOUT == 0))
+  7637. >               printf("Store buffer to long pool %d:%d\n", block_size, type);
+  7638.   
+  7639.             }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7723: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  7721.   
+  7722.         memcpy(data, (const void *)block->data.ptr, (unsigned long int)block->ID);
+  7723. >       ci_buffer_free((void *)block->data.ptr);
+  7724.       }
+  7725.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7739: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  7737.     for( ; !(i >= 16); i = i + 1)
+  7738.       if(!(short_buffers[(signed long int)i] == ((struct ci_mem_allocator *)NULL)))
+  7739. >       ci_mem_allocator_destroy(short_buffers[(signed long int)i]);
+  7740.   
+  7741.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7851: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  7849.         if(return_value == 0)
+  7850.         {
+  7851. >         free((void *)cache);
+  7852.           return (struct ci_cache *)(void *)0;
+  7853.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7827: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  7825.   
+  7826.       void *return_value_malloc$2;
+  7827. >     return_value_malloc$2=malloc(sizeof(struct ci_cache) /*80ul*/ );
+  7828.       cache = (struct ci_cache *)return_value_malloc$2;
+  7829.       if(cache == ((struct ci_cache *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:7866: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  7864.   {
+  7865.     cache->destroy(cache);
+  7866. >   free((void *)cache);
+  7867.   }
+  7868.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:8019: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  8017.   
+  8018.       if(!(body->attributes == ((struct ci_array *)NULL)))
+  8019. >       ci_array_destroy(body->attributes);
+  8020.   
+  8021.       ci_object_pool_free((void *)body);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:8010: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  8008.     {
+  8009.       if(!(body->buf == ((char *)NULL)))
+  8010. >       ci_buffer_free((void *)body->buf);
+  8011.   
+  8012.       if(body->fd >= 0)
+
+c-icap-0.4.2_tests_.libs_test_cache.c:8184: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  8182.   
+  8183.       if(!(body->attributes == ((struct ci_array *)NULL)))
+  8184. >       ci_array_destroy(body->attributes);
+  8185.   
+  8186.       ci_object_pool_free((void *)body);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:8178: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  8176.     {
+  8177.       if(!(body->buf == ((char *)NULL)))
+  8178. >       ci_buffer_free((void *)body->buf);
+  8179.   
+  8180.       if(body->fd >= 0)
+
+c-icap-0.4.2_tests_.libs_test_cache.c:8207: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  8205.     body->fd = -1;
+  8206.     if(!(body->attributes == ((struct ci_array *)NULL)))
+  8207. >     ci_array_destroy(body->attributes);
+  8208.   
+  8209.     body->attributes = (struct ci_array *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9264: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  9262.         close(connection->fd);
+  9263.   
+  9264. >     free((void *)connection);
+  9265.     }
+  9266.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9368: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  9366.     palloc=pool_allocator_build(items_size, 0);
+  9367.     void *return_value_malloc$1;
+  9368. >   return_value_malloc$1=malloc(sizeof(struct ci_mem_allocator) /*56ul*/ );
+  9369.     allocator = (struct ci_mem_allocator *)return_value_malloc$1;
+  9370.     if(allocator == ((struct ci_mem_allocator *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9399: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  9397.     if(allocator == ((struct ci_mem_allocator *)NULL))
+  9398.     {
+  9399. >     ci_buffer_free((void *)sdata);
+  9400.       return (struct ci_mem_allocator *)(void *)0;
+  9401.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9519: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  9517.   {
+  9518.     if(!(array->items == ((struct ci_array_item **)NULL)))
+  9519. >     ci_buffer_free((void *)array->items);
+  9520.   
+  9521.     if(!(array->alloc == ((struct ci_mem_allocator *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9522: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  9520.   
+  9521.     if(!(array->alloc == ((struct ci_mem_allocator *)NULL)))
+  9522. >     ci_mem_allocator_destroy(array->alloc);
+  9523.   
+  9524.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9522: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'printf' and 'ci_mem_allocator_destroy' should be called atomically.
+  9520.   
+  9521.     if(!(array->alloc == ((struct ci_mem_allocator *)NULL)))
+  9522. >     ci_mem_allocator_destroy(array->alloc);
+  9523.   
+  9524.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9575: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  9573.       if(array == ((struct ci_dyn_array *)NULL))
+  9574.       {
+  9575. >       ci_mem_allocator_destroy(packer);
+  9576.         return (struct ci_dyn_array *)(void *)0;
+  9577.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9604: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  9602.     for( ; !(i >= array->count); i = i + 1)
+  9603.     {
+  9604. >     return_value_strcmp$1=strcmp(array->items[(signed long int)i]->name, name);
+  9605.       if(return_value_strcmp$1 == 0)
+  9606.         return array->items[(signed long int)i]->value;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9773: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  9771.   
+  9772.                 b = b + (signed long int)val_len;
+  9773. >               free((void *)lb);
+  9774.                 lb = (char *)(void *)0;
+  9775.               }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:9746: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  9744.             else
+  9745.             {
+  9746. >             return_value_malloc$1=malloc((unsigned long int)(space + (unsigned int)1) * sizeof(char) /*1ul*/ );
+  9747.               lb = (char *)return_value_malloc$1;
+  9748.               if(!(lb == ((char *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10334: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  10332.   
+  10333.         if(!(h->headers == ((char **)NULL)))
+  10334. >         free((void *)h->headers);
+  10335.   
+  10336.         if(!(h->buf == ((char *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10337: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  10335.   
+  10336.         if(!(h->buf == ((char *)NULL)))
+  10337. >         free((void *)h->buf);
+  10338.   
+  10339.         free((void *)h);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10339: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  10337.           free((void *)h->buf);
+  10338.   
+  10339. >       free((void *)h);
+  10340.         return (struct ci_headers_list *)(void *)0;
+  10341.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10286: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  10284.     struct ci_headers_list *h;
+  10285.     void *return_value_malloc$1;
+  10286. >   return_value_malloc$1=malloc(sizeof(struct ci_headers_list) /*40ul*/ );
+  10287.     h = (struct ci_headers_list *)return_value_malloc$1;
+  10288.     void *return_value_malloc$3;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10309: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  10307.       h->buf = (char *)(void *)0;
+  10308.       void *return_value_malloc$2;
+  10309. >     return_value_malloc$2=malloc((unsigned long int)64 * sizeof(char *) /*8ul*/ );
+  10310.       h->headers = (char **)return_value_malloc$2;
+  10311.       _Bool tmp_if_expr$4;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10317: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  10315.       else
+  10316.       {
+  10317. >       return_value_malloc$3=malloc((unsigned long int)4096 * sizeof(char) /*1ul*/ );
+  10318.         h->buf = (char *)return_value_malloc$3;
+  10319.         tmp_if_expr$4 = !(h->buf != ((char *)NULL)) ? (_Bool)1 : (_Bool)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10359: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  10357.   void ci_headers_destroy(struct ci_headers_list *h)
+  10358.   {
+  10359. >   free((void *)h->headers);
+  10360.     free((void *)h->buf);
+  10361.     free((void *)h);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10360: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  10358.   {
+  10359.     free((void *)h->headers);
+  10360. >   free((void *)h->buf);
+  10361.     free((void *)h);
+  10362.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:10361: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  10359.     free((void *)h->headers);
+  10360.     free((void *)h->buf);
+  10361. >   free((void *)h);
+  10362.   }
+  10363.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:11600: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  11598.   {
+  11599.     struct ci_mem_allocator *alloc = list->alloc;
+  11600. >   ci_mem_allocator_destroy(alloc);
+  11601.   }
+  11602.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:11975: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  11973.     common_mutex_destroy(&cache_data->mtx);
+  11974.     ci_mem_allocator_destroy(cache_data->allocator);
+  11975. >   free((void *)cache_data);
+  11976.   }
+  11977.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:11974: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  11972.     cache_data->allocator->free(cache_data->allocator, (void *)cache_data->hash_table);
+  11973.     common_mutex_destroy(&cache_data->mtx);
+  11974. >   ci_mem_allocator_destroy(cache_data->allocator);
+  11975.     free((void *)cache_data);
+  11976.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:11998: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  11996.       if(allocator == ((struct ci_mem_allocator *)NULL))
+  11997.       {
+  11998. >       free((void *)cache_data);
+  11999.         return 0;
+  12000.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12011: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12009.         {
+  12010.           ci_mem_allocator_destroy(allocator);
+  12011. >         free((void *)cache_data);
+  12012.           return 0;
+  12013.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12028: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12026.           {
+  12027.             ci_mem_allocator_destroy(allocator);
+  12028. >           free((void *)cache_data);
+  12029.             return 0;
+  12030.           }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12083: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12081.             {
+  12082.               ci_mem_allocator_destroy(allocator);
+  12083. >             free((void *)cache);
+  12084.               free((void *)cache_data);
+  12085.               return 0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12084: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12082.               ci_mem_allocator_destroy(allocator);
+  12083.               free((void *)cache);
+  12084. >             free((void *)cache_data);
+  12085.               return 0;
+  12086.             }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:11987: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  11985.     struct ci_mem_allocator *allocator;
+  11986.     void *return_value_malloc$1;
+  11987. >   return_value_malloc$1=malloc(sizeof(struct ci_local_cache_data) /*128ul*/ );
+  11988.     cache_data = (struct ci_local_cache_data *)return_value_malloc$1;
+  11989.     if(cache_data == ((struct ci_local_cache_data *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12010: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  12008.         if(cache_data->first_queue_entry == ((struct ci_cache_entry *)NULL))
+  12009.         {
+  12010. >         ci_mem_allocator_destroy(allocator);
+  12011.           free((void *)cache_data);
+  12012.           return 0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12027: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  12025.           if(cache_items == 0u)
+  12026.           {
+  12027. >           ci_mem_allocator_destroy(allocator);
+  12028.             free((void *)cache_data);
+  12029.             return 0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12042: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  12040.               if(cache_data->last_queue_entry->qnext == ((struct ci_cache_entry *)NULL))
+  12041.               {
+  12042. >               ci_mem_allocator_destroy(allocator);
+  12043.                 return 0;
+  12044.               }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12082: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  12080.             if(cache_data->hash_table == ((struct ci_cache_entry **)NULL))
+  12081.             {
+  12082. >             ci_mem_allocator_destroy(allocator);
+  12083.               free((void *)cache);
+  12084.               free((void *)cache_data);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12082: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'printf' and 'ci_mem_allocator_destroy' should be called atomically.
+  12080.             if(cache_data->hash_table == ((struct ci_cache_entry **)NULL))
+  12081.             {
+  12082. >             ci_mem_allocator_destroy(allocator);
+  12083.               free((void *)cache);
+  12084.               free((void *)cache_data);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12373: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  12371.       lt=ci_lookup_table_create_ext(table, &ci_str_ops, &ci_str_ops, allocator);
+  12372.       if(lt == ((struct ci_lookup_table *)NULL))
+  12373. >       ci_mem_allocator_destroy(allocator);
+  12374.   
+  12375.       return lt;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12442: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12440.         }
+  12441.   
+  12442. >       free((void *)stable);
+  12443.         return (struct ci_lookup_table *)(void *)0;
+  12444.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12463: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12461.           }
+  12462.   
+  12463. >         free((void *)stable);
+  12464.           return (struct ci_lookup_table *)(void *)0;
+  12465.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12475: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12473.           else
+  12474.             lt->args = (char *)(void *)0;
+  12475. >         free((void *)stable);
+  12476.           lt->cols = -1;
+  12477.           lt->key_ops = key_ops;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12449: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  12447.       {
+  12448.         void *return_value_malloc$2;
+  12449. >       return_value_malloc$2=malloc(sizeof(struct ci_lookup_table) /*120ul*/ );
+  12450.         lt = (struct ci_lookup_table *)return_value_malloc$2;
+  12451.         if(lt == ((struct ci_lookup_table *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12469: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'strdup' should be called atomically.
+  12467.         else
+  12468.         {
+  12469. >         lt->path=strdup(path);
+  12470.           if(!(args == ((char *)NULL)))
+  12471.             lt->args=strdup(args);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12438: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'strcmp' and 'printf' should be called atomically.
+  12436.   
+  12437.           if(!(CI_DEBUG_STDOUT == 0))
+  12438. >           printf("Not lookuptable of type :%s!!!\n", ttype);
+  12439.   
+  12440.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12501: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12499.     {
+  12500.       lt->close(lt);
+  12501. >     free((void *)lt->path);
+  12502.       if(!(lt->args == ((char *)NULL)))
+  12503.         free((void *)lt->args);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12503: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12501.       free((void *)lt->path);
+  12502.       if(!(lt->args == ((char *)NULL)))
+  12503. >       free((void *)lt->args);
+  12504.   
+  12505.       if(!(lt->allocator == ((struct ci_mem_allocator *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12508: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  12506.         ci_mem_allocator_destroy(lt->allocator);
+  12507.   
+  12508. >     free((void *)lt);
+  12509.     }
+  12510.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12506: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  12504.   
+  12505.       if(!(lt->allocator == ((struct ci_mem_allocator *)NULL)))
+  12506. >       ci_mem_allocator_destroy(lt->allocator);
+  12507.   
+  12508.       free((void *)lt);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:12752: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  12750.     {
+  12751.       signed int return_value_strcmp$1;
+  12752. >     return_value_strcmp$1=strcmp(type, lookup_tables_types[(signed long int)i]->type);
+  12753.       if(return_value_strcmp$1 == 0)
+  12754.         return lookup_tables_types[(signed long int)i];
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13170: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  13168.     signed int i;
+  13169.     void *return_value_malloc$1;
+  13170. >   return_value_malloc$1=malloc(sizeof(struct ci_magics_db) /*48ul*/ );
+  13171.     db = (struct ci_magics_db *)return_value_malloc$1;
+  13172.     if(db == ((struct ci_magics_db *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13194: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  13192.   void ci_magics_db_release(struct ci_magics_db *db)
+  13193.   {
+  13194. >   free((void *)db->types);
+  13195.     free((void *)db->groups);
+  13196.     free((void *)db->magics);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13195: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  13193.   {
+  13194.     free((void *)db->types);
+  13195. >   free((void *)db->groups);
+  13196.     free((void *)db->magics);
+  13197.     free((void *)db);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13196: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  13194.     free((void *)db->types);
+  13195.     free((void *)db->groups);
+  13196. >   free((void *)db->magics);
+  13197.     free((void *)db);
+  13198.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13197: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  13195.     free((void *)db->groups);
+  13196.     free((void *)db->magics);
+  13197. >   free((void *)db);
+  13198.   }
+  13199.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13206: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  13204.     allocator->destroy(allocator);
+  13205.     if(allocator->must_free == 1)
+  13206. >     free((void *)allocator);
+  13207.   
+  13208.     else
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13259: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  13257.   
+  13258.       if(!(b->attributes == ((struct ci_array *)NULL)))
+  13259. >       ci_array_destroy(b->attributes);
+  13260.   
+  13261.       ci_object_pool_free((void *)b);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13254: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  13252.       {
+  13253.         if((16u & b->flags) == 0u)
+  13254. >         ci_buffer_free((void *)b->buf);
+  13255.   
+  13256.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13850: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  13848.     {
+  13849.       void *return_value_malloc$1;
+  13850. >     return_value_malloc$1=malloc((unsigned long int)128 * sizeof(struct ci_mem_allocator *) /*8ul*/ );
+  13851.       object_pools = (struct ci_mem_allocator **)return_value_malloc$1;
+  13852.       object_pools_size = 128;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13899: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  13897.       if(!(object_pools[(signed long int)id] == ((struct ci_mem_allocator *)NULL)))
+  13898.       {
+  13899. >       ci_mem_allocator_destroy(object_pools[(signed long int)id]);
+  13900.         object_pools[(signed long int)id] = (struct ci_mem_allocator *)(void *)0;
+  13901.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:13914: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  13912.     for( ; !(i >= object_pools_used); i = i + 1)
+  13913.       if(!(object_pools[(signed long int)i] == ((struct ci_mem_allocator *)NULL)))
+  13914. >       ci_mem_allocator_destroy(object_pools[(signed long int)i]);
+  13915.   
+  13916.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:14662: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  14660.         slen = (signed int)(e - str);
+  14661.         void *return_value_malloc$2;
+  14662. >       return_value_malloc$2=malloc((unsigned long int)(slen + 1) * sizeof(char) /*1ul*/ );
+  14663.         s = (char *)return_value_malloc$2;
+  14664.         strncpy(s, str, (unsigned long int)slen);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:14797: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  14795.       }
+  14796.       while((_Bool)1);
+  14797. >     ci_array_destroy(REGISTRIES);
+  14798.       REGISTRIES = (struct ci_array *)(void *)0;
+  14799.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:15223: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  15221.   
+  15222.     if(!(req->attributes == ((struct ci_array *)NULL)))
+  15223. >     ci_array_destroy(req->attributes);
+  15224.   
+  15225.     __intl_free((void *)req);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:15318: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  15316.     req->log_str = (char *)(void *)0;
+  15317.     if(!(req->attributes == ((struct ci_array *)NULL)))
+  15318. >     ci_array_destroy(req->attributes);
+  15319.   
+  15320.     req->attributes = (struct ci_array *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:15607: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  15605.   void ci_ring_buf_destroy(struct ci_ring_buf *buf)
+  15606.   {
+  15607. >   ci_buffer_free((void *)buf->buf);
+  15608.     ci_object_pool_free((void *)buf);
+  15609.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:16066: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  16064.   
+  16065.       if(!(body->attributes == ((struct ci_array *)NULL)))
+  16066. >       ci_array_destroy(body->attributes);
+  16067.   
+  16068.       if(!(body->mmap_addr == ((char *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:16293: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_array_destroy' and '__variable_initialization' should be called atomically.
+  16291.   
+  16292.       if(!(body->attributes == ((struct ci_array *)NULL)))
+  16293. >       ci_array_destroy(body->attributes);
+  16294.   
+  16295.       if(!(body->mmap_addr == ((char *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:16618: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  16616.     {
+  16617.       void *return_value_malloc$2;
+  16618. >     return_value_malloc$2=malloc(sizeof(struct stat_area) /*56ul*/ );
+  16619.       area = (struct stat_area *)return_value_malloc$2;
+  16620.       if(area == ((struct stat_area *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:16648: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  16646.       area->release_mem((void *)area->mem_block);
+  16647.   
+  16648. >   free((void *)area);
+  16649.   }
+  16650.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17014: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  17012.     {
+  17013.       signed int return_value_strcmp$1;
+  17014. >     return_value_strcmp$1=strcmp((const char *)vector->items[(signed long int)i], item);
+  17015.       if(return_value_strcmp$1 == 0)
+  17016.         return (const char *)vector->items[(signed long int)i];
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17317: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  17315.       for( ; !(i >= TEMPLATE_CACHE_SIZE); i = i + 1)
+  17316.         templateFree(&templates[(signed long int)i]);
+  17317. >     free((void *)templates);
+  17318.       templates = (struct anonymous$20 *)(void *)0;
+  17319.       ci_thread_mutex_destroy(&templates_mutex);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17316: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'templateFree' and '__infer_skip' should be called atomically.
+  17314.       i = 0;
+  17315.       for( ; !(i >= TEMPLATE_CACHE_SIZE); i = i + 1)
+  17316. >       templateFree(&templates[(signed long int)i]);
+  17317.       free((void *)templates);
+  17318.       templates = (struct anonymous$20 *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17330: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  17328.     signed int i;
+  17329.     void *return_value_malloc$1;
+  17330. >   return_value_malloc$1=malloc((unsigned long int)TEMPLATE_CACHE_SIZE * sizeof(struct anonymous$20) /*72ul*/ );
+  17331.     templates = (struct anonymous$20 *)return_value_malloc$1;
+  17332.     if(templates == ((struct anonymous$20 *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17493: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  17491.       if(packer == ((struct ci_mem_allocator *)NULL))
+  17492.       {
+  17493. >       ci_buffer_free(buffer);
+  17494.         return (struct ci_vector *)(void *)0;
+  17495.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17507: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  17505.         if(indx == ((void **)NULL) || vector == ((struct ci_vector *)NULL))
+  17506.         {
+  17507. >         ci_buffer_free(buffer);
+  17508.           ci_mem_allocator_destroy(packer);
+  17509.           return (struct ci_vector *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17508: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  17506.         {
+  17507.           ci_buffer_free(buffer);
+  17508. >         ci_mem_allocator_destroy(packer);
+  17509.           return (struct ci_vector *)(void *)0;
+  17510.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17508: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'printf' and 'ci_mem_allocator_destroy' should be called atomically.
+  17506.         {
+  17507.           ci_buffer_free(buffer);
+  17508. >         ci_mem_allocator_destroy(packer);
+  17509.           return (struct ci_vector *)(void *)0;
+  17510.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17537: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'ci_buffer_free' should be called atomically.
+  17535.       ci_mem_allocator_destroy(vector->alloc);
+  17536.   
+  17537. >   ci_buffer_free(buffer);
+  17538.   }
+  17539.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17537: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  17535.       ci_mem_allocator_destroy(vector->alloc);
+  17536.   
+  17537. >   ci_buffer_free(buffer);
+  17538.   }
+  17539.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:17535: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_mem_allocator_destroy' and 'ci_object_pool_free' should be called atomically.
+  17533.     assert(buffer != NULL);
+  17534.     if(!(vector->alloc == ((struct ci_mem_allocator *)NULL)))
+  17535. >     ci_mem_allocator_destroy(vector->alloc);
+  17536.   
+  17537.     ci_buffer_free(buffer);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:18622: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  18620.   
+  18621.     else
+  18622. >     free(e->entity);
+  18623.     free((void *)e);
+  18624.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:18623: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  18621.     else
+  18622.       free(e->entity);
+  18623. >   free((void *)e);
+  18624.   }
+  18625.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:18820: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  18818.               }
+  18819.   
+  18820. >             ci_buffer_free((void *)unzipped_buf);
+  18821.               unzipped_buf = (char *)(void *)0;
+  18822.               unzip_error = 1;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:18970: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  18968.   
+  18969.       if(!(unzipped_buf == ((char *)NULL)))
+  18970. >       ci_buffer_free((void *)unzipped_buf);
+  18971.   
+  18972.       return file_type;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20118: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  20116.   static void free_a_buffer(void *op, void *ptr)
+  20117.   {
+  20118. >   ci_buffer_free(ptr);
+  20119.   }
+  20120.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20125: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  20123.   void free_cmp_uint64_data(struct ci_request *req, void *param)
+  20124.   {
+  20125. >   ci_buffer_free(param);
+  20126.   }
+  20127.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20132: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  20130.   void free_data_type(struct ci_request *req, void *param)
+  20131.   {
+  20132. >   free(param);
+  20133.   }
+  20134.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20176: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  20174.     for( ; !(record->groups[(signed long int)i] == ((char *)NULL)); i = i + 1)
+  20175.     {
+  20176. >     free((void *)record->groups[(signed long int)i]);
+  20177.       record->groups[(signed long int)i] = (char *)(void *)0;
+  20178.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20195: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  20193.     }
+  20194.   
+  20195. >   ci_buffer_free(param);
+  20196.   }
+  20197.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20250: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  20248.     {
+  20249.       void *return_value_malloc$1;
+  20250. >     return_value_malloc$1=malloc(sizeof(unsigned int) /*4ul*/ );
+  20251.       ret_type = (signed int *)return_value_malloc$1;
+  20252.       if(ret_type == ((signed int *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:20575: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  20573.   {
+  20574.     void *return_value_malloc$1;
+  20575. >   return_value_malloc$1=malloc((unsigned long int)15 * sizeof(struct ci_data_group) /*67ul*/ );
+  20576.     db->groups = (struct ci_data_group *)return_value_malloc$1;
+  20577.     if(db->groups == ((struct ci_data_group *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21583: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'strcmp' and 'printf' should be called atomically.
+  21581.   
+  21582.               if(!(CI_DEBUG_STDOUT == 0))
+  21583. >               printf("lookup_table :%s does not has column %s\n", table->type, columns[(signed long int)i]);
+  21584.   
+  21585.             }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21632: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  21630.   {
+  21631.     void *return_value_malloc$1;
+  21632. >   return_value_malloc$1=malloc((unsigned long int)50 * sizeof(struct ci_magic) /*72ul*/ );
+  21633.     db->magics = (struct ci_magic *)return_value_malloc$1;
+  21634.     if(db->magics == ((struct ci_magic *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21686: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  21684.     {
+  21685.       printf("Found : %s\n", s);
+  21686. >     ci_buffer_free((void *)s);
+  21687.     }
+  21688.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21694: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  21692.     {
+  21693.       printf("Found : %s (correct is NULL!)\n", s);
+  21694. >     ci_buffer_free((void *)s);
+  21695.     }
+  21696.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21702: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  21700.     {
+  21701.       printf("Found : %s\n", s);
+  21702. >     ci_buffer_free((void *)s);
+  21703.     }
+  21704.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21710: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  21708.     {
+  21709.       printf("Found : %s\n", s);
+  21710. >     ci_buffer_free((void *)s);
+  21711.     }
+  21712.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21806: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  21804.     {
+  21805.       printf("Found : %s\n", s);
+  21806. >     ci_buffer_free((void *)s);
+  21807.     }
+  21808.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21814: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  21812.     {
+  21813.       printf("Found : %s\n", s);
+  21814. >     ci_buffer_free((void *)s);
+  21815.     }
+  21816.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:21863: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  21861.     struct ci_encaps_entity *h;
+  21862.     void *return_value_malloc$1;
+  21863. >   return_value_malloc$1=malloc(sizeof(struct ci_encaps_entity) /*16ul*/ );
+  21864.     h = (struct ci_encaps_entity *)return_value_malloc$1;
+  21865.     struct ci_headers_list *return_value_ci_headers_create$2;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:22001: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  21999.   {
+  22000.     void *return_value_malloc$1;
+  22001. >   return_value_malloc$1=malloc(size);
+  22002.     return return_value_malloc$1;
+  22003.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:22016: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  22014.   static void os_allocator_free(struct ci_mem_allocator *allocator, void *p)
+  22015.   {
+  22016. >   free(p);
+  22017.   }
+  22018.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:22434: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  22432.                   *end = (char)0;
+  22433.                   void *return_value_malloc$16;
+  22434. >                 return_value_malloc$16=malloc((unsigned long int)(15 + 1));
+  22435.                   record->groups[(signed long int)i] = (char *)return_value_malloc$16;
+  22436.                   strncpy(record->groups[(signed long int)i], s, (unsigned long int)15);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:22446: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  22444.                 while((_Bool)1);
+  22445.                 void *return_value_malloc$17;
+  22446. >               return_value_malloc$17=malloc((unsigned long int)(15 + 1));
+  22447.                 record->groups[(signed long int)i] = (char *)return_value_malloc$17;
+  22448.                 strncpy(record->groups[(signed long int)i], s, (unsigned long int)15);
+
+c-icap-0.4.2_tests_.libs_test_cache.c:22521: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  22519.     struct pool_allocator *palloc;
+  22520.     void *return_value_malloc$1;
+  22521. >   return_value_malloc$1=malloc(sizeof(struct pool_allocator) /*72ul*/ );
+  22522.     palloc = (struct pool_allocator *)return_value_malloc$1;
+  22523.     if(palloc == ((struct pool_allocator *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:22546: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  22544.     struct pool_allocator *palloc = (struct pool_allocator *)allocator->data;
+  22545.     ci_thread_mutex_destroy(&palloc->mutex);
+  22546. >   free((void *)palloc);
+  22547.   }
+  22548.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23178: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  23176.         }
+  23177.   
+  23178. >       free((void *)newstr);
+  23179.         return (void *)0;
+  23180.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23198: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  23196.   
+  23197.           allocator->free(allocator, (void *)reg);
+  23198. >         free((void *)newstr);
+  23199.           return (void *)0;
+  23200.         }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23325: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  23323.       {
+  23324.         if(!(head == ((char *)NULL)))
+  23325. >         ci_buffer_free((void *)head);
+  23326.   
+  23327.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23547: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  23545.       while(!(cur == ((struct serial_allocator *)NULL)))
+  23546.       {
+  23547. >       ci_buffer_free((void *)cur);
+  23548.         cur = next;
+  23549.         if(!(next == ((struct serial_allocator *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23578: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_buffer_free' and 'free' should be called atomically.
+  23576.     {
+  23577.       tmp = (void *)sa;
+  23578. >     ci_buffer_free(tmp);
+  23579.     }
+  23580.   }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23679: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  23677.           {
+  23678.             void *return_value_malloc$1;
+  23679. >           return_value_malloc$1=malloc((unsigned long int)128 * sizeof(struct stat_entry) /*16ul*/ );
+  23680.             list->entries = (struct stat_entry *)return_value_malloc$1;
+  23681.             if(list->entries == ((struct stat_entry *)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23699: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'strdup' should be called atomically.
+  23697.         }
+  23698.   
+  23699. >       (list->entries + (signed long int)list->entries_num)->label=strdup(label);
+  23700.         (list->entries + (signed long int)list->entries_num)->type = type;
+  23701.         (list->entries + (signed long int)list->entries_num)->gid = gid;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23741: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  23739.       i = 0;
+  23740.       for( ; !(i >= list->entries_num); i = i + 1)
+  23741. >       free((void *)(list->entries + (signed long int)i)->label);
+  23742.       free((void *)list->entries);
+  23743.       list->entries = (struct stat_entry *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23742: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  23740.       for( ; !(i >= list->entries_num); i = i + 1)
+  23741.         free((void *)(list->entries + (signed long int)i)->label);
+  23742. >     free((void *)list->entries);
+  23743.       list->entries = (struct stat_entry *)(void *)0;
+  23744.       list->size = 0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23768: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  23766.     {
+  23767.       void *return_value_malloc$2;
+  23768. >     return_value_malloc$2=malloc((unsigned long int)128 * sizeof(char *) /*8ul*/ );
+  23769.       STAT_GROUPS.groups = (char **)return_value_malloc$2;
+  23770.       if(STAT_GROUPS.groups == ((char **)NULL))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23760: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  23758.     {
+  23759.       signed int return_value_strcmp$1;
+  23760. >     return_value_strcmp$1=strcmp(STAT_GROUPS.groups[(signed long int)gid], group);
+  23761.       if(return_value_strcmp$1 == 0)
+  23762.         return gid;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:23789: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'strdup' should be called atomically.
+  23787.       }
+  23788.   
+  23789. >   STAT_GROUPS.groups[(signed long int)STAT_GROUPS.entries_num]=strdup(group);
+  23790.     gid = STAT_GROUPS.entries_num;
+  23791.     STAT_GROUPS.entries_num = STAT_GROUPS.entries_num + 1;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24183: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'strcmp' should be called atomically.
+  24181.         {
+  24182.           signed int return_value_strcmp$3;
+  24183. >         return_value_strcmp$3=strcmp((templates + (signed long int)i)->SERVICE_NAME, SERVICE_NAME);
+  24184.           if(return_value_strcmp$3 == 0)
+  24185.           {
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24198: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'strcmp' and 'printf' should be called atomically.
+  24196.   
+  24197.                   if(!(CI_DEBUG_STDOUT == 0))
+  24198. >                   printf("templateFind: found: %s, %s, %s in cache at index %d\n", SERVICE_NAME, LANGUAGE, TEMPLATE_NAME, i);
+  24199.   
+  24200.                 }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24243: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'templateFree' should be called atomically.
+  24241.     {
+  24242.       if(!(useme->data == ((struct ci_membuf *)NULL)))
+  24243. >       templateFree(useme);
+  24244.   
+  24245.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24243: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'templateFree' and '__infer_skip' should be called atomically.
+  24241.     {
+  24242.       if(!(useme->data == ((struct ci_membuf *)NULL)))
+  24243. >       templateFree(useme);
+  24244.   
+  24245.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24259: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  24257.     {
+  24258.       if(!(template->TEMPLATE_NAME == ((char *)NULL)))
+  24259. >       free((void *)template->TEMPLATE_NAME);
+  24260.   
+  24261.       if(!(template->SERVICE_NAME == ((char *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24262: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  24260.   
+  24261.       if(!(template->SERVICE_NAME == ((char *)NULL)))
+  24262. >       free((void *)template->SERVICE_NAME);
+  24263.   
+  24264.       if(!(template->LANGUAGE == ((char *)NULL)))
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24265: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  24263.   
+  24264.       if(!(template->LANGUAGE == ((char *)NULL)))
+  24265. >       free((void *)template->LANGUAGE);
+  24266.   
+  24267.       template->LANGUAGE = (char *)(void *)0;
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24270: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__infer_skip' and 'ci_membuf_free' should be called atomically.
+  24268.       template->SERVICE_NAME = template->LANGUAGE;
+  24269.       template->TEMPLATE_NAME = template->SERVICE_NAME;
+  24270. >     ci_membuf_free(template->data);
+  24271.       template->data = (struct ci_membuf *)(void *)0;
+  24272.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24270: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_membuf_free' and 'ci_array_destroy' should be called atomically.
+  24268.       template->SERVICE_NAME = template->LANGUAGE;
+  24269.       template->TEMPLATE_NAME = template->SERVICE_NAME;
+  24270. >     ci_membuf_free(template->data);
+  24271.       template->data = (struct ci_membuf *)(void *)0;
+  24272.     }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24502: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_membuf_free' and 'ci_array_destroy' should be called atomically.
+  24500.             }
+  24501.   
+  24502. >           ci_membuf_free(textbuff);
+  24503.             return (struct anonymous$20 *)(void *)0;
+  24504.           }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24545: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ci_membuf_free' and 'ci_array_destroy' should be called atomically.
+  24543.   
+  24544.                 pthread_mutex_unlock(&templates_mutex);
+  24545. >               ci_membuf_free(textbuff);
+  24546.                 return (struct anonymous$20 *)(void *)0;
+  24547.               }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24578: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'free' should be called atomically.
+  24576.       {
+  24577.         templateFree(template);
+  24578. >       free((void *)template);
+  24579.       }
+  24580.   
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24577: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'templateFree' should be called atomically.
+  24575.       if(!(template->non_cached == 0))
+  24576.       {
+  24577. >       templateFree(template);
+  24578.         free((void *)template);
+  24579.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24577: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'templateFree' and '__infer_skip' should be called atomically.
+  24575.       if(!(template->non_cached == 0))
+  24576.       {
+  24577. >       templateFree(template);
+  24578.         free((void *)template);
+  24579.       }
+
+c-icap-0.4.2_tests_.libs_test_cache.c:24657: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Function 'malloc' should be called atomically.
+  24655.   {
+  24656.     void *return_value_malloc$1;
+  24657. >   return_value_malloc$1=malloc((unsigned long int)50 * sizeof(struct ci_data_type) /*324ul*/ );
+  24658.     db->types = (struct ci_data_type *)return_value_malloc$1;
+  24659.     if(db->types == ((struct ci_data_type *)NULL))
+
+Summary of the reports
+
+  ATOMICITY_VIOLATION: 174
