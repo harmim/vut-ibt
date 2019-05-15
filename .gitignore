@@ -1,4 +1,4 @@
 *.ast.sh
 
 /bibliography/
-/experiments/
+/testing-programs/
