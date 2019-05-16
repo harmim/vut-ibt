@@ -114,7 +114,7 @@ main.c:106: error: ATOMICITY_VIOLATION
 
 main.c:130: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
-  128.   	if (c1 > 0)
+  128.   	if (c > 0)
   129.   	{
   130. > 		f2();
   131.   	}
@@ -138,7 +138,7 @@ main.c:136: error: ATOMICITY_VIOLATION
 
 main.c:147: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'f4' and 'f2' should be called atomically.
-  145.   	else if (c2 > 1)
+  145.   	else if (c > 0)
   146.   	{
   147. > 		f2();
   148.   	}

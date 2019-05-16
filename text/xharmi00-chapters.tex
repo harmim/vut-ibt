@@ -13,7 +13,7 @@ or tools for automated testing are often used. These methods
 are satisfactory in many cases, nevertheless, they can still leave
 too many bugs undetected, because they are able to analyse only
 certain program flows, dependent on its input data. An alternative
-solution is \emph{static analysis} that has its own shortcomings as 
+solution is \emph{static analysis} that has its own shortcomings as
 well. The main issue is the \emph{scalability} on extensive codebases and
 considerable high rate of incorrectly reported errors (so-called
 \emph{false positives} or \emph{false alarms}).
@@ -21,17 +21,17 @@ considerable high rate of incorrectly reported errors (so-called
 Recently, Facebook introduced \emph{Facebook Infer}\,--\,a~tool for
 creating \emph{highly scalable} \emph{compositional}, \emph{incremental},
 and \emph{interprocedural} static analysers. Facebook Infer has grown
-considerably in its possibilities, but it is still under active development 
+considerably in its possibilities, but it is still under active development
 by many teams across the globe. It is employed every day not only in
-Facebook itself, but also in other companies, such as Spotify, Uber, Mozilla, 
+Facebook itself, but also in other companies, such as Spotify, Uber, Mozilla,
 or Amazon. Currently, Facebook Infer provides several analysers implemented
 as modules in the whole framework. These analysers check for various types
 of bugs, such as buffer overflows, thread-safety, null-dereferencing, or
 memory leaks. But most importantly Facebook Infer is a~framework for building
-new analysers quickly and easily. Unfortunately, the current version of 
-Facebook Infer still lacks better support for \emph{concurrency} bugs. 
-While it provides a~fairly advanced \emph{data race} analyser, it is 
-limited to Java programs only and fails for C~programs, which require 
+new analysers quickly and easily. Unfortunately, the current version of
+Facebook Infer still lacks better support for \emph{concurrency} bugs.
+While it provides a~fairly advanced \emph{data race} analyser, it is
+limited to Java programs only and fails for C~programs, which require
 more through manipulation with locks.
 
 In \emph{concurrent programs}, there are often \emph{atomicity requirements}
@@ -43,12 +43,12 @@ unlike syntactic or some sorts of semantic rules. Moreover, atomicity
 requirements, in most cases, are not even documented at all. So in the
 end, programmers themselves must abide by these requirements and usually
 lack any tool support. And in general, it is difficult to avoid
-errors in \emph{atomicity-dependent programs}, especially in large projects, 
+errors in \emph{atomicity-dependent programs}, especially in large projects,
 and even harder and time-consuming is finding and fixing them.
 
-In this thesis, there is proposed the \emph{Atomer}\,---\,the static 
-analyser for finding atomicity violations\,---\,which is implemented as 
-an extension for Facebook Infer. In particular, the concentration is put 
+In this thesis, there is proposed the \emph{Atomer}\,---\,the static
+analyser for finding atomicity violations\,---\,which is implemented as
+an extension for Facebook Infer. In particular, the concentration is put
 on an \emph{atomic execution of sequences of function calls}, which is often
 required, e.g., when using certain library calls. The implementation
 particularly targets C/C++ programs that use \emph{PThread} locks.
@@ -72,9 +72,9 @@ a~description of existing analysers of a~similar kind. An implementation
 of the analyser and its experimental verification and evaluation is
 presented in Chapter~\ref{chap:implementExp}. Finally, Chapter~\ref{chap:conc}
 concludes the paper. In addition, there are three appendices.
-Appendix~\ref{chap:expRes} shows the experimental results.
-Appendix~\ref{chap:memMedia} lists contents of attached memory media and
-Appendix~\ref{chap:man} serves as an installation and user manual.
+Appendix~\ref{app:expRes} shows experimental verification results.
+Appendix~\ref{app:memMedia} lists contents of attached memory media and
+Appendix~\ref{app:man} serves as an installation and user manual.
 
 
 
@@ -1230,18 +1230,17 @@ approach.
 The above detection of atomic sequences has been implemented, as it is
 described in Section~\ref{sec:implementPhase1}. Furthermore, it has
 been successfully verified on a~set of sample programs created for
-this purpose. The verification is presented in Section~\ref{sec:exp} and
-in Section~\ref{sec:expResPhase1} of Appendix~\ref{chap:expRes}. The derived
-sequences of calls assumed to execute atomically, i.e., the
-\textbf{B}~sequences, from the summaries of all analysed functions are
-stored into a~file, which is used during \textbf{Phase~2}, described
-below in Section~\ref{sec:designPhase2}. There are some possibilities
-for further extending and improving \textbf{Phase~1}, e.g., working with
-\emph{nested locks}; distinguishing the \emph{different locks} used
-(currently, it is not distinguished between the locks at all); consider
-\emph{contracts for concurrency with parameters} defined in
-Section~\ref{sec:paramContracts} or other extensions of
-contracts for concurrency discussed in Section~\ref{sec:contracts}; or
+this purpose. The verification is presented in Sections~\ref{sec:exp},
+\ref{sec:expResPhase1}. The derived sequences of calls assumed to
+execute atomically, i.e., the \textbf{B}~sequences, from the summaries
+of all analysed functions are stored into a~file, which is used during
+\textbf{Phase~2}, described below in Section~\ref{sec:designPhase2}.
+There are some possibilities for further extending and improving
+\textbf{Phase~1}, e.g., working with \emph{nested locks}; distinguishing
+the \emph{different locks} used (currently, it is not distinguished
+between the locks at all); consider \emph{contracts for concurrency with
+parameters} defined in Section~\ref{sec:paramContracts} or other extensions
+of contracts for concurrency discussed in Section~\ref{sec:contracts}; or
 extending the detection for \emph{other types of locks} for a~synchronisation
 of concurrent threads/processes. On the other hand, to further enhance the
 \emph{scalability}, it seems promising to replace working with the
@@ -1282,7 +1281,7 @@ The analysis of functions with nested function calls and cases
 where lock/unlock calls are not paired in a~function are handled
 the analogical way as it is handled in \textbf{Phase~1} described in
 Section~\ref{sec:designPhase1}. For detailed examples see verification
-experiments in Section~\ref{sec:expResPhase2} of Appendix~\ref{chap:expRes}.
+experiments in Section~\ref{sec:expResPhase2}.
 
 \begin{example}
     For a~demonstration of the detection of an atomicity violation, assume
@@ -1320,9 +1319,8 @@ void b(void)
 As well as the first phase of the analysis, \textbf{Phase~2} has been
 implemented, as it is described in Section~\ref{sec:implementPhase2}.
 And it has been also successfully verified on a~set of sample purposeful
-programs. This verification is described in
-Section~\ref{sec:exp} and in Section~\ref{sec:expResPhase2} of
-Appendix~\ref{chap:expRes}. \textbf{Phase~2} also has the potential for
+programs. This verification is described in Sections~\ref{sec:exp},
+\ref{sec:expResPhase2}. \textbf{Phase~2} also has the potential for
 further enhancing. It is possible to extend this phase with all the
 improvements discussed in Section~\ref{sec:designPhase1}. Moreover, it
 is possible to improve this phase by working with sets instead of pairs,
@@ -1721,6 +1719,7 @@ Example of the output:
 \begin{samepage}
     \begin{itemize}[label=]
         \tt
+        \setlength\itemsep{0em}
 
         \item
             functionA:{\textvisiblespace}(f1{\textvisiblespace}f2)%
@@ -2046,6 +2045,7 @@ Algorithm~\ref{alg:reportAtomViolations}.
 
 \section{Experimental Verification and Evaluation}
 \label{sec:exp}
+\cite{deadlockKroening}
 
 \todo{TODO}
 

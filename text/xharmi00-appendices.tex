@@ -2,42 +2,327 @@
 % (c) Dominik Harmim
 
 
-\chapter{Results of Experimental Verification}
-\label{chap:expRes}
+\chapter{Experimental Verification Results}
+\label{app:expRes}
 
-\todo{TODO}
+This appendix illustrates results of experimental verification of
+the implemented analyser. The verification process and the results, in
+general, are in more detail discussed in Section~\ref{sec:exp}.
+Section~\ref{sec:expResPhase1} shows experimental results of
+\textbf{Phase~1} of the analyser, i.e., the \emph{detection of atomic
+sequences}. Section~\ref{sec:expResPhase2} then shows experimental results
+of \textbf{Phase~2}, i.e., the \emph{detection of atomicity violations}.
+
+Both sections demonstrate the analysis on programs written in ANSI~C
+and assume \emph{PThread} locks and the existence of an initialised
+global variable \texttt{lock} of a~type \texttt{pthread\_mutex\_t}.
+
+Moreover, the below experiments are available on attached memory media,
+see Appendix~\ref{app:memMedia}. Instructions how to run these
+experiments can be found in Appendix~\ref{app:man}.
 
 
-\section[%
-    Experimental Verification of Detection of Atomic Sequences
-]{\texorpdfstring{%
-    Experimental Verification of Detection of Atomic \\ Sequences
-}{}}
+\section{Detection of Atomic Sequences}
 \label{sec:expResPhase1}
 
-\todo{TODO}
+For the verification of the detection of atomic sequences are used
+functions defined in Listing~\ref{list:phase1ExpCode}. The result of
+this detection, i.e., \emph{sequences of function that should be called
+atomically}, is shown in Listing~\ref{list:phase1AtomSeq}.
+
+\begin{lstlisting}[
+    style=c, label={list:phase1ExpCode},
+    caption={%
+        Functions to be analysed for the detection of atomic sequences
+    }
+]
+void f1(void) {}
+void f2(void) {}
+void f3(void) {}
+void f4(void) {}
+void f5(void) {}
+void ff(void) { f1(); f2(); }
+
+void test1(void)
+{
+    f1(); f1();
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f1(); f2();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    f1(); f1();
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    f1();
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f3(); f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+
+void test2(void)
+{
+    f1(); f1();
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f1(); f2();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    f3(); f3();
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f4(); f4();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+
+void test_only_lock(void)
+{
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1();
+}
+
+void test_only_unlock(void)
+{
+    f2();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+
+void test_iteration(void)
+{
+    int c;
+    f1(); f2();
+    while (c > 0) { f3(); f5(); }
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f2();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    while (c > 0) f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    f4();
+}
+
+void test_selection(void)
+{
+    int c;
+    f1(); f2();
+    if (c > 0) { f3(); f5(); }
+    else
+    {
+        <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+        f1();
+        <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+    }
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f2();
+    if (c > 42) f3();
+    else if (c > 0) f4();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    f4();
+}
+
+void test_nested(void)
+{
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    ff(); f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f4(); f5(); ff();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[
+    style=atomSeq, label={list:phase1AtomSeq},
+    caption={%
+        The result of \textbf{Phase~1} (atomic sequences) of the
+        analysis of functions from Listing~\ref{list:phase1ExpCode}
+    }
+]
+f1:<@\textvisiblespace@>
+f2:<@\textvisiblespace@>
+f3:<@\textvisiblespace@>
+f4:<@\textvisiblespace@>
+f5:<@\textvisiblespace@>
+ff:<@\textvisiblespace@>
+test1: (f1 f2) (f1 f3)
+test2: (f1 f2) (f1 f4)
+test_only_lock: (f1)
+test_only_unlock:<@\textvisiblespace@>
+test_iteration: (f1 f2) (f3)
+test_selection: (f1) (f2) (f2 f3) (f2 f4)
+test_nested: (ff f1 f2 f3) (f4 f5 ff f1 f2)
+\end{lstlisting}
 
 
-\section[%
-    Experimental Verification of Detection of Atomicity Violations
-]{\texorpdfstring{%
-    Experimental Verification of Detection of Atomicity \\ Violations
-}{}}
+\section{Detection of Atomicity Violations}
 \label{sec:expResPhase2}
 
-\todo{TODO}
+For the verification of the detection of atomicity violations are used
+functions defined in Listing~\ref{list:phase2ExpCode}. The result of
+the detection of atomic sequences is shown in
+Listing~\ref{list:phase2AtomSeq}. The result of the detection of atomicity
+violations, i.e., \emph{functions that should be called atomically but they
+are not}, is stated in Listing~\ref{list:phase2ExpCode} using
+\textcolor{greencomments}{comments}.
+
+\begin{lstlisting}[
+    style=c, label={list:phase2ExpCode},
+    caption={%
+        Functions to be analysed for the detection of atomic sequences
+        and for the subsequent detection of atomicity violations (detected
+        atomicity violations are stated in
+        \textcolor{greencomments}{comments})
+    }
+]
+void f1(void) {}
+void f2(void) {}
+void f3(void) {}
+void f4(void) {}
+void g(void) {}
+void ff(void) { f3(); f1(); f4(); } // (f3 f1) (f1 f4)
+
+void atomic_sequences(void)
+{
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f2(); f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f4(); f2();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    ff(); f3();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+
+void test1(void)
+{
+    f1(); f2(); g(); // (f1 f2)
+    f1(); g(); f2(); g();
+    f1(); f1(); f2(); g(); // (f1 f2)
+    f1(); f2(); f3(); g(); // (f1 f2) (f2 f3)
+    f1(); g(); f2(); g(); f3();
+}
+
+void test2(void)
+{
+    f4(); f2(); g(); // (f4 f2)
+    f2(); f4(); g();
+
+    f4();
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+    f2();
+    g();
+
+    f3(); f4();
+}
+
+void test_only_lock(void)
+{
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f2();
+}
+
+void test_only_unlock(void)
+{
+    f1(); f2(); // (f1 f2)
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+
+void test_iteration(void)
+{
+    int c;
+    while (c > 0) { f1(); f2(); } // (f1 f2)
+
+    f1();
+    while (c > 0) f2(); // (f1 f2)
+    f3(); // (f1 f3) (f2 f3)
+
+    for (; c > 0; f1()) f3(); // (f3 f1) (f1 f3)
+
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    f1(); f2();
+    while (c > 0) { f2(); f3(); }
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+}
+
+void test_selection(void)
+{
+    int c;
+    f1();
+    if (c > 0) f2(); // (f1 f2)
+    else f3(); // (f1 f3)
+    f3(); // (f2 f3)
+
+    g();
+
+    f4();
+    if (c > 42) f4();
+    else if (c > 0) f2(); // (f4 f2)
+    f2(); // (f4 f2)
+}
+
+void test_nested(void)
+{
+    <@\textcolor{red}{pthread\_mutex\_lock}@>(&lock);
+    ff();
+    <@\textcolor{red}{pthread\_mutex\_unlock}@>(&lock);
+
+    ff(); g(); // (ff f3)
+    ff(); f2(); // (ff f3) (f4 f2)
+}
+\end{lstlisting}
+
+\begin{lstlisting}[
+    style=atomSeq, label={list:phase2AtomSeq},
+    caption={%
+        The result of \textbf{Phase~1} (atomic sequences) of the
+        analysis of functions from Listing~\ref{list:phase2ExpCode}
+    }
+]
+f1:<@\textvisiblespace@>
+f2:<@\textvisiblespace@>
+f3:<@\textvisiblespace@>
+f4:<@\textvisiblespace@>
+g:<@\textvisiblespace@>
+ff:<@\textvisiblespace@>
+atomic_sequences: (f1 f2 f3) (f4 f2) (f1 f3) (ff f3 f1 f4)
+test1:<@\textvisiblespace@>
+test2:<@\textvisiblespace@>
+test_only_lock: (f1 f2)
+test_only_unlock:<@\textvisiblespace@>
+test_iteration: (f1 f2) (f1 f2 f3)
+test_selection:<@\textvisiblespace@>
+test_nested: (ff f3 f1 f4)
+\end{lstlisting}
 
 
 
 \chapter{Contents of Attached Memory Media}
-\label{chap:memMedia}
+\label{app:memMedia}
 
 \todo{TODO}
 
 
 
 \chapter{Installation and User Manual}
-\label{chap:man}
+\label{app:man}
 
 \todo{TODO}
 

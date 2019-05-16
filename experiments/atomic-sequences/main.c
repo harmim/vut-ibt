@@ -78,10 +78,11 @@ void test_only_unlock(void)
 
 void test_iteration(void)
 {
+	int c;
+
 	f1(); f2();
 
-	int c1;
-	while (c1 > 0)
+	while (c > 0)
 	{
 		f3(); f5();
 	}
@@ -94,8 +95,7 @@ void test_iteration(void)
 
 	pthread_mutex_lock(&lock);
 	{
-		int c2;
-		while (c2 > 0)
+		while (c > 0)
 		{
 			f3();
 		}
@@ -108,10 +108,11 @@ void test_iteration(void)
 
 void test_selection(void)
 {
+	int c;
+
 	f1(); f2();
 
-	int c1;
-	if (c1 > 0)
+	if (c > 0)
 	{
 		f3(); f5();
 	}
@@ -126,12 +127,11 @@ void test_selection(void)
 	{
 		f2();
 
-		int c2, c3;
-		if (c2 > 0)
+		if (c > 42)
 		{
 			f3();
 		}
-		else if (c3 > 0)
+		else if (c > 0)
 		{
 			f4();
 		}

@@ -91,19 +91,19 @@ void test_iteration(void)
 {
 	int c;
 
-	while (c)
+	while (c > 0)
 	{
 		f1(); f2();
 	}
 
 	f1();
-	while (c)
+	while (c > 0)
 	{
 		f2();
 	}
 	f3();
 
-	for (; c; f1())
+	for (; c > 0; f1())
 	{
 		f3();
 	}
@@ -111,7 +111,7 @@ void test_iteration(void)
 	pthread_mutex_lock(&lock);
 	{
 		f1(); f2();
-		while (c)
+		while (c > 0)
 		{
 			f2(); f3();
 		}
@@ -122,10 +122,10 @@ void test_iteration(void)
 
 void test_selection(void)
 {
-	int c1, c2;
+	int c;
 
 	f1();
-	if (c1)
+	if (c > 0)
 	{
 		f2();
 	}
@@ -138,11 +138,11 @@ void test_selection(void)
 	g();
 
 	f4();
-	if (c1)
+	if (c > 42)
 	{
 		f4();
 	}
-	else if (c2)
+	else if (c > 0)
 	{
 		f2();
 	}

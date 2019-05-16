@@ -1024,6 +1024,18 @@ Management}{\@fit@EN}%
   keepspaces=true
 }
 
+\lstdefinestyle{atomSeq}{
+  basicstyle=\ttfamily,
+  backgroundcolor=\color{white},
+  columns=fullflexible,
+  captionpos=b,
+  tabsize=4,
+  keepspaces=true,
+  showspaces=true,
+  escapeinside={<@}{@>},
+  frame=single
+}
+
 \lstdefinestyle{csh}{
   language=[Sharp]C,
   showspaces=false,

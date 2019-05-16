@@ -122,10 +122,10 @@ void test_iteration(void)
 
 void test_selection(void)
 {
-	int c1, c2;
+	int c;
 
 	f1();
-	if (c1 > 0)
+	if (c > 0)
 	{
 		f2();
 	}
@@ -138,11 +138,11 @@ void test_selection(void)
 	g();
 
 	f4();
-	if (c1 > 0)
+	if (c > 42)
 	{
 		f4();
 	}
-	else if (c2 > 1)
+	else if (c > 0)
 	{
 		f2();
 	}
