@@ -8,7 +8,7 @@ Bugs are an integral part of computer programs ever since the inception
 of the programming discipline. Unfortunately, they are often hidden
 in unexpected places, and they can lead to unexpected behaviour which
 may cause significant damage. Nowadays there are many possible
-ways of catching bugs in the development process. Dynamic analysers
+ways of catching bugs in the development process. \emph{Dynamic analysers}
 or tools for automated testing are often used. These methods
 are satisfactory in many cases, nevertheless, they can still leave
 too many bugs undetected, because they are able to analyse only
@@ -19,7 +19,7 @@ considerable high rate of incorrectly reported errors (so-called
 \emph{false positives} or \emph{false alarms}).
 
 Recently, Facebook introduced \emph{Facebook Infer}\,--\,a~tool for
-creating \emph{highly scalable} \emph{compositional}, \emph{incremental},
+creating \emph{highly scalable}, \emph{compositional}, \emph{incremental},
 and \emph{interprocedural} static analysers. Facebook Infer has grown
 considerably in its possibilities, but it is still under active development
 by many teams across the globe. It is employed every day not only in
@@ -1225,7 +1225,9 @@ been chosen. The reason is that it is much easier for implementation.
 However, in future, the analysis can be improved by implementing the second
 approach.
 
-\subsubsection{Summary of Detection of Atomic Sequences and Future Work}
+\subsubsection{%
+    Summary of the Detection of Atomic Sequences and Future Work
+}
 
 The above detection of atomic sequences has been implemented, as it is
 described in Section~\ref{sec:implementPhase1}. Furthermore, it has
@@ -1241,7 +1243,7 @@ the \emph{different locks} used (currently, it is not distinguished
 between the locks at all); consider \emph{contracts for concurrency with
 parameters} defined in Section~\ref{sec:paramContracts} or other extensions
 of contracts for concurrency discussed in Section~\ref{sec:contracts}; or
-extending the detection for \emph{other types of locks} for a~synchronisation
+extending the detection for \emph{other types of locks} for synchronisation
 of concurrent threads/processes. On the other hand, to further enhance the
 \emph{scalability}, it seems promising to replace working with the
 \textbf{A}~and~\textbf{B}~sequence by working with sets of calls: sacrificing
@@ -1314,7 +1316,9 @@ void b(void)
 }
 \end{lstlisting}
 
-\subsubsection{Summary of Detection of Atomicity Violations and Future Work}
+\subsubsection{%
+    Summary of the Detection of Atomicity Violations and Future Work
+}
 
 As well as the first phase of the analysis, \textbf{Phase~2} has been
 implemented, as it is described in Section~\ref{sec:implementPhase2}.
@@ -1441,7 +1445,7 @@ for each phase. So particular operators are defined as follows
 (see also Listing~\ref{list:domainOps}):
 \begin{itemize}
     \item
-        \emph{Ordering} operator~$ \sqsubseteq $~(in Facebook Infer,
+        The \emph{ordering} operator~$ \sqsubseteq $~(in Facebook Infer,
         it is \texttt{<=}) is defined as follows. Let \texttt{lhs} be
         a~left-hand side of this operator and \texttt{rhs} a~right-hand
         side of this operator. Then, \texttt{lhs~<=~rhs} (\texttt{lhs} is
@@ -1760,7 +1764,7 @@ Section~\ref{sec:implementPhase2}.
 \end{algorithm}
 
 
-\section{Implementation of the Detection of Atomicity Violations}
+\section{Implementation of Detection of Atomicity Violations}
 \label{sec:implementPhase2}
 
 The proposal of this phase is described in Section~\ref{sec:designPhase2}.
@@ -2045,16 +2049,200 @@ Algorithm~\ref{alg:reportAtomViolations}.
 
 \section{Experimental Verification and Evaluation}
 \label{sec:exp}
-\cite{deadlockKroening}
 
-\todo{TODO}
+This section deals with experimental verification of the analyser
+and its evaluation. The verification has been performing already during
+the development of both phases of the analyser (described in
+Section~\ref{sec:design}). As soon as a~part of the analyser has been
+implemented, it has been verified on appropriate simple programs created
+for this purpose. In the end, the whole analyser has been successfully
+verified on smaller programs created for this purpose, as describes
+Section~\ref{sec:expPurpos}. Furthermore, Section~\ref{sec:expReal}
+shows an experimental evaluation of the analyser on publicly available
+benchmarks derived from \emph{real-life low-level} programs.
+Section~\ref{sec:expSum} then concludes the experimental evaluation
+and discusses future work.
+
+All the experiments presented in this section are available on
+attached memory media, see Appendix~\ref{app:memMedia}. How to run
+the experiments is described in Appendix~\ref{app:man}.
+
+
+\subsection{Verification on Smaller Hand-Crafted Examples}
+\label{sec:expPurpos}
+
+As it is mentioned above, the verification has been performing already
+during the development. And both phases of the analyser are verified
+apart on simple programs written in ANSI~C with \emph{PThread} locks.
+
+For \textbf{Phase~1} of the analyser, i.e., the \emph{detection of
+atomic sequences}, it was created several appropriate functions. These
+functions contain appropriate sequences of function calls inside
+and outside \emph{atomic blocks}, \emph{not paired lock/unlock calls},
+\emph{iteration}, \emph{selection}, and \emph{nested function calls}.
+The functions were designed in order to check whether single parts of
+the \emph{abstract domain} work well (i.e., they correspond to the proposal
+from Chapter~\ref{chap:proposal}). In particular, the design aims at
+verification of the \emph{ordering} operator, the \emph{join} operator,
+and the \emph{widening} operator. Further, it aims at verification of
+working with all components of the \emph{abstract state} and the
+\emph{summary}. It was verified that the result of the analysis
+of these functions (atomic sequences) is correct, with regard to
+the proposal from Chapter~\ref{chap:proposal}. The analysed functions
+and the result of \textbf{Phase~1} can be seen in
+Section~\ref{sec:expResPhase1}.
+
+In the case of \textbf{Phase~2}, i.e., the \emph{detection of atomicity
+violations}, the verification process is an analogy of the process
+for \textbf{Phase~1}. But here, there is also verified that reported
+atomicity violations are reported correctly (based on the atomic sequences
+from \textbf{Phase~1}) with regard to the proposal from
+Section~\ref{sec:designPhase2}. The analysed function and the result
+of \textbf{Phase~2} can be seen in Section~\ref{sec:expResPhase2}.
+
+
+\subsection{Evaluation on Real-Life Programs}
+\label{sec:expReal}
+
+To find out whether the analyser is able to analyse \emph{real programs},
+at first, it was tested on a~set of slightly more complex student
+projects from the \emph{Advanced Operating Systems} course. These projects
+work with threads and synchronisation using \emph{PThreads}.
+
+Later, the analysis was performed on a~subset of \emph{real-life low-level
+concurrent} C~programs from a~publicly available benchmark.
+These programs were derived from the Debian GNU Linux distribution. The
+entire benchmark was originally used for an experimental evaluation of
+Daniel Kroening's static deadlock analyser for
+C/PThreads~\cite{deadlockKroening} implemented in the CPROVER framework. For
+the evaluation, it was used~9~\emph{deadlock-free} programs. The experiments
+were run on MacBook Pro 2015 with a~2.7\,GHz Intel Core i5 processor
+and 8\,GB RAM running the macOS Mojave 10.14.4 operating system.
+But the running time of the experiments is not relevant because all
+the experiments were done in less than a~few seconds. The results of the
+experiments are illustrated in Table~\ref{tab:exp}. (It is stated the number
+of lines of code of an analysed program, the number of detected atomic
+sequences, and the number of detected atomicity violations.)
+
+\begin{table}[hbt]
+    \centering
+
+    \begin{tabular}{|c||r|r|r|}
+        \hline
+        Program & Lines of Code & Atomic Sequences
+            & \textbf{Atomicity Violations} \\ \hline \hline
+
+        alsa-utils 1.1.0 & 7\,735 & 1 & \textbf{1} \\ \hline
+        c-icap 0.4.2 & 24\,923 & 11 & \textbf{174} \\ \hline
+        glfw 2.7.9 & 10\,230 & 9 & \textbf{13} \\ \hline
+        libgroove 4.3.0 & 7\,307 & 34 & \textbf{294} \\ \hline
+        npth 1.2 & 1\,593 & 1 & \textbf{26} \\ \hline
+        qrencode 3.4.4 & 7\,006 & 6 & \textbf{88} \\ \hline
+        rt-tests 0.96 & 1\,795 & 1 & \textbf{0} \\ \hline
+        signing-party 2.2 & 1\,023 & 1 & \textbf{1} \\ \hline
+        sslsplit 0.4.11 & 22\,457 & 18 & \textbf{344} \\ \hline
+    \end{tabular}
+
+    \caption{%
+        Experimental results of the analyser on \emph{real-life
+        low-level} programs
+    }
+    \label{tab:exp}
+\end{table}
+
+As one can see in Table~\ref{tab:exp}, in extensive real-life programs,
+there are reported quite a~lot of atomicity violations. Many of them are
+probably \emph{false alarms}. Determination, whether the reported
+atomicity violations in such real-life programs are actual errors may be
+challenging and it goes beyond the scope of this thesis. However, a~result
+of the analyser can be used as an input for \emph{dynamic analysis} which
+can be able to ascertain if reported atomicity violations are real errors.
+
+
+\subsection{Summary of the Evaluation and Future Work}
+\label{sec:expSum}
+
+The correctness of the analyser was successfully verified on smaller
+\emph{hand-crafted} example programs. However, when analysing extensive
+\emph{real-life} programs, many \emph{false alarms} are usually reported.
+To reduce the number of false alarms, it seems promising to work with
+\emph{nested locks}, consider the \emph{different locks} used, consider
+extensions for \emph{contracts for concurrency} introduced in
+Section~\ref{sec:contracts}, i.e., consider \emph{function parameters} and
+\emph{contextual information} of function calls. Another option for the
+reduction of false alarms is to working with sets instead of pairs when
+looking for functions that should be called atomically. The considerable
+number of false alarms are caused by atomic sequences that contain only
+one function call and by atomic sequences which do not have to be called
+atomically always. The solution could be ignoring \emph{atomic blocks} where
+there is just one function call, and consider atomic sequences only if
+they appear in an atomic block more than, e.g., three times.
+
+Another issue is that analysing of more complex programs with extensive
+\emph{control structures} and a~lot of function calls inside atomic blocks
+is very time and memory consuming and the analysis either fails or it
+runs an extremely long time. The solution of this issue could be replacement
+working with the~\textbf{A}~and~\textbf{B}~sequences in \textbf{Phase~1} of
+the analysis by working with sets. This replacement would be at the
+expense of precision but it would definitely gain speed.
 
 
 
 \chapter{Conclusion}
 \label{chap:conc}
 
-\todo{TODO}
+This thesis explains the principles of \emph{static analysis} and
+\emph{abstract interpretation}. Further, it describes a~static analysis
+framework that uses abstract interpretation\,---\,\emph{Facebook
+Infer}\,---\,its features, architecture, and existing analysers implemented
+in this tool. Furthermore, it introduces and defines the concept of
+\emph{contracts for concurrency}. The major part of the thesis aims at the
+proposal of a~static analyser for detecting \emph{atomicity
+violations}\,---\,\emph{Atomer}\,---\,and its implementation as an extension
+for Facebook Infer. Lastly, it is described the experimental evaluation of
+the implemented analyser and it is discussed the future work.
+
+The analyser works on the level of \emph{sequences of function calls}. The
+proposed solution is based on the assumption that sequences executed
+\emph{once atomically} should probably be executed \emph{always atomically}.
+It is also inspired by the concept of contracts for concurrency. Atomer
+is divided into two phases of the analysis: \textbf{Phase~1}\,--\,detection
+of \emph{atomic sequences}, i.e., detection of function calls executed
+atomically; and \textbf{Phase~2}\,--\,detection of \emph{atomicity
+violations}, i.e., detection of violations of the atomic sequences
+obtained from \textbf{Phase~1}. The implementation targets C/C++ programs
+that use \emph{PThread} locks.
+
+Atomer has been successfully verified on smaller \emph{hand-crafted}
+programs. Moreover, it has been experimentally evaluated on publicly
+available benchmarks derived from \emph{real-life low-level} programs
+from the Debian distribution. The analysis has been performed
+on~9~low-level programs with a~couple of thousands of lines of code.
+It has been found out that Atomer is able to analyse such extensive
+real-life programs, but in such cases, it reports quite a~lot of
+\emph{false alarms}. Anyway, a~result of the analyser may be used as an
+input for \emph{dynamic analysis} which can be able to determine whether
+reported atomicity violations are real errors.
+
+Atomer shows the potential for further improvements. The future work will
+focus mainly on increasing the accuracy of used methods using, e.g.,
+considering \emph{nested locks}, \emph{different locks} used,
+\emph{function parameters}, etc. The future work will also focus
+on enhancing the \emph{scalability} because Atomer fails to analyse more
+extensive and complex programs. Further, it would be interesting to
+extend the analysis for \emph{other types of locks} for synchronisation
+of concurrent threads/processes and testing the analysis on other
+real-world programs.
+
+The code of Atomer is available on GitHub as an \emph{open-source
+repository}. It would be nice to achieve a~merge of the implementation
+of Atomer into the \texttt{master} branch of Facebook Infer's repository.
+The preliminary results of the thesis were published and presented in
+paper~\cite{excel2019FBInfer} for the student conference \emph{Excel@FIT},
+where it won an award in two categories.
+
+\enlargethispage{1em}
+
 
 
 %===============================================================================

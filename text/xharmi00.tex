@@ -21,7 +21,9 @@
 \usepackage{wrapfig}
 \usepackage{amsthm}
 \usepackage[normalem]{ulem}
-\usepackage[ruled, algochapter, lined, longend, linesnumbered]{algorithm2e}
+\usepackage[ruled, algochapter, linesnumbered]{algorithm2e}
+\usepackage{subfiles}
+\usepackage{tocloft}
 
 % Setting of a path to the pictures.
 \graphicspath{{figures/}{./figures/}}
@@ -37,6 +39,13 @@
 
 % Algorithm margin.
 \setlength{\algomargin}{2em}
+
+% Line spacing in the list of contents.
+\renewcommand\cftchapafterpnum{\vskip .5em}
+\renewcommand\cftsecafterpnum{\vskip .5em}
+
+% Definition of czech \uv.
+\newcommand{\csuv}[1]{\bq#1\eq}
 
 % Disables function of the template which replaces quotation marks
 % to avoid unnecessary replacements in the API descriptions etc.
@@ -83,10 +92,6 @@
 % solves first/last row of the paragraph on the previous/next page
 \clubpenalty=10000
 \widowpenalty=10000
-
-% Hyphenation of czech words.
-\hyphenation{a-to-mic-ky}
-\hyphenation{a-to-mi-ci-ty}
 
 \setlength{\parskip}{0pt}
 
@@ -136,7 +141,7 @@
     % keywords in czech language
     keywords.cs={%
         statická analýza, analýza programů, abstraktní interpretace,
-        Facebook Infer, porušení atomicity, paralelní programy,
+        Facebook Infer, porušení a\-to\-mi\-ci\-ty, paralelní programy,
         kontrakty pro souběžnost, atomické sekvence, atomicita,
         inkrementální analýza, modulární analýza, kompoziční analýza,
         interprocedurální analýza
@@ -164,8 +169,8 @@
         atomicky}, by měly být pravděpodobně volány \emph{atomicky
         vždy}. Implementovaný analyzátor byl úspěšně ověřen  a~vyhodnocen jak na
         malých programech, vytvořených pro tento účel, tak na veřejně dostupných
-        testovacích programech, které vznikly ze skutečných nízko úrovňových
-        programů.
+        testovacích programech, které vznikly ze \emph{skutečných
+        nízkoúrovňových} programů.
     },
     % abstract in english
     abstract.en={%
@@ -180,14 +185,110 @@
         should probably be executed \emph{always atomically}. The
         implemented analyser has been successfully verified and evaluated
         on both smaller programs created for this purpose as well as
-        publicly available benchmarks derived from real-life low-level
-        programs.
+        publicly available benchmarks derived from \emph{real-life
+        low-level} programs.
     },
     % Extended abstract
     extendedabstract={%
-        \todo{TODO}
-        % Do tohoto odstavce bude zapsán rozšířený výtah (abstrakt) práce
-        % v~českém jazyce.
+        Softwarové chyby jsou nedílnou součástí počítačových programů od
+        samotného vzniku programování. Naneštěstí jsou často ukryty na
+        nečekaných místech a~můžou vést k~nečekanému chování, které může
+        způsobit značné škody. Dnes existuje mnoho způsobů, jak odhalovat
+        tyto chyby již při vývoji. Často se používají \emph{dynamické
+        analyzátory} nebo nástroje pro automatizované testování. V~mnoha
+        případech jsou tyto metody dostačující, nicméně stále mohou zanechat
+        spoustu chyb neodhalených, protože jsou schopny analyzovat pouze
+        určité toky běhu programu na základě vstupních dat. Alternativním
+        řešením je \emph{statická analýza}, která má však také svoje nedostatky.
+        Největším problémem je \emph{škálovatelnost} při analýze rozsáhlých
+        projektů a~značně vysoká míra nesprávně hlášených chyb (často se
+        používá anglický výraz \csuv{\emph{false alarm}}).
+
+        Firma Facebook nedávno představila \emph{Facebook Infer}\,--\,nástroj
+        pro tvorbu \emph{vysoce škálovatelných}, \emph{kompozičních},
+        \emph{inkrementálních} a~\emph{interprocedurálních} statických
+        analyzátorů. Facebook Infer značně rozšířil své možnosti, ale
+        je stále v~aktivním vývoji mnoha týmy po celém světě. Je používaný
+        každý den nejen v~samotné firmě Facebook, ale také v~jiných
+        firmách jako např. Spotify, Uber, Mozilla nebo Amazon. Momentálně
+        Facebook Infer nabízí několik analyzátorů implementovaných jako
+        moduly v~celém aplikačním rámci. Tyto analyzátory detekují celou
+        řadu typů softwarových chyb, jako např. chyby typu \csuv{buffer
+        overflow} (přetečení vyrovnávací paměti), \csuv{thread-safety}
+        (vláknová bezpečnost), \csuv{null-dereferencing} (dereference
+        prázdného ukazatele) nebo \csuv{memory leak} (únik paměti). Ale
+        především je Facebook Infer \emph{aplikační rámec} pro rychlou
+        a~jednoduchou tvorbu nových analyzátorů. V~aktuální verzi nástroje
+        Facebook Infer naneštěstí stále chybí lepší podpora pro detekci
+        chyb v~\emph{paralelních programech}. Přestože Facebook Infer nabízí
+        docela pokročilé analyzátory na detekci chyb typu \csuv{\emph{data
+        race}}, jsou tyto analyzátory limitovány pouze na programy napsané
+        v~jazyce Java a~nejsou navrženy na programy napsané v~jazyce~C,
+        což by vyžadovalo \emph{nízkoúrovňovější} manipulaci se zámky.
+
+        V~paralelních programech se často vyskytují \emph{požadavky na
+        atomicitu} pro provádění určitých sekvencí instrukcí. Porušení
+        těchto požadavků může způsobit různé problémy, jako např. neočekávané
+        chování, výjimky, \csuv{segmentation fault} (chyba porušení
+        paměti) nebo jiné selhání. \emph{Porušení atomicity} obvykle
+        není ověřováno překladačem, na rozdíl od syntaktických nebo
+        některých druhů sémantických pravidel. Požadavky na atomicitu
+        navíc většinou ani vůbec nejsou dokumentovány. Takže v~konečném
+        důsledku musí samotní programátoři dbát na dodržování těchto
+        požadavků, a~to obvykle bez jakýchkoliv podpůrných nástrojů.
+        Obecně je náročné vyvarovat se těchto chyb v~\emph{atomicky
+        závislých programech}, obzvlášť ve velkých projektech, a~ještě
+        těžší a~časově náročnější je hledání a~opravování těchto chyb.
+
+        V~této práci je navržen statický
+        analyzátor\,---\,\emph{Atomer}\,---\,pro hledání chyb typu porušení
+        atomicity, který je implementován jako rozšíření pro nástroj Facebook
+        Infer. Návrh se konkrétně zaměřuje na \emph{atomické provádění sekvencí
+        volání funkcí}, což je často vyžadováno, např. při použití určitých
+        knihovních volání. Navržený princip je založen na předpokladu, že
+        sekvence provedené \emph{jednou atomicky}, by pravděpodobně měly být
+        provedeny \emph{atomicky vždy}. Návrh je dále založen na konceptu
+        \emph{kontraktů pro souběžnost} (anglicky \csuv{\emph{contracts
+        for concurrency}}). Navržená analýza je rozdělena do dvou částí
+        (\emph{fáze analýzy}). \textbf{Fáze~1}:~detekce \emph{atomických
+        sekvencí}, tj. detekce volání funkcí, které se volají atomicky.
+        \textbf{Fáze~2}:~detekce \emph{porušení atomicity}, tj. porušení
+        atomické sekvence získané z~první fáze.
+
+        Analyzátor je implementován v~jazyce \emph{OCaml}, což je
+        implementační jazyk nástroje Facebook Infer. Implementace se
+        konkrétně zaměřuje na programy napsané v~jazycích C/C++ s~použitím
+        zámků typu \emph{PThread}.
+
+        Funkčnost analyzátoru byla úspěšně ověřena na menších
+        \emph{ručně vytvořených} programech. Navíc byl analyzátor
+        experimentálně vyhodnocen na veřejně dostupných testovacích
+        programech odvozených od \emph{nízkoúrovňových} programů používaných
+        v~praxi. Analýza byla provedena na~9~nízkoúrovňových programech,
+        které obsahují několik tisíc řádků kódu. Bylo zjištěno, že Atomer
+        je schopný analyzovat i~takhle rozsáhlé programy z~praxe, ale
+        v~těchto případech je nesprávně hlášeno mnoho chyb. Každopádně
+        výsledek této analýzy může být použit jako vstup pro \emph{dynamickou
+        analýzu}, která může být schopna zjistit, jestli tato nahlášená
+        porušení atomicity jsou skutečné chyby.
+
+        Atomer prokázal svůj potenciál pro další vylepšování. Budoucí práce
+        se bude zaměřovat především na zlepšování přesnosti použitých
+        metod například tak, že se budou uvažovat \emph{vnořené zámky},
+        \emph{různé instance použitých zámků}, \emph{parametry funkcí} atd.
+        Budoucí práce se bude dále zaměřovat na zlepšování
+        \emph{škálovatelnosti}, protože Atomer není schopen analyzovat
+        rozsáhlejší a~komplexnější programy. Dále by bylo zajímavé rozšířit
+        analyzátor o~\emph{další typy zámků} pro synchronizaci souběžných
+        vláken/procesů a~otestovat analýzu na dalších v~praxi používaných
+        programech.
+
+        Vývoj analyzátoru byl diskutován s~vývojáři nástroje Facebook
+        Infer a~je součástí projektu Aquas (H2020 ECSEL). Zdrojové kódy
+        implementovaného analyzátoru jsou volně dostupné v~repositáři
+        na serveru GitHub. Předběžné výsledky práce byly publikovány
+        a~prezentovány v~článku na studentské konferenci \emph{Excel@FIT},
+        kde tento článek vyhrál cenu ve dvou kategoriích.
     },
 %
     % Declaration
@@ -221,11 +322,7 @@
 
     % Table of contents
     % --------------------------------------------------------------------------
-    {
-        \hypersetup{hidelinks}
-        \setcounter{tocdepth}{1}
-        \tableofcontents
-    }
+    {\hypersetup{hidelinks}\tableofcontents}
 
 
     \ifODSAZ
@@ -241,7 +338,7 @@
 
     % Thesis text
     % --------------------------------------------------------------------------
-    \input{xharmi00-chapters}
+    \subfile{xharmi00-chapters}
 
 
     % Bibliography
@@ -265,6 +362,29 @@
     \appendix
 
 
+    % List of appendices
+    \cleardoublepage
+    \section*{List of Appendices}
+    \addcontentsline{toc}{chapter}{List of Appendices}
+    \startcontents[chapters]
+    \setlength{\parskip}{0pt}
+    \printcontents[chapters]{l}{0}{
+        \hypersetup{hidelinks}
+        \setcounter{tocdepth}{1}
+    }
+
+
+    \ifODSAZ
+        \setlength{\parskip}{.5 \bigskipamount}
+    \else
+        \setlength{\parskip}{0pt}
+    \fi
+
+
+    % Skip the page in the two-sided mode
+    \iftwoside\cleardoublepage\fi
+
+
     % Appendices
-    \input{xharmi00-appendices}
+    \subfile{xharmi00-appendices}
 \end{document}
