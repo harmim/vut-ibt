@@ -2,12 +2,13 @@
 % (c) Dominik Harmim
 
 
+%===============================================================================
 \chapter{Experimental Verification Results}
 \label{app:expRes}
 
 This appendix illustrates results of experimental verification of
 the implemented analyser. The verification process and the results, in
-general, are in more detail discussed in Section~\ref{sec:exp}.
+general, are in more detail discussed in Chapter~\ref{chap:exp}.
 Section~\ref{sec:expResPhase1} shows experimental results of
 \textbf{Phase~1} of the analyser, i.e., the \emph{detection of atomic
 sequences}. Section~\ref{sec:expResPhase2} then shows experimental results
@@ -17,7 +18,7 @@ Both sections demonstrate the analysis on programs written in ANSI~C
 and assume \emph{PThread} locks and the existence of an initialised
 global variable \texttt{lock} of a~type \texttt{pthread\_mutex\_t}.
 
-Moreover, the below experiments are available on attached memory media,
+Moreover, the below experiments are available on the attached memory media,
 see Appendix~\ref{app:memMedia}. Instructions how to run these
 experiments can be found in Appendix~\ref{app:man}.
 
@@ -314,29 +315,140 @@ test_nested: (ff f3 f1 f4)
 
 
 
-\chapter{Contents of Attached Memory Media}
+%===============================================================================
+\chapter{Contents of the Attached Memory Media}
 \label{app:memMedia}
 
-\todo{TODO}
+This appendix lists contents of the attached memory media.
+
+\textbf{The attached memory media particularly contains the following:}
+\begin{itemize}
+    \item 
+        \texttt{\textbf{/experiments/}}
+        
+        \begin{itemize}
+            \item 
+                The results of the experimental evaluation and experimental
+                programs to analyse.
+        \end{itemize}
+        
+    \item
+        \texttt{\textbf{/infer/}}
+        
+        \begin{itemize}
+            \item 
+                Source codes of Facebook Infer.
+                
+            \item
+                The created source files of the implemented analyser are
+                located mainly in a~subdirectory \texttt{infer/src/checkers}.
+                
+            \item
+                In this directory, there are \texttt{.md} files with the 
+                official instructions on how to install and build this tool.
+                But such information is primarily provided in 
+                Appendix~\ref{app:man}.
+        \end{itemize}
+        
+    \item
+        \texttt{\textbf{/text/}}
+        
+        \begin{itemize}
+            \item 
+                \LaTeX\ source codes of this thesis.
+            \item 
+                It can be compiled into the PDF using \texttt{pdflatex} with
+                the command \texttt{make}.
+        \end{itemize}
+        
+    \item
+        \texttt{\textbf{xharmi00.pdf}}
+        
+        \begin{itemize}
+            \item This thesis in the PDF.
+        \end{itemize}
+\end{itemize}
 
 
 
+%===============================================================================
 \chapter{Installation and User Manual}
 \label{app:man}
 
-\todo{TODO}
+This appendix serves as an installation and user manual. 
+
+Further, it is assumed that the \emph{working directory} contains all the 
+files from the attached memory media, see~\ref{app:memMedia}.
 
 
-\section{Installation Manual}
-\label{sec:installMan}
+\section*{Installation Manual}
 
-\todo{TODO}
+\emph{The whole installation process may be time-consuming.}
+
+At first, it is required to install Facebook Infer's dependencies and then
+to compile Facebook Infer. Here are the prerequisites to be able to compile
+Facebook Infer on Linux:
+\begin{itemize}
+    \item opam >= 2.0.0
+    \item python 2.7
+    \item pkg-config
+    \item gcc >= 5.X or clang >= 3.4
+    \item autoconf >= 2.63
+    \item automake >= 1.11.1
+\end{itemize}
+
+Installation of Facebook Infer can be done using the following commands:
+\begin{lstlisting}[style=bash]
+cd infer
+./build-infer.sh clang
+sudo make install
+\end{lstlisting}
+The official installation manual can be found in
+\url{https://github.com/harmim/infer/blob/master/INSTALL.md}.
+
+Furthermore, it is needed to build Facebook Infer using these commands:
+\begin{lstlisting}[style=bash]
+cd infer
+make -j BUILD_MODE=default
+\end{lstlisting}
+The official building manual can be found in
+\url{https://github.com/harmim/infer/blob/master/CONTRIBUTING.md}.
+
+Facebook Infer now should be installed and executable by the command
+\texttt{infer}. It is installed in \texttt{infer/infer/bin}.
 
 
-\section{User Manual}
-\label{sec:userMan}
+\section*{User Manual}
 
-\todo{TODO}
+In general, to analyse a~C/C++ program with Facebook Infer, it can be
+done using the following command (for a~single file):
+\begin{lstlisting}[style=bash]
+infer run -- gcc -c sourc_file.c
+\end{lstlisting}
+Another option is to analyse the entire project with \texttt{Makefile} using
+the following:
+\begin{lstlisting}[style=bash]
+infer run -- make <target>
+\end{lstlisting}
+Many other build systems may be used, see
+\url{https://fbinfer.com/docs/analyzing-apps-or-projects.html}.
+
+The implemented \textbf{atomicity violations analyser} is deactivated
+by default. The analysis have to be executed twice (it has two phases).
+Each phase runs with a~different command line option. The first phase
+derives sequences of functions that should be executed atomically into
+the file \texttt{infer-atomicity-out/atomic-sequences}. The second phase
+then detects atomicity violations according to this file. So, the analysis
+can be triggered using the following commands:
+\begin{lstlisting}[style=bash]
+infer run --atomic-sequences-only -- gcc -c sourc_file.c
+infer run --atomicity-violations-only -- gcc -c sourc_file.c
+\end{lstlisting}
+Or it can be triggered along with other analyses that Facebook Infer provides:
+\begin{lstlisting}[style=bash]
+infer run --atomic-sequences -- gcc -c sourc_file.c
+infer run --atomicity-violations -- gcc -c sourc_file.c
+\end{lstlisting}
 
 
 %===============================================================================

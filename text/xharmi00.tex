@@ -32,9 +32,8 @@
 \renewcommand{\sfdefault}{qhv} % set TeX Gyre Heros as sf
 \renewcommand{\ttdefault}{lmtt} % set Latin Modern tt as tt
 
-% Definition and example theorems.
+% Definition theorem.
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
 \newtheorem{example}{Example}[section]
 
 % Algorithm margin.
@@ -43,6 +42,9 @@
 % Line spacing in the list of contents.
 \renewcommand\cftchapafterpnum{\vskip .5em}
 \renewcommand\cftsecafterpnum{\vskip .5em}
+
+% \hyptt as tt with hyphenation enabled.
+\DeclareTextFontCommand{\hyptt}{\ttfamily\hyphenchar\font=45\relax}
 
 % Definition of czech \uv.
 \newcommand{\csuv}[1]{\bq#1\eq}
@@ -53,7 +55,7 @@
 
 % "hyperref" package create clickable links in pdf if you are using pdflatex.
 % Problem is that this package have to be introduced as the last one so it
-% can not be placed in the template file.
+% cannot be placed in the template file.
 \ifWis
     \ifx\pdfoutput\undefined % we are not using pdflatex
     \else
@@ -160,31 +162,31 @@
     abstract.cs={%
         Cílem této práce je navrhnout \emph{statický analyzátor}, který bude
         sloužit pro detekci \emph{porušení atomicity}. Navržený
-        analyzátor\,---\,\emph{Atomer}\,---\,je implementován jako rozšíření
+        analyzátor\,---\,\emph{Atomer}\,---\,je implementován jako modul
         pro \emph{Facebook Infer}, což je volně šířený a~snadno rozšířitelný
         nástroj, který umožňuje efektivní \emph{modulární}
         a~\emph{inkrementální} analýzu. Analyzátor pracuje na úrovni
         \emph{sekvencí volání funkcí}. Navržené řešení je založeno na
-        předpokladu, že sekvence, které jsou \emph{jednou zavolány
-        atomicky}, by měly být pravděpodobně volány \emph{atomicky
-        vždy}. Implementovaný analyzátor byl úspěšně ověřen  a~vyhodnocen jak na
-        malých programech, vytvořených pro tento účel, tak na veřejně dostupných
-        testovacích programech, které vznikly ze \emph{skutečných
+        předpokladu, že sekvence, které jsou \emph{zavolány atomicky
+        jednou}, by měly být pravděpodobně volány \emph{atomicky
+        vždy}. Implementovaný analyzátor byl úspěšně ověřen a~vyhodnocen jak na
+        malých programech, vytvořených pro testovací účely, tak na veřejně
+        dostupných testovacích programech, které vznikly ze \emph{skutečných
         nízkoúrovňových} programů.
     },
     % abstract in english
     abstract.en={%
-        The goal of this thesis is to propose a~\emph{static analyser},
-        which detects \emph{atomicity violations}. The proposed
-        analyser\,---\,\emph{Atomer}\,---\,is implemented as an extension
-        for \emph{Facebook Infer}, which is an open-source and extendable
+        The goal of this thesis is to propose a~\emph{static analyser}
+        that detects \emph{atomicity violations}. The proposed
+        analyser\,---\,\emph{Atomer}\,---\,is implemented as a~module
+        of \emph{Facebook Infer}, which is an open-source and extendable
         static analysis framework that promotes efficient \emph{modular} and
         \emph{incremental} analysis. The analyser works on the level of
         \emph{sequences of function calls}. The proposed solution is based
-        on the assumption that sequences executed \emph{once atomically}
+        on the assumption that sequences executed \emph{atomically once}
         should probably be executed \emph{always atomically}. The
         implemented analyser has been successfully verified and evaluated
-        on both smaller programs created for this purpose as well as
+        on both smaller programs created for testing purposes as well as
         publicly available benchmarks derived from \emph{real-life
         low-level} programs.
     },
@@ -193,29 +195,30 @@
         Softwarové chyby jsou nedílnou součástí počítačových programů od
         samotného vzniku programování. Naneštěstí jsou často ukryty na
         nečekaných místech a~můžou vést k~nečekanému chování, které může
-        způsobit značné škody. Dnes existuje mnoho způsobů, jak odhalovat
-        tyto chyby již při vývoji. Často se používají \emph{dynamické
-        analyzátory} nebo nástroje pro automatizované testování. V~mnoha
-        případech jsou tyto metody dostačující, nicméně stále mohou zanechat
-        spoustu chyb neodhalených, protože jsou schopny analyzovat pouze
-        určité toky běhu programu na základě vstupních dat. Alternativním
-        řešením je \emph{statická analýza}, která má však také svoje nedostatky.
-        Největším problémem je \emph{škálovatelnost} při analýze rozsáhlých
-        projektů a~značně vysoká míra nesprávně hlášených chyb (často se
-        používá anglický výraz \csuv{\emph{false alarm}}).
+        způsobit značné škody. Dnes existuje mnoho způsobů, jak mohou
+        vývojáři odhalovat tyto chyby již při vývoji. Často se používají
+        \emph{dynamické analyzátory} nebo nástroje pro automatizované 
+        testování, které jsou v~mnoha případech dostačující, nicméně stále 
+        mohou zanechat spoustu chyb neodhalených, protože jsou schopny 
+        analyzovat pouze určité toky běhu programu na základě vstupních dat.
+        Alternativním řešením je \emph{statická analýza}, která má však 
+        také svoje nedostatky, kde nejčastějším problémem je 
+        \emph{škálovatelnost} při analýze rozsáhlých projektů nebo značně 
+        vysoká míra nesprávně hlášených chyb (často se používá anglický výraz
+        \csuv{\emph{false alarm}}).
 
-        Firma Facebook nedávno představila \emph{Facebook Infer}\,--\,nástroj
+        Firma Facebook nedávno představila \emph{Facebook Infer}: nástroj
         pro tvorbu \emph{vysoce škálovatelných}, \emph{kompozičních},
         \emph{inkrementálních} a~\emph{interprocedurálních} statických
         analyzátorů. Facebook Infer značně rozšířil své možnosti, ale
-        je stále v~aktivním vývoji mnoha týmy po celém světě. Je používaný
-        každý den nejen v~samotné firmě Facebook, ale také v~jiných
+        je stále aktivně vyvíjen mnoha týmy po celém světě. Je používaný
+        dennodenně nejen v~samotné firmě Facebook, ale také v~jiných
         firmách jako např. Spotify, Uber, Mozilla nebo Amazon. Momentálně
-        Facebook Infer nabízí několik analyzátorů implementovaných jako
-        moduly v~celém aplikačním rámci. Tyto analyzátory detekují celou
+        Facebook Infer nabízí několik analyzátorů, které detekují celou
         řadu typů softwarových chyb, jako např. chyby typu \csuv{buffer
-        overflow} (přetečení vyrovnávací paměti), \csuv{thread-safety}
-        (vláknová bezpečnost), \csuv{null-dereferencing} (dereference
+        overflow} (přetečení vyrovnávací paměti), \csuv{data race}
+        a~různé druhy uváznutí (\csuv{deadlock}) a~stárnutí
+        (\csuv{starvation}), \csuv{null-dereferencing} (dereference
         prázdného ukazatele) nebo \csuv{memory leak} (únik paměti). Ale
         především je Facebook Infer \emph{aplikační rámec} pro rychlou
         a~jednoduchou tvorbu nových analyzátorů. V~aktuální verzi nástroje
@@ -223,30 +226,30 @@
         chyb v~\emph{paralelních programech}. Přestože Facebook Infer nabízí
         docela pokročilé analyzátory na detekci chyb typu \csuv{\emph{data
         race}}, jsou tyto analyzátory limitovány pouze na programy napsané
-        v~jazyce Java a~nejsou navrženy na programy napsané v~jazyce~C,
-        což by vyžadovalo \emph{nízkoúrovňovější} manipulaci se zámky.
+        v~jazycích Java a~C++ a~nejsou navrženy na programy napsané v~jazyce~C,
+        které manipulují se zámky na \emph{nižší úrovni}.
 
-        V~paralelních programech se často vyskytují \emph{požadavky na
-        atomicitu} pro provádění určitých sekvencí instrukcí. Porušení
-        těchto požadavků může způsobit různé problémy, jako např. neočekávané
-        chování, výjimky, \csuv{segmentation fault} (chyba porušení
-        paměti) nebo jiné selhání. \emph{Porušení atomicity} obvykle
+        V~paralelních programech se často vyžaduje, aby určité sekvence
+        instrukcí byly provedeny atomicky. Porušení těchto požadavků
+        pak může způsobit různé problémy, jako např. neočekávané
+        chování, výjimky, nepovolené přístupy do paměti (\csuv{segmentation 
+        fault}) nebo jiné selhání. \emph{Porušení atomicity} obvykle
         není ověřováno překladačem, na rozdíl od syntaktických nebo
         některých druhů sémantických pravidel. Požadavky na atomicitu
         navíc většinou ani vůbec nejsou dokumentovány. Takže v~konečném
-        důsledku musí samotní programátoři dbát na dodržování těchto
-        požadavků, a~to obvykle bez jakýchkoliv podpůrných nástrojů.
-        Obecně je náročné vyvarovat se těchto chyb v~\emph{atomicky
-        závislých programech}, obzvlášť ve velkých projektech, a~ještě
-        těžší a~časově náročnější je hledání a~opravování těchto chyb.
+        důsledku musí samotní programátoři dbát na jejich dodržení, 
+        a~to obvykle bez jakýchkoliv podpůrných nástrojů. Obecně je náročné
+        vyvarovat se těchto chyb v~\emph{atomicky závislých programech}, 
+        obzvlášť ve velkých projektech, a~ještě těžší a~časově náročnější je
+        hledání a~opravování těchto chyb.
 
         V~této práci je navržen statický
-        analyzátor\,---\,\emph{Atomer}\,---\,pro hledání chyb typu porušení
-        atomicity, který je implementován jako rozšíření pro nástroj Facebook
-        Infer. Návrh se konkrétně zaměřuje na \emph{atomické provádění sekvencí
-        volání funkcí}, což je často vyžadováno, např. při použití určitých
-        knihovních volání. Navržený princip je založen na předpokladu, že
-        sekvence provedené \emph{jednou atomicky}, by pravděpodobně měly být
+        analyzátor\,---\,\emph{Atomer}\,---\,pro hledání chyb určitého typu
+        porušení atomicity, který je implementován jako modul nástroje
+        Facebook Infer. Návrh se konkrétně zaměřuje na \emph{atomické provádění
+        sekvencí volání funkcí}, což je často vyžadováno, např. při použití
+        určitých knihovních volání. Navržený princip je založen na předpokladu, 
+        že sekvence provedené \emph{atomicky jednou}, by pravděpodobně měly být
         provedeny \emph{atomicky vždy}. Návrh je dále založen na konceptu
         \emph{kontraktů pro souběžnost} (anglicky \csuv{\emph{contracts
         for concurrency}}). Navržená analýza je rozdělena do dvou částí
@@ -264,15 +267,15 @@
         \emph{ručně vytvořených} programech. Navíc byl analyzátor
         experimentálně vyhodnocen na veřejně dostupných testovacích
         programech odvozených od \emph{nízkoúrovňových} programů používaných
-        v~praxi. Analýza byla provedena na~9~nízkoúrovňových programech,
-        které obsahují několik tisíc řádků kódu. Bylo zjištěno, že Atomer
-        je schopný analyzovat i~takhle rozsáhlé programy z~praxe, ale
+        v~praxi. Analýza byla provedena na~9~vybraných nízkoúrovňových 
+        programech, které obsahují několik tisíc řádků kódu. Bylo zjištěno, 
+        že Atomer je schopný analyzovat i~takhle rozsáhlé programy z~praxe, ale
         v~těchto případech je nesprávně hlášeno mnoho chyb. Každopádně
         výsledek této analýzy může být použit jako vstup pro \emph{dynamickou
         analýzu}, která může být schopna zjistit, jestli tato nahlášená
         porušení atomicity jsou skutečné chyby.
 
-        Atomer prokázal svůj potenciál pro další vylepšování. Budoucí práce
+        Atomer má potenciál pro další vylepšování. Budoucí práce
         se bude zaměřovat především na zlepšování přesnosti použitých
         metod například tak, že se budou uvažovat \emph{vnořené zámky},
         \emph{různé instance použitých zámků}, \emph{parametry funkcí} atd.
@@ -307,13 +310,14 @@
         for his assistance. I~would also like to thank my colleagues Vladimír
         Marcin and Ondřej Pavela for helpful discussions about my thesis.
         Furthermore, I~would like to thank Nikos Gorogiannis and Sam
-        Blackshear from Infer team at Facebook for useful discussions
+        Blackshear from the Infer team at Facebook for useful discussions
         about the development of my analyser. Lastly, I~thank for the
-        support received from H2020 ECSEL project Aquas.
+        support received from the H2020 ECSEL project Aquas.
     }
 }
 
 
+%===============================================================================
 \begin{document}
     % Typesetting of the title pages
     % --------------------------------------------------------------------------
@@ -360,29 +364,6 @@
     % Appendices
     % --------------------------------------------------------------------------
     \appendix
-
-
-    % List of appendices
-    \cleardoublepage
-    \section*{List of Appendices}
-    \addcontentsline{toc}{chapter}{List of Appendices}
-    \startcontents[chapters]
-    \setlength{\parskip}{0pt}
-    \printcontents[chapters]{l}{0}{
-        \hypersetup{hidelinks}
-        \setcounter{tocdepth}{1}
-    }
-
-
-    \ifODSAZ
-        \setlength{\parskip}{.5 \bigskipamount}
-    \else
-        \setlength{\parskip}{0pt}
-    \fi
-
-
-    % Skip the page in the two-sided mode
-    \iftwoside\cleardoublepage\fi
 
 
     % Appendices

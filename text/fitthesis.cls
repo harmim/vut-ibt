@@ -1036,6 +1036,21 @@ Management}{\@fit@EN}%
   frame=single
 }
 
+\lstdefinestyle{bash}{
+  language=bash,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=true,
+  breakatwhitespace=true,
+  commentstyle=\color{greencomments},
+  keywordstyle=\color{bluekeywords},
+  stringstyle=\color{redstrings},
+  basicstyle=\ttfamily,
+  captionpos=b,
+  morekeywords={sudo, make, infer}
+}
+
 \lstdefinestyle{csh}{
   language=[Sharp]C,
   showspaces=false,
