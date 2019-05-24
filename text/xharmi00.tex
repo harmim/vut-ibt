@@ -197,13 +197,13 @@
         nečekaných místech a~můžou vést k~nečekanému chování, které může
         způsobit značné škody. Dnes existuje mnoho způsobů, jak mohou
         vývojáři odhalovat tyto chyby již při vývoji. Často se používají
-        \emph{dynamické analyzátory} nebo nástroje pro automatizované 
-        testování, které jsou v~mnoha případech dostačující, nicméně stále 
-        mohou zanechat spoustu chyb neodhalených, protože jsou schopny 
+        \emph{dynamické analyzátory} nebo nástroje pro automatizované
+        testování, které jsou v~mnoha případech dostačující, nicméně stále
+        mohou zanechat spoustu chyb neodhalených, protože jsou schopny
         analyzovat pouze určité toky běhu programu na základě vstupních dat.
-        Alternativním řešením je \emph{statická analýza}, která má však 
-        také svoje nedostatky, kde nejčastějším problémem je 
-        \emph{škálovatelnost} při analýze rozsáhlých projektů nebo značně 
+        Alternativním řešením je \emph{statická analýza}, která má však
+        také svoje nedostatky, kde nejčastějším problémem je
+        \emph{škálovatelnost} při analýze rozsáhlých projektů nebo značně
         vysoká míra nesprávně hlášených chyb (často se používá anglický výraz
         \csuv{\emph{false alarm}}).
 
@@ -232,14 +232,14 @@
         V~paralelních programech se často vyžaduje, aby určité sekvence
         instrukcí byly provedeny atomicky. Porušení těchto požadavků
         pak může způsobit různé problémy, jako např. neočekávané
-        chování, výjimky, nepovolené přístupy do paměti (\csuv{segmentation 
+        chování, výjimky, nepovolené přístupy do paměti (\csuv{segmentation
         fault}) nebo jiné selhání. \emph{Porušení atomicity} obvykle
         není ověřováno překladačem, na rozdíl od syntaktických nebo
         některých druhů sémantických pravidel. Požadavky na atomicitu
         navíc většinou ani vůbec nejsou dokumentovány. Takže v~konečném
-        důsledku musí samotní programátoři dbát na jejich dodržení, 
+        důsledku musí samotní programátoři dbát na jejich dodržení,
         a~to obvykle bez jakýchkoliv podpůrných nástrojů. Obecně je náročné
-        vyvarovat se těchto chyb v~\emph{atomicky závislých programech}, 
+        vyvarovat se těchto chyb v~\emph{atomicky závislých programech},
         obzvlášť ve velkých projektech, a~ještě těžší a~časově náročnější je
         hledání a~opravování těchto chyb.
 
@@ -248,7 +248,7 @@
         porušení atomicity, který je implementován jako modul nástroje
         Facebook Infer. Návrh se konkrétně zaměřuje na \emph{atomické provádění
         sekvencí volání funkcí}, což je často vyžadováno, např. při použití
-        určitých knihovních volání. Navržený princip je založen na předpokladu, 
+        určitých knihovních volání. Navržený princip je založen na předpokladu,
         že sekvence provedené \emph{atomicky jednou}, by pravděpodobně měly být
         provedeny \emph{atomicky vždy}. Návrh je dále založen na konceptu
         \emph{kontraktů pro souběžnost} (anglicky \csuv{\emph{contracts
@@ -267,8 +267,8 @@
         \emph{ručně vytvořených} programech. Navíc byl analyzátor
         experimentálně vyhodnocen na veřejně dostupných testovacích
         programech odvozených od \emph{nízkoúrovňových} programů používaných
-        v~praxi. Analýza byla provedena na~9~vybraných nízkoúrovňových 
-        programech, které obsahují několik tisíc řádků kódu. Bylo zjištěno, 
+        v~praxi. Analýza byla provedena na~9~vybraných nízkoúrovňových
+        programech, které obsahují několik tisíc řádků kódu. Bylo zjištěno,
         že Atomer je schopný analyzovat i~takhle rozsáhlé programy z~praxe, ale
         v~těchto případech je nesprávně hlášeno mnoho chyb. Každopádně
         výsledek této analýzy může být použit jako vstup pro \emph{dynamickou
