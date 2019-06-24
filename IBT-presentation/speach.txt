@@ -1,0 +1,96 @@
+1:
+	* Dobré dopoledne. Já jsem Dominik Harmim. *
+
+	V mé bakalářské práci jsem rozšiřoval Facebook Infer, nástroj pro statickou
+	analýzu programů, o nový analyzátor. Kontrétně se jedná o detekci porušení
+	atomicity.
+
+2:
+	Atomicita obecně znamená provádění určitých operací najednou bez přerušení.
+	Tato vlastnost je často vyžadována v paralelních programech. Porušení
+	atomicity může způsobit neočekávané chování a mít vážné následky.
+	Máme tady uvedený příklad funkce `replace`, která nahrazuje prvek v poli
+	jiným prvkem. Nejdříve se získá index daného prvku funkcí `index_of` a
+	pokud je index planý, nahradí se prvek na tomto indexu funkcí `set`.
+	Tyto funkce, `index_of` a `set`, by měly být volány atomicky. V opačném
+	případě by mohlo být pole modifikováno například paralelním
+	vláknem a index by potom mohl být neplatný. V současné době existují
+	analyzátory, které jsou schopny určité druhy porušení atomicity detekovat.
+	Nicméně často mají problémy se škálovatelností a typicky hlásí mnoho
+	falešných chyb.
+
+3:
+	Na úvod ještě řeknu něco o samotném nástroji Facebook Infer.
+	Jedná se o volně šířený framework pro interprocedurální statickou
+	analýzu programů. Je založený na abstraktní interpretaci.
+	Obsahuje řadu analyzátorů, které detekují např. chyby typu
+	`buffer overflow`, `data race`, `null-dereferencing` nebo `memory leak`.
+	Klade důraz na škálovatelnost, která je způsobená analýzou samostatných
+	funkcí směrem od listů stromů ke kořenům. Infer provádí kompoziční analýzu
+	tím, že pro každou funkci je spočítán její souhrn (tzv. `summary`)
+	nezávisle na kontextu, ve kterém se funkce nachází. Na obrázku můžeme vidět
+	graf volání funkcí, kde z funkce `main`
+	jsou volány funkce `f` a `g`. Infer nejdříve analyzuje funkce `f` a `g`
+	a spočítá jejich souhrny. Na závěr analyzuje funkci `main` a na základě
+	souhrnů funkce `f` a `g` spočítá souhrn funkce `main`. Infer podporuje
+	analýzu programů napsaných v jazycích Java, C, C++ a Objective-C.
+
+4:
+	Analyzátor Atomer, který jsem navrhl a implementoval slouží pro detekci
+	porušení atomicity. Detekuje porušení atomicity pro sekvence volání funkcí.
+	Vychází z předpokladu, že sekvence, které jsou v programu jednou volány
+	atomicky, by měly být pravděpodobně volány atomicky vždy. Tento analyzátor
+	je implementovaný pro analýzu programů napsaných v jazycích C a C++ s
+	použitím zámků typu `PThread`.
+
+5:
+	Samotná analýza je rozdělena do dvou fází. V první fázi se provádí
+	detekce atomických sekvencí. Pracuje se zde se sekvencemi volání
+	funkcí. Zaznamenávají se pouze první výskyty volání, aby byla zajištěna
+	konečnost analýzy. Podívejme se na příklad funkce `f`. V této funkci se
+	provádí nahrazení určitého prvku v poli za prvek s jinou hodnotou. Toto
+	nahrazení je implementováno funkcemi `index_of` a `set`. Funkce `index_of`
+	a `set` se tady volají atomicky, je to zajištěno zámkem `lock`, který se
+	zamyká a odemyká funkcemi `pthread_mutex_lock` a `pthread_mutex_unlock`.
+	Tato dvojice volání se proto uloží do souhrnu funkce `f` jako atomická
+	sekvence. V druhé fázi se provádí detekce porušení atomicty na základě
+	výsledků první fáze. Detekuje se porušení pro jednotlivé dvojice atomických
+	volání. Můžeme vidět, že ve funkcí `g` se vyskytuje volání
+	funkcí `index_of` a `set`, tentokrát neatomicky, tj. bez zámku. Bude
+	tady nahlášeno porušení atomicty, protože ve funkci `f` byla tato
+	sekvence volána atomicky.
+
+6:
+	Funkčnost analyzátoru byla nejdříve ověřena na vhodně vytvořených
+	programech. Následně byl analyzátor vyhodnocen na nízkoúrovňových
+	paralelních programech extrahovaných z linuxové distribuce Debian.
+	Příklady výsledků některých z těchto programů jsou vidět v této tabulce,
+	která ukazuje počet řádků jednotlivých programů a počet nahlášených
+	porušení atomicity. Bylo zjištěno, že analyzátor je schopen analyzovat
+	i takhle rozsáhlé reálné programy. Prozatím je hlášeno poměrně dost
+	falešných chyb a škálovatelnost je stále omezena.
+
+7:
+	Abych to shrnul. Byl navržen statický analyzátor, který byl implementován
+	v prostředí Facebook Infer. Analyzátor byl úspěšně otestován a
+	experimenálně vyhodnocen. Předběžné výsledky byly publikovány a
+	prezentovány na studentské konferenci Excel@FIT. Počítá se s tím, že
+	se bude v této práci pokračovat. Budoucí práce se bude zaměřovat především
+	na zvyšování přesnosti, například uvažováním parametrů funkcí, a na
+	zvyšování škálovatelnosti, aby bylo možné analyzovat ještě rozsáhlejší
+	a komplexnější programy. V neposlední řadě bych chtěl tento analyzátor
+	začlenit do oficiálního repositáře Facebook Infer.
+
+8:
+	* Teď zodpovím následující otázku od oponenta práce. Mám diskutovat
+	obtížnost rozšíření analyzátoru Atomer o podporu formálních
+	parametrů funkcí a návratových hodnot. *
+
+	Toto rozšíření by mohlo sloužit
+	například k rozlišení kontextu volaných funkcí. Je to samozřejmě věc
+	dalšího vývoje. Určitě to není snadné, ale do jisté míry by to jít mohlo a
+	počítám s tím, že to zkusíme. Ty hodnoty je potřeba vhodně charakterizovat
+	staticky a abstraktně. Bylo by například možné použít tzv. syntaktické
+	`access paths`, které se používají v Inferu, je to indetifikace lokace
+	hodnoty na haldě. K bližšímu rozlišení by bylo potřeba použít nějaké
+	ukazatelové analýzy, které ovšem obecně moc neškálují.
