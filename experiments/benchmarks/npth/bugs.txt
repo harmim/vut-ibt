@@ -1,4 +1,12 @@
-Found 26 issues
+Found 31 issues
+
+npth-1.2_build_tests_.libs_t-mutex.c:1011: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__errno_location' and '__infer_skip' should be called atomically.
+  1009.     while(tmp_if_expr$3);
+  1010.     /* assertion !res */
+  1011. >   assert(!(res != 0));
+  1012.     signed int *return_value___errno_location$4;
+  1013.     return_value___errno_location$4=__errno_location();
 
 npth-1.2_build_tests_.libs_t-mutex.c:999: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions '__errno_location' and 'sem_wait' should be called atomically.
@@ -7,6 +15,30 @@ npth-1.2_build_tests_.libs_t-mutex.c:999: error: ATOMICITY_VIOLATION
   999. >     res=sem_wait(sceptre);
   1000.       if(!(res >= 0))
   1001.       {
+
+npth-1.2_build_tests_.libs_t-mutex.c:1013: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__infer_skip' and '__errno_location' should be called atomically.
+  1011.     assert(!(res != 0));
+  1012.     signed int *return_value___errno_location$4;
+  1013. >   return_value___errno_location$4=__errno_location();
+  1014.     *return_value___errno_location$4 = save_errno;
+  1015.   }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1002: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sem_wait' and '__errno_location' should be called atomically.
+  1000.       if(!(res >= 0))
+  1001.       {
+  1002. >       return_value___errno_location$2=__errno_location();
+  1003.         tmp_if_expr$3 = *return_value___errno_location$2 == 4 ? (_Bool)1 : (_Bool)0;
+  1004.       }
+
+npth-1.2_build_tests_.libs_t-mutex.c:1013: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sem_wait' and '__errno_location' should be called atomically.
+  1011.     assert(!(res != 0));
+  1012.     signed int *return_value___errno_location$4;
+  1013. >   return_value___errno_location$4=__errno_location();
+  1014.     *return_value___errno_location$4 = save_errno;
+  1015.   }
 
 npth-1.2_build_tests_.libs_t-mutex.c:1011: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'sem_wait' and '__infer_skip' should be called atomically.
@@ -55,6 +87,14 @@ npth-1.2_build_tests_.libs_t-mutex.c:1158: error: ATOMICITY_VIOLATION
   1158. >   leave_npth();
   1159.   }
   1160.   
+
+npth-1.2_build_tests_.libs_t-mutex.c:1205: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__errno_location' and 'leave_npth' should be called atomically.
+  1203.     }
+  1204.   
+  1205. >   leave_npth();
+  1206.     return 0;
+  1207.   }
 
 npth-1.2_build_tests_.libs_t-mutex.c:1205: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'leave_npth' and '__errno_location' should be called atomically.
@@ -210,4 +250,4 @@ npth-1.2_build_tests_.libs_t-mutex.c:1555: error: ATOMICITY_VIOLATION
 
 Summary of the reports
 
-  ATOMICITY_VIOLATION: 26
+  ATOMICITY_VIOLATION: 31

@@ -1,4 +1,4 @@
-Found 294 issues
+Found 408 issues
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3472: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -88,6 +88,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3536: error: ATOMICITY_VIOLATIO
   3537.       map_entry = (struct SinkMap *)return_value_av_mallocz$4;
   3538.       map_entry->stack_head = stack_entry;
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3514: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'sink_formats_compatible' should be called atomically.
+  3512.         struct GrooveSink *example_sink = map_item->stack_head->sink;
+  3513.         signed int return_value_sink_formats_compatible$2;
+  3514. >       return_value_sink_formats_compatible$2=sink_formats_compatible(example_sink, sink);
+  3515.         if(!(return_value_sink_formats_compatible$2 == 0))
+  3516.         {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3509: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  3507.     {
+  3508.       stack_entry->sink = sink;
+  3509. >     struct SinkMap *map_item = p->sink_map;
+  3510.       while(!(map_item == ((struct SinkMap *)NULL)))
+  3511.       {
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3541: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'av_mallocz' and 'av_free' should be called atomically.
   3539.       if(map_entry == ((struct SinkMap *)NULL))
@@ -95,6 +111,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3541: error: ATOMICITY_VIOLATIO
   3541. >       av_free((void *)stack_entry);
   3542.         return -1;
   3543.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3512: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sink_formats_compatible' and '__variable_initialization' should be called atomically.
+  3510.       while(!(map_item == ((struct SinkMap *)NULL)))
+  3511.       {
+  3512. >       struct GrooveSink *example_sink = map_item->stack_head->sink;
+  3513.         signed int return_value_sink_formats_compatible$2;
+  3514.         return_value_sink_formats_compatible$2=sink_formats_compatible(example_sink, sink);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3536: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sink_formats_compatible' and 'av_mallocz' should be called atomically.
+  3534.       struct SinkMap *map_entry;
+  3535.       void *return_value_av_mallocz$4;
+  3536. >     return_value_av_mallocz$4=av_mallocz(sizeof(struct SinkMap) /*24ul*/ );
+  3537.       map_entry = (struct SinkMap *)return_value_av_mallocz$4;
+  3538.       map_entry->stack_head = stack_entry;
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3567: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'every_sink' and '__variable_initialization' should be called atomically.
@@ -224,6 +256,46 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3698: error: ATOMICITY_VIOLATIO
   3699.               groove_buffer_ref(buffer);
   3700.               signed int return_value_groove_queue_put$5;
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3652: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and '__variable_initialization' should be called atomically.
+  3650.         while(!(map_item == ((struct SinkMap *)NULL)))
+  3651.         {
+  3652. >         struct GrooveSink *example_sink = map_item->stack_head->sink;
+  3653.           signed int data_size = 0;
+  3654.           do
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3697: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and '__variable_initialization' should be called atomically.
+  3695.             while(!(stack_item == ((struct SinkStack *)NULL)))
+  3696.             {
+  3697. >             struct GrooveSink *sink = stack_item->sink;
+  3698.               struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
+  3699.               groove_buffer_ref(buffer);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3693: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and '__variable_initialization' should be called atomically.
+  3691.   
+  3692.             data_size = data_size + buffer->size;
+  3693. >           struct SinkStack *stack_item = map_item->stack_head;
+  3694.             groove_buffer_ref(buffer);
+  3695.             while(!(stack_item == ((struct SinkStack *)NULL)))
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3697: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  3695.             while(!(stack_item == ((struct SinkStack *)NULL)))
+  3696.             {
+  3697. >             struct GrooveSink *sink = stack_item->sink;
+  3698.               struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
+  3699.               groove_buffer_ref(buffer);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3704: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  3702.               if(!(return_value_groove_queue_put$5 >= 0))
+  3703.               {
+  3704. >               av_log((void *)0, 16, "unable to put buffer in queue\n");
+  3705.                 groove_buffer_unref(buffer);
+  3706.               }
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3644: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'av_strerror' and 'av_log' should be called atomically.
   3642.         {
@@ -231,6 +303,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3644: error: ATOMICITY_VIOLATIO
   3644. >         av_log((void *)0, 16, "error writing frame to buffersrc: %s\n", (const void *)p->strbuf);
   3645.           return -1;
   3646.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3697: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'groove_queue_put' and '__variable_initialization' should be called atomically.
+  3695.             while(!(stack_item == ((struct SinkStack *)NULL)))
+  3696.             {
+  3697. >             struct GrooveSink *sink = stack_item->sink;
+  3698.               struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
+  3699.               groove_buffer_ref(buffer);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3704: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'groove_queue_put' and 'av_log' should be called atomically.
+  3702.               if(!(return_value_groove_queue_put$5 >= 0))
+  3703.               {
+  3704. >               av_log((void *)0, 16, "unable to put buffer in queue\n");
+  3705.                 groove_buffer_unref(buffer);
+  3706.               }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3701: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'groove_queue_put' and 'av_mallocz' should be called atomically.
@@ -464,6 +552,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3902: error: ATOMICITY_VIOLATIO
   3903.     av_free_packet(&f->audio_pkt);
   3904.     avio_closep(&f->oc->pb);
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3903: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_free_packet' should be called atomically.
+  3901.   {
+  3902.     struct GrooveFilePrivate *f = (struct GrooveFilePrivate *)file;
+  3903. >   av_free_packet(&f->audio_pkt);
+  3904.     avio_closep(&f->oc->pb);
+  3905.     if(!(f->tempfile_exists == 0))
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3917: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and 'avformat_free_context' should be called atomically.
+  3915.     if(!(f->oc == ((struct AVFormatContext *)NULL)))
+  3916.     {
+  3917. >     avformat_free_context(f->oc);
+  3918.       f->oc = (struct AVFormatContext *)(void *)0;
+  3919.     }
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3938: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   3936.       signed int target_count;
@@ -479,6 +583,30 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3939: error: ATOMICITY_VIOLATIO
   3939. >     unsigned long int best = *p;
   3940.       signed int best_count;
   3941.       best_count=av_get_channel_layout_nb_channels(best);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3941: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_get_channel_layout_nb_channels' should be called atomically.
+  3939.       unsigned long int best = *p;
+  3940.       signed int best_count;
+  3941. >     best_count=av_get_channel_layout_nb_channels(best);
+  3942.       while(!(*p == 0ul))
+  3943.       {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3948: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_get_channel_layout_nb_channels' should be called atomically.
+  3946.   
+  3947.         signed int count;
+  3948. >       count=av_get_channel_layout_nb_channels(*p);
+  3949.         if(!(best_count >= count) && !(best_count >= target_count))
+  3950.           tmp_if_expr$4 = (_Bool)1;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3938: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_get_channel_layout_nb_channels' and '__variable_initialization' should be called atomically.
+  3936.       signed int target_count;
+  3937.       target_count=av_get_channel_layout_nb_channels(target);
+  3938. >     const unsigned long int *p = codec->channel_layouts;
+  3939.       unsigned long int best = *p;
+  3940.       signed int best_count;
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:3992: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -608,6 +736,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4185: error: ATOMICITY_VIOLATIO
   4186.     if(!(f->abort_request == 0))
   4187.       return -1;
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4257: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_free_packet' should be called atomically.
+  4255.             {
+  4256.               audio_decode_frame(playlist, file);
+  4257. >             av_free_packet(pkt);
+  4258.               return 0;
+  4259.             }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4257: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and 'av_free_packet' should be called atomically.
+  4255.             {
+  4256.               audio_decode_frame(playlist, file);
+  4257. >             av_free_packet(pkt);
+  4258.               return 0;
+  4259.             }
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4269: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   4267.   static void * decode_thread(void *arg)
@@ -647,6 +791,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4309: error: ATOMICITY_VIOLATIO
   4309. >         pthread_cond_wait(&p->sink_drain_cond, &p->drain_cond_mutex);
   4310.           pthread_mutex_unlock(&p->drain_cond_mutex);
   4311.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4330: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free_packet' and '__variable_initialization' should be called atomically.
+  4328.             if(!(p->decode_head == ((struct GroovePlaylistItem *)NULL)))
+  4329.             {
+  4330. >             struct GrooveFile *next_file = p->decode_head->file;
+  4331.               struct GrooveFilePrivate *next_f = (struct GrooveFilePrivate *)next_file;
+  4332.               pthread_mutex_lock(&next_f->seek_mutex);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4330: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and '__variable_initialization' should be called atomically.
+  4328.             if(!(p->decode_head == ((struct GroovePlaylistItem *)NULL)))
+  4329.             {
+  4330. >             struct GrooveFile *next_file = p->decode_head->file;
+  4331.               struct GrooveFilePrivate *next_f = (struct GrooveFilePrivate *)next_file;
+  4332.               pthread_mutex_lock(&next_f->seek_mutex);
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4322: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'update_playlist_volume' and '__variable_initialization' should be called atomically.
@@ -696,6 +856,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4352: error: ATOMICITY_VIOLATIO
   4353.     struct AVFrame *frame = (struct AVFrame *)(void *)0;
   4354.     if(!(buffer == ((struct GrooveBuffer *)NULL)))
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4368: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'avcodec_encode_audio2' should be called atomically.
+  4366.     signed int got_packet = 0;
+  4367.     signed int errcode;
+  4368. >   errcode=avcodec_encode_audio2(e->stream->codec, &e->pkt, frame, &got_packet);
+  4369.     if(!(errcode >= 0))
+  4370.     {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4353: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_init_packet' and '__variable_initialization' should be called atomically.
+  4351.     struct GrooveEncoderPrivate *e = (struct GrooveEncoderPrivate *)encoder;
+  4352.     av_init_packet(&e->pkt);
+  4353. >   struct AVFrame *frame = (struct AVFrame *)(void *)0;
+  4354.     if(!(buffer == ((struct GrooveBuffer *)NULL)))
+  4355.     {
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4372: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'av_strerror' and 'av_log' should be called atomically.
   4370.     {
@@ -719,6 +895,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4371: error: ATOMICITY_VIOLATIO
   4371. >     av_strerror(errcode, e->strbuf, sizeof(char [512l]) /*512ul*/ );
   4372.       av_log((void *)0, 16, "error encoding audio frame: %s\n", (const void *)e->strbuf);
   4373.       return -1;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4382: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avcodec_encode_audio2' and 'av_write_frame' should be called atomically.
+  4380.       else
+  4381.       {
+  4382. >       av_write_frame(e->fmt_ctx, &e->pkt);
+  4383.         av_free_packet(&e->pkt);
+  4384.         return 0;
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4392: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -783,6 +967,30 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4490: error: ATOMICITY_VIOLATIO
   4490. >   return_value_av_mallocz$1=av_mallocz(sizeof(struct GrooveBufferPrivate) /*136ul*/ );
   4491.     b = (struct GrooveBufferPrivate *)return_value_av_mallocz$1;
   4492.     if(b == ((struct GrooveBufferPrivate *)NULL))
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4506: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4504.       {
+  4505.         av_free((void *)b);
+  4506. >       av_log((void *)0, 16, "unable to create mutex\n");
+  4507.         return -1;
+  4508.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4500: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  4498.     else
+  4499.     {
+  4500. >     struct GrooveBuffer *buffer = &b->externals;
+  4501.       signed int return_value_pthread_mutex_init$2;
+  4502.       return_value_pthread_mutex_init$2=pthread_mutex_init(&b->mutex, (const union anonymous$6 *)(void *)0);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4494: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  4492.     if(b == ((struct GrooveBufferPrivate *)NULL))
+  4493.     {
+  4494. >     av_log((void *)0, 16, "unable to allocate buffer\n");
+  4495.       return -1;
+  4496.     }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4535: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'groove_queue_put' and 'av_mallocz' should be called atomically.
@@ -888,6 +1096,30 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4622: error: ATOMICITY_VIOLATIO
   4623.         av_log((void *)0, 16, "unable to create mutex\n");
   4624.         return (struct GrooveBuffer *)(void *)0;
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4623: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4621.       {
+  4622.         av_free((void *)b);
+  4623. >       av_log((void *)0, 16, "unable to create mutex\n");
+  4624.         return (struct GrooveBuffer *)(void *)0;
+  4625.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4617: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  4615.     else
+  4616.     {
+  4617. >     struct GrooveBuffer *buffer = &b->externals;
+  4618.       signed int return_value_pthread_mutex_init$2;
+  4619.       return_value_pthread_mutex_init$2=pthread_mutex_init(&b->mutex, (const union anonymous$6 *)(void *)0);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4611: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  4609.     if(b == ((struct GrooveBufferPrivate *)NULL))
+  4610.     {
+  4611. >     av_log((void *)0, 16, "unable to allocate buffer\n");
+  4612.       return (struct GrooveBuffer *)(void *)0;
+  4613.     }
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4679: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   4677.   void groove_buffer_ref(struct GrooveBuffer *buffer)
@@ -936,6 +1168,62 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4755: error: ATOMICITY_VIOLATIO
   4756.       if(!(encoder->codec_short_name == ((const char *)NULL)))
   4757.       {
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4785: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_log' should be called atomically.
+  4783.   
+  4784.       e->codec = codec;
+  4785. >     av_log((void *)0, 32, "encoder: using codec: %s\n", codec->long_name);
+  4786.       encoder->actual_audio_format.sample_fmt=closest_supported_sample_fmt(codec, encoder->target_audio_format.sample_fmt);
+  4787.       encoder->actual_audio_format.sample_rate=closest_supported_sample_rate(codec, encoder->target_audio_format.sample_rate);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4791: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and 'init_avcontext' should be called atomically.
+  4789.       log_audio_fmt(&encoder->actual_audio_format);
+  4790.       signed int err;
+  4791. >     err=init_avcontext(encoder);
+  4792.       if(!(err >= 0))
+  4793.       {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4749: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'cleanup_avcontext' and 'av_log' should be called atomically.
+  4747.     {
+  4748.       groove_encoder_detach(encoder);
+  4749. >     av_log((void *)0, 16, "unable to determine format\n");
+  4750.       return -1;
+  4751.     }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4778: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'cleanup_avcontext' and 'av_log' should be called atomically.
+  4776.         {
+  4777.           groove_encoder_detach(encoder);
+  4778. >         av_log((void *)0, 16, "unable to find encoder\n");
+  4779.           return -1;
+  4780.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4814: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'cleanup_avcontext' and 'av_log' should be called atomically.
+  4812.         {
+  4813.           groove_encoder_detach(encoder);
+  4814. >         av_log((void *)0, 16, "unable to attach sink\n");
+  4815.           return -1;
+  4816.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4825: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'cleanup_avcontext' and 'av_log' should be called atomically.
+  4823.           {
+  4824.             groove_encoder_detach(encoder);
+  4825. >           av_log((void *)0, 16, "unable to create encoder thread\n");
+  4826.             return -1;
+  4827.           }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4791: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'init_avcontext' and '__variable_initialization' should be called atomically.
+  4789.       log_audio_fmt(&encoder->actual_audio_format);
+  4790.       signed int err;
+  4791. >     err=init_avcontext(encoder);
+  4792.       if(!(err >= 0))
+  4793.       {
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4840: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   4838.   signed int groove_encoder_buffer_get(struct GrooveEncoder *encoder, struct GrooveBuffer **buffer, signed int block)
@@ -968,6 +1256,70 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4889: error: ATOMICITY_VIOLATIO
   4890.       void *return_value_av_malloc$2;
   4891.       return_value_av_malloc$2=av_malloc((unsigned long int)buffer_size);
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4896: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4894.       {
+  4895.         groove_encoder_destroy(encoder);
+  4896. >       av_log((void *)0, 16, "unable to allocate avio buffer\n");
+  4897.         return (struct GrooveEncoder *)(void *)0;
+  4898.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4906: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4904.         {
+  4905.           groove_encoder_destroy(encoder);
+  4906. >         av_log((void *)0, 16, "unable to allocate avio context\n");
+  4907.           return (struct GrooveEncoder *)(void *)0;
+  4908.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4917: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4915.           {
+  4916.             groove_encoder_destroy(encoder);
+  4917. >           av_log((void *)0, 16, "unable to create mutex\n");
+  4918.             return (struct GrooveEncoder *)(void *)0;
+  4919.           }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4929: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4927.             {
+  4928.               groove_encoder_destroy(encoder);
+  4929. >             av_log((void *)0, 16, "unable to create mutex condition\n");
+  4930.               return (struct GrooveEncoder *)(void *)0;
+  4931.             }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4940: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4938.               {
+  4939.                 groove_encoder_destroy(encoder);
+  4940. >               av_log((void *)0, 16, "unable to allocate queue\n");
+  4941.                 return (struct GrooveEncoder *)(void *)0;
+  4942.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4955: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  4953.                 {
+  4954.                   groove_encoder_destroy(encoder);
+  4955. >                 av_log((void *)0, 16, "unable to allocate sink\n");
+  4956.                   return (struct GrooveEncoder *)(void *)0;
+  4957.                 }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4888: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  4886.     else
+  4887.     {
+  4888. >     struct GrooveEncoder *encoder = &e->externals;
+  4889.       const signed int buffer_size = 4 * 1024;
+  4890.       void *return_value_av_malloc$2;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4882: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  4880.     if(e == ((struct GrooveEncoderPrivate *)NULL))
+  4881.     {
+  4882. >     av_log((void *)0, 16, "unable to allocate encoder\n");
+  4883.       return (struct GrooveEncoder *)(void *)0;
+  4884.     }
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4985: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   4983.   void groove_encoder_destroy(struct GrooveEncoder *encoder)
@@ -999,6 +1351,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5007: error: ATOMICITY_VIOLATIO
   5007. >   av_free((void *)e);
   5008.   }
   5009.   
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5005: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_dict_free' should be called atomically.
+  5003.   
+  5004.     if(!(e->metadata == ((struct AVDictionary *)NULL)))
+  5005. >     av_dict_free(&e->metadata);
+  5006.   
+  5007.     av_free((void *)e);
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:4999: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions '__variable_initialization' and 'av_free' should be called atomically.
@@ -1040,8 +1400,24 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5019: error: ATOMICITY_VIOLATIO
   5020.     pthread_join(e->thread_id, (void **)(void *)0);
   5021.     e->abort_request = 0;
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5017: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'groove_queue_flush' should be called atomically.
+  5015.     e->abort_request = 1;
+  5016.     groove_sink_detach(e->sink);
+  5017. >   groove_queue_flush(e->audioq);
+  5018.     groove_queue_abort(e->audioq);
+  5019.     pthread_cond_signal(&e->drain_cond);
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5022: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'cleanup_avcontext' and 'avcodec_close' should be called atomically.
+  5020.     pthread_join(e->thread_id, (void **)(void *)0);
+  5021.     e->abort_request = 0;
+  5022. >   cleanup_avcontext(e);
+  5023.     e->oformat = (struct AVOutputFormat *)(void *)0;
+  5024.     e->codec = (struct AVCodec *)(void *)0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5022: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'cleanup_avcontext' and 'avformat_free_context' should be called atomically.
   5020.     pthread_join(e->thread_id, (void **)(void *)0);
   5021.     e->abort_request = 0;
   5022. >   cleanup_avcontext(e);
@@ -1087,6 +1463,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5044: error: ATOMICITY_VIOLATIO
   5044. >   struct GrooveEncoderPrivate *e = (struct GrooveEncoderPrivate *)encoder;
   5045.     signed int return_value_av_dict_set$1;
   5046.     return_value_av_dict_set$1=av_dict_set(&e->metadata, key, value, flags | 2);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5046: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_dict_set' should be called atomically.
+  5044.     struct GrooveEncoderPrivate *e = (struct GrooveEncoderPrivate *)encoder;
+  5045.     signed int return_value_av_dict_set$1;
+  5046. >   return_value_av_dict_set$1=av_dict_set(&e->metadata, key, value, flags | 2);
+  5047.     return return_value_av_dict_set$1;
+  5048.   }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5054: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -1144,6 +1528,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5110: error: ATOMICITY_VIOLATIO
   5111.     }
   5112.   
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5098: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_free_packet' should be called atomically.
+  5096.       {
+  5097.         struct AVCodecContext *avctx = f->ic->streams[(signed long int)f->audio_stream_index]->codec;
+  5098. >       av_free_packet(&f->audio_pkt);
+  5099.         f->ic->streams[(signed long int)f->audio_stream_index]->discard = (enum AVDiscard)AVDISCARD_ALL;
+  5100.         avcodec_close(avctx);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5100: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free_packet' and 'avcodec_close' should be called atomically.
+  5098.         av_free_packet(&f->audio_pkt);
+  5099.         f->ic->streams[(signed long int)f->audio_stream_index]->discard = (enum AVDiscard)AVDISCARD_ALL;
+  5100. >       avcodec_close(avctx);
+  5101.         f->audio_st = (struct AVStream *)(void *)0;
+  5102.         f->audio_stream_index = -1;
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5119: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   5117.   double groove_file_duration(struct GrooveFile *file)
@@ -1184,6 +1584,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5148: error: ATOMICITY_VIOLATIO
   5149.     signed int return_value_av_dict_set$1;
   5150.     return_value_av_dict_set$1=av_dict_set(&f->ic->metadata, key, value, flags);
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5150: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_dict_set' should be called atomically.
+  5148.     struct GrooveFilePrivate *f = (struct GrooveFilePrivate *)file;
+  5149.     signed int return_value_av_dict_set$1;
+  5150. >   return_value_av_dict_set$1=av_dict_set(&f->ic->metadata, key, value, flags);
+  5151.     return return_value_av_dict_set$1;
+  5152.   }
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5171: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   5169.     else
@@ -1215,6 +1623,94 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5178: error: ATOMICITY_VIOLATIO
   5178. >       av_free((void *)f);
   5179.         av_log((void *)0, 16, "unable to create seek mutex\n");
   5180.         return (struct GrooveFile *)(void *)0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5244: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'avcodec_open2' should be called atomically.
+  5242.                   struct AVCodecContext *avctx = f->audio_st->codec;
+  5243.                   signed int return_value_avcodec_open2$3;
+  5244. >                 return_value_avcodec_open2$3=avcodec_open2(avctx, f->decoder, (struct AVDictionary **)(void *)0);
+  5245.                   if(!(return_value_avcodec_open2$3 >= 0))
+  5246.                   {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5179: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5177.       {
+  5178.         av_free((void *)f);
+  5179. >       av_log((void *)0, 16, "unable to create seek mutex\n");
+  5180.         return (struct GrooveFile *)(void *)0;
+  5181.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5189: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5187.         {
+  5188.           groove_file_close(file);
+  5189. >         av_log((void *)0, 16, "unable to allocate format context\n");
+  5190.           return (struct GrooveFile *)(void *)0;
+  5191.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5203: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5201.           {
+  5202.             groove_file_close(file);
+  5203. >           av_log((void *)0, 32, "%s: unrecognized format\n", filename);
+  5204.             return (struct GrooveFile *)(void *)0;
+  5205.           }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5213: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5211.             {
+  5212.               groove_file_close(file);
+  5213. >             av_log((void *)0, 16, "%s: could not find codec parameters\n", filename);
+  5214.               return (struct GrooveFile *)(void *)0;
+  5215.             }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5226: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5224.               {
+  5225.                 groove_file_close(file);
+  5226. >               av_log((void *)0, 32, "%s: no audio stream found\n", filename);
+  5227.                 return (struct GrooveFile *)(void *)0;
+  5228.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5234: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5232.                 {
+  5233.                   groove_file_close(file);
+  5234. >                 av_log((void *)0, 16, "%s: no decoder found\n", filename);
+  5235.                   return (struct GrooveFile *)(void *)0;
+  5236.                 }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5248: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5246.                   {
+  5247.                     groove_file_close(file);
+  5248. >                   av_log((void *)0, 16, "unable to open decoder\n");
+  5249.                     return (struct GrooveFile *)(void *)0;
+  5250.                   }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5263: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5261.                     {
+  5262.                       groove_file_close(file);
+  5263. >                     av_log((void *)0, 16, "unable to guess channel layout\n");
+  5264.                       return (struct GrooveFile *)(void *)0;
+  5265.                     }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5171: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  5169.     else
+  5170.     {
+  5171. >     struct GrooveFile *file = &f->externals;
+  5172.       f->audio_stream_index = -1;
+  5173.       f->seek_pos = (signed long int)-1;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5165: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  5163.     if(f == ((struct GrooveFilePrivate *)NULL))
+  5164.     {
+  5165. >     av_log((void *)0, 16, "unable to allocate file context\n");
+  5166.       return (struct GrooveFile *)(void *)0;
+  5167.     }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5296: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -1280,6 +1776,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5402: error: ATOMICITY_VIOLATIO
   5403.               ocodec->extradata = (unsigned char *)return_value_av_mallocz$7;
   5404.               if(ocodec->extradata == ((unsigned char *)NULL))
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5349: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'avformat_new_stream' should be called atomically.
+  5347.               struct AVStream *in_stream = f->ic->streams[(signed long int)i];
+  5348.               struct AVStream *out_stream;
+  5349. >             out_stream=avformat_new_stream(f->oc, (const struct AVCodec *)(void *)0);
+  5350.               if(out_stream == ((struct AVStream *)NULL))
+  5351.               {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5510: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free_packet' and 'av_write_trailer' should be called atomically.
+  5508.               while((_Bool)1);
+  5509.               signed int return_value_av_write_trailer$12;
+  5510. >             return_value_av_write_trailer$12=av_write_trailer(f->oc);
+  5511.               if(!(return_value_av_write_trailer$12 >= 0))
+  5512.               {
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5506: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'av_write_frame' and 'av_free_packet' should be called atomically.
   5504.                 }
@@ -1287,6 +1799,118 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5506: error: ATOMICITY_VIOLATIO
   5506. >               av_free_packet(pkt);
   5507.               }
   5508.               while((_Bool)1);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5311: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5309.         {
+  5310.           cleanup_save(file);
+  5311. >         av_log((void *)0, 16, "Could not create output context: out of memory\n");
+  5312.           return -1;
+  5313.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5324: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5322.           {
+  5323.             cleanup_save(file);
+  5324. >           av_log((void *)0, 16, "could not create temp file - filename too long\n");
+  5325.             return -1;
+  5326.           }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5337: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5335.               {
+  5336.                 cleanup_save(file);
+  5337. >               av_log((void *)0, 16, "could not open '%s'\n", (const void *)f->oc->filename);
+  5338.                 return -1;
+  5339.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5353: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5351.               {
+  5352.                 cleanup_save(file);
+  5353. >               av_log((void *)0, 16, "error allocating output stream\n");
+  5354.                 return -1;
+  5355.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5397: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5395.               {
+  5396.                 cleanup_save(file);
+  5397. >               av_log((void *)0, 16, "codec extra size too big\n");
+  5398.                 return -22;
+  5399.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5407: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5405.               {
+  5406.                 cleanup_save(file);
+  5407. >               av_log((void *)0, 16, "could not allocate codec extradata: out of memory\n");
+  5408.                 return -12;
+  5409.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5464: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5462.                 {
+  5463.                   cleanup_save(file);
+  5464. >                 av_log((void *)0, 16, "unrecognized stream type\n");
+  5465.                   return -1;
+  5466.                 }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5475: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5473.             {
+  5474.               cleanup_save(file);
+  5475. >             av_log((void *)0, 16, "could not write header\n");
+  5476.               return -1;
+  5477.             }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5493: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5491.                   {
+  5492.                     cleanup_save(file);
+  5493. >                   av_log((void *)0, 16, "error reading frame\n");
+  5494.                     return -1;
+  5495.                   }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5502: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5500.                 {
+  5501.                   cleanup_save(file);
+  5502. >                 av_log((void *)0, 16, "error writing frame\n");
+  5503.                   return -1;
+  5504.                 }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5514: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5512.               {
+  5513.                 cleanup_save(file);
+  5514. >               av_log((void *)0, 16, "could not write trailer\n");
+  5515.                 return -1;
+  5516.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5525: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_free_context' and 'av_log' should be called atomically.
+  5523.                 {
+  5524.                   cleanup_save(file);
+  5525. >                 av_log((void *)0, 16, "error renaming tmp file to original file\n");
+  5526.                   return -1;
+  5527.                 }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5360: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_new_stream' and '__variable_initialization' should be called atomically.
+  5358.               out_stream->disposition = in_stream->disposition;
+  5359.               out_stream->time_base = in_stream->time_base;
+  5360. >             struct AVCodecContext *icodec = in_stream->codec;
+  5361.               struct AVCodecContext *ocodec = out_stream->codec;
+  5362.               ocodec->bits_per_raw_sample = icodec->bits_per_raw_sample;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5481: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_write_header' and '__variable_initialization' should be called atomically.
+  5479.             else
+  5480.             {
+  5481. >             struct AVPacket *pkt = &f->audio_pkt;
+  5482.               do
+  5483.               {
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5548: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -1306,6 +1930,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5585: error: ATOMICITY_VIOLATIO
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5589: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
+  5587.       while(!(node == ((struct GroovePlaylistItem *)NULL)))
+  5588.       {
+  5589. >       struct GroovePlaylistItem *next = node->next;
+  5590.         groove_playlist_remove(playlist, node);
+  5591.         node = next;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5589: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and '__variable_initialization' should be called atomically.
   5587.       while(!(node == ((struct GroovePlaylistItem *)NULL)))
   5588.       {
   5589. >       struct GroovePlaylistItem *next = node->next;
@@ -1335,6 +1967,118 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5623: error: ATOMICITY_VIOLATIO
   5623. >     struct GroovePlaylist *playlist = &p->externals;
   5624.       playlist->gain = 1.0;
   5625.       p->volume = 1.0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5633: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5631.       {
+  5632.         groove_playlist_destroy(playlist);
+  5633. >       av_log((void *)0, 16, "unable to allocate decode head mutex\n");
+  5634.         return (struct GroovePlaylist *)(void *)0;
+  5635.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5645: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5643.         {
+  5644.           groove_playlist_destroy(playlist);
+  5645. >         av_log((void *)0, 16, "unable to allocate drain cond mutex\n");
+  5646.           return (struct GroovePlaylist *)(void *)0;
+  5647.         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5657: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5655.           {
+  5656.             groove_playlist_destroy(playlist);
+  5657. >           av_log((void *)0, 16, "unable to allocate decode head mutex condition\n");
+  5658.             return (struct GroovePlaylist *)(void *)0;
+  5659.           }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5669: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5667.             {
+  5668.               groove_playlist_destroy(playlist);
+  5669. >             av_log((void *)0, 16, "unable to allocate sink drain mutex condition\n");
+  5670.               return (struct GroovePlaylist *)(void *)0;
+  5671.             }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5680: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5678.               {
+  5679.                 groove_playlist_destroy(playlist);
+  5680. >               av_log((void *)0, 16, "unable to allocate frame\n");
+  5681.                 return (struct GroovePlaylist *)(void *)0;
+  5682.               }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5691: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5689.                 {
+  5690.                   groove_playlist_destroy(playlist);
+  5691. >                 av_log((void *)0, 16, "unable to create playlist thread\n");
+  5692.                   return (struct GroovePlaylist *)(void *)0;
+  5693.                 }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5701: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5699.                   {
+  5700.                     groove_playlist_destroy(playlist);
+  5701. >                   av_log((void *)0, 16, "unable to get volume filter\n");
+  5702.                     return (struct GroovePlaylist *)(void *)0;
+  5703.                   }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5711: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5709.                     {
+  5710.                       groove_playlist_destroy(playlist);
+  5711. >                     av_log((void *)0, 16, "unable to get compand filter\n");
+  5712.                       return (struct GroovePlaylist *)(void *)0;
+  5713.                     }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5721: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5719.                       {
+  5720.                         groove_playlist_destroy(playlist);
+  5721. >                       av_log((void *)0, 16, "unable to get abuffer filter\n");
+  5722.                         return (struct GroovePlaylist *)(void *)0;
+  5723.                       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5731: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5729.                         {
+  5730.                           groove_playlist_destroy(playlist);
+  5731. >                         av_log((void *)0, 16, "unable to get asplit filter\n");
+  5732.                           return (struct GroovePlaylist *)(void *)0;
+  5733.                         }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5741: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5739.                           {
+  5740.                             groove_playlist_destroy(playlist);
+  5741. >                           av_log((void *)0, 16, "unable to get aformat filter\n");
+  5742.                             return (struct GroovePlaylist *)(void *)0;
+  5743.                           }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5751: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  5749.                             {
+  5750.                               groove_playlist_destroy(playlist);
+  5751. >                             av_log((void *)0, 16, "unable to get abuffersink filter\n");
+  5752.                               return (struct GroovePlaylist *)(void *)0;
+  5753.                             }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5623: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  5621.     else
+  5622.     {
+  5623. >     struct GroovePlaylist *playlist = &p->externals;
+  5624.       playlist->gain = 1.0;
+  5625.       p->volume = 1.0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5617: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  5615.     if(p == ((struct GroovePlaylistPrivate *)NULL))
+  5616.     {
+  5617. >     av_log((void *)0, 16, "unable to allocate playlist\n");
+  5618.       return (struct GroovePlaylist *)(void *)0;
+  5619.     }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5776: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -1408,6 +2152,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5842: error: ATOMICITY_VIOLATIO
   5843.         }
   5844.   
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5816: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  5814.       item->gain = gain;
+  5815.       item->peak = peak;
+  5816. >     struct GroovePlaylistPrivate *p = (struct GroovePlaylistPrivate *)playlist;
+  5817.       struct GrooveFilePrivate *f = (struct GrooveFilePrivate *)file;
+  5818.       pthread_mutex_lock(&p->decode_head_mutex);
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5860: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   5858.   void groove_playlist_pause(struct GroovePlaylist *playlist)
@@ -1415,6 +2167,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5860: error: ATOMICITY_VIOLATIO
   5860. >   struct GroovePlaylistPrivate *p = (struct GroovePlaylistPrivate *)playlist;
   5861.     if(!(p->paused == 1))
   5862.     {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5864: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'every_sink' should be called atomically.
+  5862.     {
+  5863.       p->paused = 1;
+  5864. >     every_sink(playlist, groove_sink_pause, 0);
+  5865.     }
+  5866.   
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5864: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'every_sink' and '__variable_initialization' should be called atomically.
@@ -1431,6 +2191,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5873: error: ATOMICITY_VIOLATIO
   5873. >   struct GroovePlaylistPrivate *p = (struct GroovePlaylistPrivate *)playlist;
   5874.     if(!(p->paused == 0))
   5875.     {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5877: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'every_sink' should be called atomically.
+  5875.     {
+  5876.       p->paused = 0;
+  5877. >     every_sink(playlist, groove_sink_play, 0);
+  5878.     }
+  5879.   
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:5877: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'every_sink' and '__variable_initialization' should be called atomically.
@@ -1656,6 +2424,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6264: error: ATOMICITY_VIOLATIO
   6265.       pthread_mutex_lock(&q->mutex);
   6266.       if(q->last == ((struct ItemList *)NULL))
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6264: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  6262.     {
+  6263.       el1->obj = obj;
+  6264. >     struct GrooveQueuePrivate *q = (struct GrooveQueuePrivate *)queue;
+  6265.       pthread_mutex_lock(&q->mutex);
+  6266.       if(q->last == ((struct ItemList *)NULL))
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6285: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   6283.   void groove_queue_reset(struct GrooveQueue *queue)
@@ -1674,6 +2450,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6311: error: ATOMICITY_VIOLATIO
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6321: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
+  6319.     s->min_audioq_size = sink->buffer_size * bytes_per_frame;
+  6320.     av_log((void *)0, 32, "audio queue size: %d\n", s->min_audioq_size);
+  6321. >   struct GroovePlaylistPrivate *p = (struct GroovePlaylistPrivate *)playlist;
+  6322.     sink->playlist = playlist;
+  6323.     pthread_mutex_lock(&p->decode_head_mutex);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6313: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_get_channel_layout_nb_channels' should be called atomically.
+  6311.     struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
+  6312.     signed int channel_count;
+  6313. >   channel_count=av_get_channel_layout_nb_channels(sink->audio_format.channel_layout);
+  6314.     signed int bytes_per_frame;
+  6315.     signed int return_value_av_get_bytes_per_sample$1;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6321: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and '__variable_initialization' should be called atomically.
   6319.     s->min_audioq_size = sink->buffer_size * bytes_per_frame;
   6320.     av_log((void *)0, 32, "audio queue size: %d\n", s->min_audioq_size);
   6321. >   struct GroovePlaylistPrivate *p = (struct GroovePlaylistPrivate *)playlist;
@@ -1703,6 +2495,30 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6396: error: ATOMICITY_VIOLATIO
   6396. >     struct GrooveSink *sink = &s->externals;
   6397.       sink->buffer_size = 8192;
   6398.       sink->gain = 1.0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6403: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and 'av_log' should be called atomically.
+  6401.       {
+  6402.         groove_sink_destroy(sink);
+  6403. >       av_log((void *)0, 16, "could not create audio buffer: out of memory\n");
+  6404.         return (struct GrooveSink *)(void *)0;
+  6405.       }
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6396: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  6394.     else
+  6395.     {
+  6396. >     struct GrooveSink *sink = &s->externals;
+  6397.       sink->buffer_size = 8192;
+  6398.       sink->gain = 1.0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6390: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and 'av_log' should be called atomically.
+  6388.     if(s == ((struct GrooveSinkPrivate *)NULL))
+  6389.     {
+  6390. >     av_log((void *)0, 16, "could not create sink: out of memory\n");
+  6391.       return (struct GrooveSink *)(void *)0;
+  6392.     }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6425: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -1816,6 +2632,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6584: error: ATOMICITY_VIOLATIO
   6585.         codec_ctx->bit_rate = encoder->bit_rate;
   6586.         codec_ctx->sample_fmt = (enum AVSampleFormat)encoder->actual_audio_format.sample_fmt;
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6589: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'av_get_channel_layout_nb_channels' should be called atomically.
+  6587.         codec_ctx->sample_rate = encoder->actual_audio_format.sample_rate;
+  6588.         codec_ctx->channel_layout = encoder->actual_audio_format.channel_layout;
+  6589. >       codec_ctx->channels=av_get_channel_layout_nb_channels(encoder->actual_audio_format.channel_layout);
+  6590.         codec_ctx->strict_std_compliance = -2;
+  6591.         signed int err;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6564: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'avformat_alloc_context' should be called atomically.
+  6562.   {
+  6563.     struct GrooveEncoderPrivate *e = (struct GrooveEncoderPrivate *)encoder;
+  6564. >   e->fmt_ctx=avformat_alloc_context();
+  6565.     if(e->fmt_ctx == ((struct AVFormatContext *)NULL))
+  6566.     {
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6592: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'av_get_channel_layout_nb_channels' and 'avcodec_open2' should be called atomically.
   6590.         codec_ctx->strict_std_compliance = -2;
@@ -1855,6 +2687,22 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6575: error: ATOMICITY_VIOLATIO
   6575. >     e->stream=avformat_new_stream(e->fmt_ctx, e->codec);
   6576.       if(e->stream == ((struct AVStream *)NULL))
   6577.       {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6584: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_new_stream' and '__variable_initialization' should be called atomically.
+  6582.       else
+  6583.       {
+  6584. >       struct AVCodecContext *codec_ctx = e->stream->codec;
+  6585.         codec_ctx->bit_rate = encoder->bit_rate;
+  6586.         codec_ctx->sample_fmt = (enum AVSampleFormat)encoder->actual_audio_format.sample_fmt;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6578: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'avformat_new_stream' and 'av_log' should be called atomically.
+  6576.       if(e->stream == ((struct AVStream *)NULL))
+  6577.       {
+  6578. >       av_log((void *)0, 16, "unable to create output stream\n");
+  6579.         return -1;
+  6580.       }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6613: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -1943,6 +2791,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6691: error: ATOMICITY_VIOLATIO
   6691. >           struct AVFilterContext *inner_audio_src_ctx = audio_src_ctx;
   6692.             err=create_volume_filter(p, &inner_audio_src_ctx, example_sink->gain, example_sink->gain);
   6693.             if(!(err >= 0))
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6685: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and '__variable_initialization' should be called atomically.
+  6683.           }
+  6684.   
+  6685. >         struct SinkMap *map_item = p->sink_map;
+  6686.           signed int pad_index = 0;
+  6687.           while(!(map_item == ((struct SinkMap *)NULL)))
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6707: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'av_strerror' and 'av_log' should be called atomically.
@@ -2064,6 +2920,38 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6955: error: ATOMICITY_VIOLATIO
   6956.             groove_playlist_remove(playlist, item);
   6957.             groove_file_close(file);
 
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6951: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and '__variable_initialization' should be called atomically.
+  6949.           groove_encoder_detach(encoder);
+  6950.           groove_encoder_destroy(encoder);
+  6951. >         struct GroovePlaylistItem *item = playlist->head;
+  6952.           while(!(item == ((struct GroovePlaylistItem *)NULL)))
+  6953.           {
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6954: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_free' and '__variable_initialization' should be called atomically.
+  6952.           while(!(item == ((struct GroovePlaylistItem *)NULL)))
+  6953.           {
+  6954. >           struct GrooveFile *file = item->file;
+  6955.             struct GroovePlaylistItem *next = item->next;
+  6956.             groove_playlist_remove(playlist, item);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6783: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_log' and '__variable_initialization' should be called atomically.
+  6781.     struct GroovePlaylist *playlist;
+  6782.     playlist=groove_playlist_create();
+  6783. >   signed int i = 1;
+  6784.     _Bool tmp_if_expr$8;
+  6785.     signed int return_value_strcmp$7;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6792: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'av_mallocz' and '__variable_initialization' should be called atomically.
+  6790.     for( ; !(i >= argc); i = i + 1)
+  6791.     {
+  6792. >     char *arg = argv[(signed long int)i];
+  6793.       if((signed int)*arg == 45)
+  6794.         tmp_if_expr$8 = (signed int)arg[(signed long int)1] == 45 ? (_Bool)1 : (_Bool)0;
+
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:6971: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   6969.   static signed int maybe_init_filter_graph(struct GroovePlaylist *playlist, struct GrooveFile *file)
@@ -2135,6 +3023,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7092: error: ATOMICITY_VIOLATIO
   7092. >   struct GroovePlaylistItem *item = p->purge_item;
   7093.     if(!(sink->purge == ((void (*)(struct GrooveSink *, struct GroovePlaylistItem *))NULL)))
   7094.       sink->purge(sink, item);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7089: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'groove_queue_purge' should be called atomically.
+  7087.   {
+  7088.     struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
+  7089. >   groove_queue_purge(s->audioq);
+  7090.     struct GroovePlaylist *playlist = sink->playlist;
+  7091.     struct GroovePlaylistPrivate *p = (struct GroovePlaylistPrivate *)playlist;
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7089: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'groove_queue_purge' and '__variable_initialization' should be called atomically.
@@ -2273,6 +3169,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7167: error: ATOMICITY_VIOLATIO
   7169.     if(!(sink$link1->flush == ((void (*)(struct GrooveSink *))NULL)))
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7168: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'groove_queue_flush' should be called atomically.
+  7166.   {
+  7167.     struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink$link1;
+  7168. >   groove_queue_flush(s->audioq);
+  7169.     if(!(sink$link1->flush == ((void (*)(struct GrooveSink *))NULL)))
+  7170.       sink$link1->flush(sink$link1);
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7168: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'groove_queue_flush' and '__variable_initialization' should be called atomically.
   7166.   {
   7167.     struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink$link1;
@@ -2311,6 +3215,14 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7258: error: ATOMICITY_VIOLATIO
   7258. >   struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
   7259.     groove_queue_put(s->audioq, (void *)end_of_q_sentinel$link1);
   7260.     return 0;
+
+libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7259: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'groove_queue_put' should be called atomically.
+  7257.   {
+  7258.     struct GrooveSinkPrivate *s = (struct GrooveSinkPrivate *)sink;
+  7259. >   groove_queue_put(s->audioq, (void *)end_of_q_sentinel$link1);
+  7260.     return 0;
+  7261.   }
 
 libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7259: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'groove_queue_put' and 'av_mallocz' should be called atomically.
@@ -2354,4 +3266,4 @@ libgroove-4.3.0_obj-x86_64-linux-gnu_transcode.c:7295: error: ATOMICITY_VIOLATIO
 
 Summary of the reports
 
-  ATOMICITY_VIOLATION: 294
+  ATOMICITY_VIOLATION: 408

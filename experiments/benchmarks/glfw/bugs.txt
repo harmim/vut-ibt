@@ -1,4 +1,4 @@
-Found 13 issues
+Found 20 issues
 
 glfw-2.7.9_tests_events.c:4366: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'malloc' should be called atomically.
@@ -7,6 +7,14 @@ glfw-2.7.9_tests_events.c:4366: error: ATOMICITY_VIOLATION
   4366. >     return_value_malloc$1=malloc((unsigned long int)newsize);
   4367.       data = (unsigned char *)return_value_malloc$1;
   4368.       if(data == ((unsigned char *)NULL))
+
+glfw-2.7.9_tests_events.c:4370: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  4368.       if(data == ((unsigned char *)NULL))
+  4369.       {
+  4370. >       free((void *)image->Data);
+  4371.         return 0;
+  4372.       }
 
 glfw-2.7.9_tests_events.c:4793: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'malloc' should be called atomically.
@@ -23,6 +31,14 @@ glfw-2.7.9_tests_events.c:4801: error: ATOMICITY_VIOLATION
   4801. >             return_value_malloc$2=malloc(sizeof(char) /*1ul*/  * (unsigned long int)_glfwJoy[(signed long int)joy_count].NumButtons);
   4802.               _glfwJoy[(signed long int)joy_count].Button = (unsigned char *)return_value_malloc$2;
   4803.               if(_glfwJoy[(signed long int)joy_count].Button == ((unsigned char *)NULL))
+
+glfw-2.7.9_tests_events.c:4805: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  4803.               if(_glfwJoy[(signed long int)joy_count].Button == ((unsigned char *)NULL))
+  4804.               {
+  4805. >               free((void *)_glfwJoy[(signed long int)joy_count].Axis);
+  4806.                 close(fd);
+  4807.               }
 
 glfw-2.7.9_tests_events.c:5167: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'malloc' should be called atomically.
@@ -64,6 +80,22 @@ glfw-2.7.9_tests_events.c:5543: error: ATOMICITY_VIOLATION
   5544.         resarray = (struct _glfwResolution *)return_value_malloc$3;
   5545.         (resarray + (signed long int)0)->width = (&((struct anonymous$65 *)dpy)->screens[(signed long int)screen])->width;
 
+glfw-2.7.9_tests_events.c:5653: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'free' should be called atomically.
+  5651.       if(result == ((const struct anonymous$6 *)NULL))
+  5652.       {
+  5653. >       free((void *)fbconfigs);
+  5654.         return 0;
+  5655.       }
+
+glfw-2.7.9_tests_events.c:5660: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'free' should be called atomically.
+  5658.       {
+  5659.         closest = *result;
+  5660. >       free((void *)fbconfigs);
+  5661.         signed int return_value_createContext$1;
+  5662.         return_value_createContext$1=createContext(wndconfig, (unsigned long int)closest.platformID);
+
 glfw-2.7.9_tests_events.c:6011: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'pthread_cond_timedwait' should be called atomically.
   6009.   
@@ -88,6 +120,14 @@ glfw-2.7.9_tests_events.c:6140: error: ATOMICITY_VIOLATION
   6141.       pix = (unsigned char *)return_value_malloc$3;
   6142.       if(pix == ((unsigned char *)NULL))
 
+glfw-2.7.9_tests_events.c:6145: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  6143.       {
+  6144.         if(!(cmap == ((unsigned char *)NULL)))
+  6145. >         free((void *)cmap);
+  6146.   
+  6147.         return 0;
+
 glfw-2.7.9_tests_events.c:7183: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'malloc' should be called atomically.
   7181.       }
@@ -104,6 +144,22 @@ glfw-2.7.9_tests_events.c:8617: error: ATOMICITY_VIOLATION
   8618.           data = (unsigned char *)return_value_malloc$1;
   8619.           if(data == ((unsigned char *)NULL))
 
+glfw-2.7.9_tests_events.c:8621: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  8619.           if(data == ((unsigned char *)NULL))
+  8620.           {
+  8621. >           free((void *)img->Data);
+  8622.             return 0;
+  8623.           }
+
+glfw-2.7.9_tests_events.c:8642: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
+  8640.             *tmp_post$5 = img->Data[(signed long int)n];
+  8641.           }
+  8642. >         free((void *)img->Data);
+  8643.           img->Data = data;
+  8644.         }
+
 Summary of the reports
 
-  ATOMICITY_VIOLATION: 13
+  ATOMICITY_VIOLATION: 20

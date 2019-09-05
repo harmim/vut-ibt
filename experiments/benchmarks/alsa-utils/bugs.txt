@@ -1,4 +1,60 @@
-Found 1 issue
+Found 23 issues
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:4759: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  4757.     signed int idx;
+  4758.     if(verbose >= 12)
+  4759. >     snd_output_printf(loop->output, "%s: pollfds handle\n", loop->id);
+  4760.   
+  4761.     _Bool tmp_if_expr$1;
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:4889: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  4887.   
+  4888.     if(verbose >= 10)
+  4889. >     snd_output_printf(loop->output, "%s: prevents = 0x%x, crevents = 0x%x\n", loop->id, prevents, crevents);
+  4890.   
+  4891.     _Bool tmp_if_expr$7;
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:5434: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  5432.       if(!(verbose == 0))
+  5433.       {
+  5434. >       snd_output_printf(loop->output, "%s sync type: %s", loop->id, sync_types[(signed long int)loop->sync]);
+  5435.         if((signed int)loop->sync == SYNC_TYPE_SAMPLERATE)
+  5436.           snd_output_printf(loop->output, " (%s)", src_types[(signed long int)loop->src_converter_type]);
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:5383: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_pcm_format_name' should be called atomically.
+  5381.               if(!(use_syslog == 0))
+  5382.               {
+  5383. >               return_value_snd_pcm_format_name$10=snd_pcm_format_name((const enum _snd_pcm_format)SND_PCM_FORMAT_S16);
+  5384.                 return_value_snd_pcm_format_name$11=snd_pcm_format_name((const enum _snd_pcm_format)SND_PCM_FORMAT_S32);
+  5385.                 return_value_snd_pcm_format_name$12=snd_pcm_format_name(loop->play->format);
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:5392: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_pcm_format_name' should be called atomically.
+  5390.               else
+  5391.               {
+  5392. >               return_value_snd_pcm_format_name$14=snd_pcm_format_name((const enum _snd_pcm_format)SND_PCM_FORMAT_S16);
+  5393.                 return_value_snd_pcm_format_name$15=snd_pcm_format_name((const enum _snd_pcm_format)SND_PCM_FORMAT_S32);
+  5394.                 return_value_snd_pcm_format_name$16=snd_pcm_format_name(loop->play->format);
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:6738: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  6736.   {
+  6737.     struct loopback *loop = lhandle->loopback;
+  6738. >   snd_output_printf(loop->state, "  %s: %s:\n", id, lhandle->id);
+  6739.     snd_output_printf(loop->state, "    device = '%s', ctldev '%s'\n", lhandle->device, lhandle->ctldev);
+  6740.     snd_output_printf(loop->state, "    card_number = %i\n", lhandle->card_number);
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:6744: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'snd_output_printf' and 'snd_pcm_access_name' should be called atomically.
+  6742.     {
+  6743.       const char *return_value_snd_pcm_access_name$1;
+  6744. >     return_value_snd_pcm_access_name$1=snd_pcm_access_name(lhandle->access);
+  6745.       const char *return_value_snd_pcm_format_name$2;
+  6746.       return_value_snd_pcm_format_name$2=snd_pcm_format_name(lhandle->format);
 
 alsa-utils-1.1.0_alsaloop_alsaloop.c:6746: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'snd_pcm_access_name' and 'snd_pcm_format_name' should be called atomically.
@@ -8,6 +64,126 @@ alsa-utils-1.1.0_alsaloop_alsaloop.c:6746: error: ATOMICITY_VIOLATION
   6747.       snd_output_printf(loop->state, "    access = %s, format = %s, rate = %u, channels = %u\n", return_value_snd_pcm_access_name$1, return_value_snd_pcm_format_name$2, lhandle->rate, lhandle->channels);
   6748.       snd_output_printf(loop->state, "    buffer_size = %u, period_size = %u, avail_min = %li\n", lhandle->buffer_size, lhandle->period_size, lhandle->avail_min);
 
+alsa-utils-1.1.0_alsaloop_alsaloop.c:6747: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'snd_pcm_format_name' and 'snd_output_printf' should be called atomically.
+  6745.       const char *return_value_snd_pcm_format_name$2;
+  6746.       return_value_snd_pcm_format_name$2=snd_pcm_format_name(lhandle->format);
+  6747. >     snd_output_printf(loop->state, "    access = %s, format = %s, rate = %u, channels = %u\n", return_value_snd_pcm_access_name$1, return_value_snd_pcm_format_name$2, lhandle->rate, lhandle->channels);
+  6748.       snd_output_printf(loop->state, "    buffer_size = %u, period_size = %u, avail_min = %li\n", lhandle->buffer_size, lhandle->period_size, lhandle->avail_min);
+  6749.       snd_output_printf(loop->state, "    xrun_pending = %i\n", lhandle->xrun_pending);
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:6761: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  6759.   {
+  6760.     double d = (double)latency / (double)rate;
+  6761. >   snd_output_printf(out, "%s %li frames, %.3fus, %.6fms (%.4fHz)\n", prefix, (signed long int)latency, d * (double)1000000, d * (double)1000, (double)1 / d);
+  6762.   }
+  6763.   
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:6983: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'snd_output_printf' and '__variable_initialization' should be called atomically.
+  6981.       for( ; !(i >= thread->loopbacks_count); i = i + 1)
+  6982.       {
+  6983. >       struct loopback *loop = thread->loopbacks[(signed long int)i];
+  6984.         if(!(j >= loop->active_pollfd_count))
+  6985.         {
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7057: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7055.       loop->src_data.src_ratio = (double)1.0 / (pitch * loop->play->pitch * loop->capt->pitch);
+  7056.       if(verbose >= 3)
+  7057. >       snd_output_printf(loop->output, "%s: Samplerate src_ratio update1: %.8f\n", loop->id, loop->src_data.src_ratio);
+  7058.   
+  7059.     }
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7090: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7088.   
+  7089.     if(!(verbose == 0))
+  7090. >     snd_output_printf(loop->output, "New pitch for %s: %.8f (min/max samples = %li/%li)\n", loop->id, pitch, loop->pitch_diff_min, loop->pitch_diff_max);
+  7091.   
+  7092.   }
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7383: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7381.     {
+  7382.       if(verbose >= 6)
+  7383. >       snd_output_printf(loop->output, "%s: xrun sync %i %i\n", loop->id, capt->xrun_pending, play->xrun_pending);
+  7384.   
+  7385.       if(!(capt->xrun_pending == 0u))
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7555: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7553.       diff=remove_samples(loop, 1, (signed long int)((double)((unsigned long int)delay1 - fill) / capt->pitch));
+  7554.       if(verbose >= 7)
+  7555. >       snd_output_printf(loop->output, "sync: capt stop removed %li samples\n", (signed long int)diff);
+  7556.   
+  7557.     }
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7565: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7563.   
+  7564.       if(verbose >= 7)
+  7565. >       snd_output_printf(loop->output, "sync: removing %li playback samples, delay1=%li\n", (signed long int)diff, (signed long int)delay1);
+  7566.   
+  7567.       diff=remove_samples(loop, 0, diff);
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7572: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7570.       delay1 = cdelay1 + pdelay1;
+  7571.       if(verbose >= 7)
+  7572. >       snd_output_printf(loop->output, "sync: removed %li playback samples, delay1=%li\n", (signed long int)diff, (signed long int)delay1);
+  7573.   
+  7574.     }
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7583: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7581.   
+  7582.       if(verbose >= 7)
+  7583. >       snd_output_printf(loop->output, "sync: removing %li captured samples, delay1=%li\n", (signed long int)diff, (signed long int)delay1);
+  7584.   
+  7585.       signed long int return_value_remove_samples$10;
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7592: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7590.       delay1 = cdelay1 + pdelay1;
+  7591.       if(verbose >= 7)
+  7592. >       snd_output_printf(loop->output, "sync: removed %li captured samples, delay1=%li\n", (signed long int)diff, (signed long int)delay1);
+  7593.   
+  7594.     }
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7605: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7603.       diff = (signed long int)((double)(fill - (unsigned long int)delay1) / play->pitch);
+  7604.       if(verbose >= 7)
+  7605. >       snd_output_printf(loop->output, "sync: xrun_pending, silence filling %li / buf_count=%li\n", (signed long int)diff, play->buf_count);
+  7606.   
+  7607.       if(!((unsigned long int)delay1 >= fill))
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7613: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7611.           diff = (signed long int)((unsigned long int)diff - play->buf_count);
+  7612.           if(verbose >= 7)
+  7613. >           snd_output_printf(loop->output, "sync: playback silence added %li samples\n", (signed long int)diff);
+  7614.   
+  7615.           play->buf_pos = play->buf_pos - (unsigned long int)diff;
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7688: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7686.           delay1 = (signed long int)(play->buf_size - play->buf_pos);
+  7687.           if(verbose >= 7)
+  7688. >           snd_output_printf(loop->output, "sync: playback short, silence filling %li / buf_count=%li\n", (signed long int)delay1, play->buf_count);
+  7689.   
+  7690.           if(!(diff >= delay1))
+
+alsa-utils-1.1.0_alsaloop_alsaloop.c:7706: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'snd_output_printf' should be called atomically.
+  7704.     if(verbose >= 6)
+  7705.     {
+  7706. >     snd_output_printf(loop->output, "%s: xrun sync ok\n", loop->id);
+  7707.       if(verbose >= 7)
+  7708.       {
+
 Summary of the reports
 
-  ATOMICITY_VIOLATION: 1
+  ATOMICITY_VIOLATION: 23

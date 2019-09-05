@@ -18,7 +18,7 @@ glfwWaitEvents:
 glfwGetDesktopMode: 
 _glfwPlatformInit: 
 glfwSetWindowRefreshCallback: 
-_glfwPlatformCreateThread: (malloc) (malloc pthread_create _glfwAppendThread __variable_initialization) (malloc pthread_create free)
+_glfwPlatformCreateThread: {malloc} {free, malloc, pthread_create} {__variable_initialization, _glfwAppendThread, malloc, pthread_create}
 getFBConfigs: 
 _glfwReadTGA: 
 glfwCreateMutex: 
@@ -37,14 +37,14 @@ getWindowProperty:
 _glfwPlatformGetNumberOfProcessors: 
 _glfwPlatformSetTime: 
 glfwFreeImage: 
-_glfwNewThread: (_glfwRemoveThread free)
+_glfwNewThread: {_glfwRemoveThread, free}
 _glfwPlatformCloseWindow: 
 _glfwRestoreVideoMode: 
 glfwOpenWindow: 
 _glfwClearInput: 
 enableKeyRepeat: 
 BPP2RGB: 
-_glfwPlatformWaitThread: (_glfwGetThreadPointer __variable_initialization)
+_glfwPlatformWaitThread: {__variable_initialization, _glfwGetThreadPointer}
 __infer_globals_initializer__glfwErrorCode: 
 _glfwReadStream: 
 glfwGetJoystickPos: 
@@ -77,7 +77,7 @@ _glfwPlatformSetWindowPos:
 _glfwInputChar: 
 get_button_name: 
 _glfwPlatformSetWindowSize: 
-_glfwPlatformDestroyThread: (_glfwGetThreadPointer __variable_initialization) (_glfwGetThreadPointer __variable_initialization pthread_kill _glfwRemoveThread free)
+_glfwPlatformDestroyThread: {__variable_initialization, _glfwGetThreadPointer} {__variable_initialization, _glfwGetThreadPointer, _glfwRemoveThread, free, pthread_kill}
 disableStickyMouseButtons: 
 _glfwPlatformDisableSystemKeys: 
 translateChar: 
@@ -94,7 +94,7 @@ glfwReadImage:
 glfwGetTime: 
 __infer_globals_initializer_systemkeys: 
 HalveImage: 
-terminateThreads: (pthread_kill free)
+terminateThreads: {free, pthread_kill}
 glfwDestroyCond: 
 glfw_atexit: 
 glfwSleep: 
@@ -109,7 +109,7 @@ _glfwPlatformGetJoystickButtons:
 leaveFullscreenMode: 
 _glfwInitJoysticks: 
 _glfwPlatformSetMouseCursorPos: 
-_glfwPlatformSleep: (pthread_cond_timedwait)
+_glfwPlatformSleep: {pthread_cond_timedwait}
 _glfwSeekStream: 
 getRawTime: 
 glfwWaitCond: 

@@ -1,0 +1,122 @@
+frame_to_groove_buffer: 
+create_volume_filter: 
+av_q2d$link1: 
+groove_encoder_destroy: 
+groove_buffer_ref: 
+groove_playlist_count: 
+groove_buffer_unref: {__variable_initialization}
+groove_sink_play: 
+sink_signal_end: 
+groove_sink_set_gain: {__variable_initialization, add_sink_to_map, av_free, av_mallocz, remove_sink_from_map, sink_formats_compatible} {__variable_initialization, av_free, remove_sink_from_map}
+audioq_cleanup$link1: 
+groove_file_short_names: 
+my_lockmgr_cb: 
+groove_channel_layout_default: 
+add_sink_to_map: 
+groove_encoder_metadata_get: 
+groove_encoder_attach: 
+groove_playlist_remove: {__variable_initialization, every_sink, pthread_cond_signal}
+groove_encoder_set_gain: 
+groove_file_open: 
+groove_file_duration: 
+groove_channel_layout_count: 
+codec_supports_fmt: 
+init_filter_graph: 
+gain_to_dB: 
+encode_thread: {pthread_cond_wait} {__variable_initialization, av_free_packet, av_get_channel_layout_nb_channels, av_init_packet, av_log, av_mallocz, av_strerror, av_write_frame, av_write_trailer, avcodec_close, avcodec_encode_audio2, avcodec_open2, avformat_alloc_context, avformat_free_context, avformat_new_stream, avio_flush, cleanup_avcontext, encode_buffer, groove_queue_put, init_avcontext, pthread_cond_signal} {__variable_initialization, av_free_packet, av_init_packet, av_log, av_strerror, av_write_frame, avcodec_encode_audio2, encode_buffer} {__variable_initialization, av_dict_free, av_dict_get, av_dict_set, av_free_packet, av_init_packet, av_log, av_strerror, av_write_frame, avcodec_encode_audio2, avformat_write_header, avio_flush, encode_buffer} {__variable_initialization, av_dict_free, av_dict_get, av_free_packet, av_init_packet, av_log, av_strerror, av_write_frame, avcodec_encode_audio2, avformat_write_header, avio_flush, encode_buffer}
+encoder_write_packet: 
+groove_queue_get: {av_free} {pthread_cond_wait} {av_free, pthread_cond_wait}
+sink_purge: {__variable_initialization, av_free, groove_queue_purge, pthread_cond_signal}
+log_audio_fmt: 
+groove_playlist_set_item_peak: {__variable_initialization, update_playlist_volume}
+groove_version_minor: 
+groove_queue_cleanup_default: 
+sink_formats_compatible: 
+audioq_get: 
+audioq_put$link1: 
+encode_buffer: 
+audio_decode_frame: 
+remove_sink_from_map: 
+groove_queue_put: {pthread_cond_signal}
+decode_thread: {pthread_cond_wait} {__variable_initialization, every_sink, every_sink_signal_end, pthread_cond_wait} {__variable_initialization} {__variable_initialization, av_read_pause}
+groove_file_audio_format: 
+cleanup_save: 
+groove_finish: 
+cleanup_avcontext: 
+groove_playlist_playing: 
+sink_flush$link1: 
+groove_playlist_clear: 
+groove_tag_value: 
+groove_version: 
+groove_file_close: 
+groove_playlist_destroy: 
+groove_sink_buffer_peek: 
+groove_sink_attach: {__variable_initialization, add_sink_to_map, av_free, av_mallocz, pthread_cond_signal, sink_formats_compatible}
+groove_file_metadata_set: 
+groove_playlist_set_gain: {__variable_initialization, update_playlist_volume}
+every_sink: 
+every_sink_signal_end: 
+groove_encoder_metadata_set: 
+groove_encoder_detach: 
+groove_queue_peek: {pthread_cond_wait}
+groove_playlist_create: 
+main: 
+update_playlist_volume: 
+groove_file_metadata_get: 
+any_sink_full: 
+usage: 
+groove_queue_purge: {__variable_initialization} {__variable_initialization, av_free}
+groove_tag_key: 
+audioq_cleanup: 
+every_sink_full: 
+groove_audio_formats_equal: 
+groove_sink_detach: {__variable_initialization, av_free, remove_sink_from_map}
+audioq_get$link1: {pthread_cond_signal}
+groove_sink_create: 
+closest_supported_channel_layout: 
+closest_supported_sample_rate: 
+groove_playlist_insert: 
+audioq_purge: 
+__infer_globals_initializer_dB_scale: 
+groove_version_major: 
+av_q2d: 
+groove_sink_buffer_get: 
+groove_sink_destroy: 
+groove_queue_create: 
+purge_sink: 
+groove_playlist_pause: 
+groove_encoder_buffer_get: 
+init_avcontext: 
+audioq_put: 
+maybe_init_filter_graph: 
+groove_encoder_position: 
+frame_size: 
+groove_init: 
+groove_playlist_play: 
+sink_flush: {__variable_initialization, av_free, av_get_channel_layout_nb_channels, av_log, av_mallocz, av_strerror, avcodec_close, avcodec_open2, avformat_alloc_context, avformat_free_context, avformat_new_stream, cleanup_avcontext, groove_queue_flush, groove_queue_put, init_avcontext, pthread_cond_signal}
+groove_version_patch: 
+decode_one_frame: {av_seek_frame, avcodec_flush_buffers} {__variable_initialization, av_seek_frame, avcodec_flush_buffers, every_sink, every_sink_flush} {av_log, av_seek_frame, avcodec_flush_buffers}
+groove_set_logging: 
+groove_encoder_create: 
+groove_sink_pause: 
+groove_queue_abort: {pthread_cond_signal}
+tempfileify: 
+groove_playlist_position: {__variable_initialization}
+groove_queue_flush: {av_free}
+groove_queue_destroy: 
+decode_interrupt_cb: 
+groove_sample_format_bytes_per_sample: 
+closest_supported_sample_fmt: 
+every_sink_flush: 
+groove_file_save: 
+groove_playlist_set_item_gain: {__variable_initialization, update_playlist_volume}
+groove_playlist_seek: 
+groove_encoder_buffer_peek: 
+audioq_purge$link1: 
+__infer_globals_initializer_end_of_q_sentinel: 
+__infer_globals_initializer_end_of_q_sentinel$link1: 
+groove_playlist_set_fill_mode: 
+abs_diff: 
+groove_queue_reset: 
+__infer_globals_initializer_should_deinit_network: 
+sink_is_full: 

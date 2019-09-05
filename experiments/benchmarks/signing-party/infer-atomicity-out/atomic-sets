@@ -19,7 +19,7 @@ MeanDistance:
 __infer_globals_initializer_numsigs: 
 __infer_globals_initializer_outsubdirs: 
 TestConnectivity: 
-thread_slave: (fprintf fflush)
+thread_slave: {fflush, fprintf}
 SaveState: 
 AddKeyToList: 
 __infer_globals_initializer_outdir: 

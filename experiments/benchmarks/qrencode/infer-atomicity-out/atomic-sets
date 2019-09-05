@@ -1,6 +1,6 @@
 Mask_mask0: 
 QRspec_getDataLength: 
-init_rs: (init_rs_char calloc malloc free modnn)
+init_rs: {calloc, free, init_rs_char, malloc, modnn}
 FrameFiller_test: 
 QRinput_isSplittableMode: 
 FrameFiller_next: 
@@ -50,7 +50,7 @@ QRinput_createBitStream:
 QRcode_clearCache: 
 QRspec_putAlignmentMarker: 
 __infer_globals_initializer_lengthTableBits$link1: 
-MQRspec_clearCache: (free)
+MQRspec_clearCache: {free}
 QRinput_estimateBitsMode8: 
 Mask_mask5: 
 QRinput_estimateBitsModeKanji: 
@@ -73,7 +73,7 @@ BitStream_newFromNum:
 MQRraw_getCode: 
 QRinput_estimateBitsModeNum: 
 QRinput_setFNC1First: 
-MQRspec_newFrame: (MQRspec_createFrame malloc memset putFinderPattern$link1 __variable_initialization)
+MQRspec_newFrame: {MQRspec_createFrame, __variable_initialization, malloc, memset, putFinderPattern$link1}
 QRinput_lengthOfCode: 
 QRcode_List_newEntry: 
 RSblock_init: 
@@ -83,7 +83,7 @@ QRinput_encodeModeNum:
 QRcode_encodeInputToStructured: 
 QRspec_getECCLength: 
 QRinput_getBitStream: 
-QRspec_clearCache: (free)
+QRspec_clearCache: {free}
 QRspec_getMinimumVersion: 
 QRcode_encodeStringStructured: 
 MMask_evaluateSymbol: 
@@ -130,7 +130,7 @@ MQRspec_getECCLength:
 QRcode_encodeInput: 
 __infer_globals_initializer_qrspecCapacity: 
 BitStream_toByte: 
-QRspec_newFrame: (QRspec_createFrame malloc memset putFinderPattern __variable_initialization QRspec_putAlignmentPattern QRspec_putAlignmentMarker QRspec_getVersionPattern)
+QRspec_newFrame: {QRspec_createFrame, QRspec_getVersionPattern, QRspec_putAlignmentMarker, QRspec_putAlignmentPattern, __variable_initialization, malloc, memset, putFinderPattern}
 Mask_evaluateSymbol: 
 timerStart: 
 __infer_globals_initializer_versionPattern: 
@@ -148,7 +148,7 @@ QRcode_free:
 QRinput_splitQRinputToStruct: 
 QRinput_getByteStream: 
 QRinput_encodeModeAn: 
-free_rs_cache: (free_rs_char free)
+free_rs_cache: {free, free_rs_char}
 encode_ver1to10: 
 QRinput_checkModeNum: 
 QRcode_encodeDataReal: 

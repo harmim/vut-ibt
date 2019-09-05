@@ -10,7 +10,7 @@ _sigev_handler:
 npth_sigev_sigmask: 
 npth_setname_np: 
 npth_sendmsg: 
-npth_mutex_lock: (leave_npth __errno_location sem_wait __infer_skip)
+npth_mutex_lock: {__errno_location, __infer_skip, leave_npth, sem_wait}
 npth_accept: 
 npth_cond_timedwait: 
 __infer_globals_initializer_sceptre: 

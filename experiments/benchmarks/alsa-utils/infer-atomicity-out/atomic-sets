@@ -64,7 +64,7 @@ create_loopback:
 add_mixers: 
 ctl_event_check: 
 __infer_globals_initializer_use_syslog: 
-pcmjob_state: (snd_output_printf show_handle __variable_initialization snd_pcm_access_name snd_pcm_format_name)
+pcmjob_state: {__variable_initialization, show_handle, snd_output_printf, snd_pcm_access_name, snd_pcm_format_name}
 pcmjob_stop: 
 get_queued_playback_samples: 
 signal_handler_ignore: 

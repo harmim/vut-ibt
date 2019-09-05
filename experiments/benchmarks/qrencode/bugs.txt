@@ -1,4 +1,4 @@
-Found 88 issues
+Found 110 issues
 
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1219: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'free' should be called atomically.
@@ -128,6 +128,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1823: error: ATOMICITY_VIOLATION
   1824.       return bestMask;
   1825.     }
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1816: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'free' and 'malloc' should be called atomically.
+  1814.           bestMask = mask;
+  1815.           void *return_value_malloc$2;
+  1816. >         return_value_malloc$2=malloc((unsigned long int)(width * width));
+  1817.           mask = (unsigned char *)return_value_malloc$2;
+  1818.         }
+
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1823: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
   1821.       }
@@ -192,6 +200,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1919: error: ATOMICITY_VIOLATION
   1920.           return (struct anonymous$5 *)(void *)0;
   1921.         }
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1926: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'calloc' should be called atomically.
+  1924.         {
+  1925.           void *return_value_calloc$4;
+  1926. >         return_value_calloc$4=calloc((unsigned long int)1, sizeof(struct anonymous$3) /*32ul*/ );
+  1927.           raw->rsblock = (struct anonymous$3 *)return_value_calloc$4;
+  1928.           if(raw->rsblock == ((struct anonymous$3 *)NULL))
+
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1918: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
   1916.         if(raw->ecccode == ((unsigned char *)NULL))
@@ -199,6 +215,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1918: error: ATOMICITY_VIOLATION
   1918. >         free((void *)raw->datacode);
   1919.           free((void *)raw);
   1920.           return (struct anonymous$5 *)(void *)0;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1998: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'memset' should be called atomically.
+  1996.         p = p + (signed long int)width;
+  1997.       }
+  1998. >     memset((void *)(frame + (signed long int)(width * 7)), 0xc0, (unsigned long int)8);
+  1999.       memset((void *)(frame + (signed long int)(width * 8) + (signed long int)1), 0x84, (unsigned long int)8);
+  2000.       p = frame + (signed long int)width + (signed long int)8;
 
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1989: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'malloc' and 'memset' should be called atomically.
@@ -224,6 +248,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1990: error: ATOMICITY_VIOLATION
   1991.       p = frame;
   1992.       y = 0;
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:1998: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'putFinderPattern$link1' and 'memset' should be called atomically.
+  1996.         p = p + (signed long int)width;
+  1997.       }
+  1998. >     memset((void *)(frame + (signed long int)(width * 7)), 0xc0, (unsigned long int)8);
+  1999.       memset((void *)(frame + (signed long int)(width * 8) + (signed long int)1), 0x84, (unsigned long int)8);
+  2000.       p = frame + (signed long int)width + (signed long int)8;
+
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2389: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'free' should be called atomically.
   2387.         {
@@ -239,6 +271,22 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2399: error: ATOMICITY_VIOLATION
   2399. >     free((void *)mask);
   2400.       return bestMask;
   2401.     }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2363: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'malloc' should be called atomically.
+  2361.     signed int w2 = width * width;
+  2362.     void *return_value_malloc$1;
+  2363. >   return_value_malloc$1=malloc((unsigned long int)w2);
+  2364.     mask = (unsigned char *)return_value_malloc$1;
+  2365.     if(mask == ((unsigned char *)NULL))
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2392: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'free' and 'malloc' should be called atomically.
+  2390.           bestMask = mask;
+  2391.           void *return_value_malloc$5;
+  2392. >         return_value_malloc$5=malloc((unsigned long int)w2);
+  2393.           mask = (unsigned char *)return_value_malloc$5;
+  2394.         }
 
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:2399: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
@@ -488,6 +536,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5675: error: ATOMICITY_VIOLATION
   5676.           return (struct anonymous$4 *)(void *)0;
   5677.         }
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5683: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'calloc' should be called atomically.
+  5681.           raw->blocks = spec[(signed long int)0] + spec[(signed long int)3];
+  5682.           void *return_value_calloc$3;
+  5683. >         return_value_calloc$3=calloc((unsigned long int)raw->blocks, sizeof(struct anonymous$3) /*32ul*/ );
+  5684.           raw->rsblock = (struct anonymous$3 *)return_value_calloc$3;
+  5685.           if(raw->rsblock == ((struct anonymous$3 *)NULL))
+
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5674: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'malloc' and 'free' should be called atomically.
   5672.         if(raw->ecccode == ((unsigned char *)NULL))
@@ -504,6 +560,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5794: error: ATOMICITY_VIOLATION
   5795.         p = frame + (signed long int)(width * (width - 11));
   5796.         v = verinfo;
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5794: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentPattern' and 'QRspec_getVersionPattern' should be called atomically.
+  5792.       if(version >= 7)
+  5793.       {
+  5794. >       verinfo=QRspec_getVersionPattern(version);
+  5795.         p = frame + (signed long int)(width * (width - 11));
+  5796.         v = verinfo;
+
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5791: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'QRspec_putAlignmentPattern' and 'QRspec_putAlignmentMarker' should be called atomically.
   5789.         q = q + (signed long int)width;
@@ -512,6 +576,30 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5791: error: ATOMICITY_VIOLATION
   5792.       if(version >= 7)
   5793.       {
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5762: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'memset' should be called atomically.
+  5760.         q = q + (signed long int)width;
+  5761.       }
+  5762. >     memset((void *)(frame + (signed long int)(width * 7)), 0xc0, (unsigned long int)8);
+  5763.       memset((void *)((frame + (signed long int)(width * 8)) - (signed long int)8), 0xc0, (unsigned long int)8);
+  5764.       memset((void *)(frame + (signed long int)(width * (width - 8))), 0xc0, (unsigned long int)8);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5749: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'putFinderPattern' should be called atomically.
+  5747.       memset((void *)frame, 0, (unsigned long int)(width * width));
+  5748.       putFinderPattern(frame, width, 0, 0);
+  5749. >     putFinderPattern(frame, width, width - 7, 0);
+  5750.       putFinderPattern(frame, width, 0, width - 7);
+  5751.       p = frame;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5750: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'putFinderPattern' should be called atomically.
+  5748.       putFinderPattern(frame, width, 0, 0);
+  5749.       putFinderPattern(frame, width, width - 7, 0);
+  5750. >     putFinderPattern(frame, width, 0, width - 7);
+  5751.       p = frame;
+  5752.       q = frame + (signed long int)(width * (width - 7));
+
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5747: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'malloc' and 'memset' should be called atomically.
   5745.     else
@@ -519,6 +607,14 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5747: error: ATOMICITY_VIOLATION
   5747. >     memset((void *)frame, 0, (unsigned long int)(width * width));
   5748.       putFinderPattern(frame, width, 0, 0);
   5749.       putFinderPattern(frame, width, width - 7, 0);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5791: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'memset' and 'QRspec_putAlignmentPattern' should be called atomically.
+  5789.         q = q + (signed long int)width;
+  5790.       }
+  5791. >     QRspec_putAlignmentPattern(version, frame, width);
+  5792.       if(version >= 7)
+  5793.       {
 
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5748: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions 'memset' and 'putFinderPattern' should be called atomically.
@@ -551,6 +647,70 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5750: error: ATOMICITY_VIOLATION
   5750. >     putFinderPattern(frame, width, 0, width - 7);
   5751.       p = frame;
   5752.       q = frame + (signed long int)(width * (width - 7));
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:5762: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'putFinderPattern' and 'memset' should be called atomically.
+  5760.         q = q + (signed long int)width;
+  5761.       }
+  5762. >     memset((void *)(frame + (signed long int)(width * 7)), 0xc0, (unsigned long int)8);
+  5763.       memset((void *)((frame + (signed long int)(width * 8)) - (signed long int)8), 0xc0, (unsigned long int)8);
+  5764.       memset((void *)(frame + (signed long int)(width * (width - 8))), 0xc0, (unsigned long int)8);
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6062: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentMarker' and '__variable_initialization' should be called atomically.
+  6060.         x = alignmentPattern[(signed long int)version][(signed long int)0];
+  6061.         y = alignmentPattern[(signed long int)version][(signed long int)0];
+  6062. >       QRspec_putAlignmentMarker(frame, width, x, y);
+  6063.       }
+  6064.   
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6071: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentMarker' and '__variable_initialization' should be called atomically.
+  6069.         for( ; !(x >= w + -1); x = x + 1)
+  6070.         {
+  6071. >         QRspec_putAlignmentMarker(frame, width, 6, cx);
+  6072.           QRspec_putAlignmentMarker(frame, width, cx, 6);
+  6073.           cx = cx + d;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6072: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentMarker' and '__variable_initialization' should be called atomically.
+  6070.         {
+  6071.           QRspec_putAlignmentMarker(frame, width, 6, cx);
+  6072. >         QRspec_putAlignmentMarker(frame, width, cx, 6);
+  6073.           cx = cx + d;
+  6074.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6083: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'QRspec_putAlignmentMarker' and '__variable_initialization' should be called atomically.
+  6081.           for( ; !(x >= w + -1); x = x + 1)
+  6082.           {
+  6083. >           QRspec_putAlignmentMarker(frame, width, cx, cy);
+  6084.             cx = cx + d;
+  6085.           }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6071: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'QRspec_putAlignmentMarker' should be called atomically.
+  6069.         for( ; !(x >= w + -1); x = x + 1)
+  6070.         {
+  6071. >         QRspec_putAlignmentMarker(frame, width, 6, cx);
+  6072.           QRspec_putAlignmentMarker(frame, width, cx, 6);
+  6073.           cx = cx + d;
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6072: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'QRspec_putAlignmentMarker' should be called atomically.
+  6070.         {
+  6071.           QRspec_putAlignmentMarker(frame, width, 6, cx);
+  6072. >         QRspec_putAlignmentMarker(frame, width, cx, 6);
+  6073.           cx = cx + d;
+  6074.         }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6083: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions '__variable_initialization' and 'QRspec_putAlignmentMarker' should be called atomically.
+  6081.           for( ; !(x >= w + -1); x = x + 1)
+  6082.           {
+  6083. >           QRspec_putAlignmentMarker(frame, width, cx, cy);
+  6084.             cx = cx + d;
+  6085.           }
 
 qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6553: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'free' should be called atomically.
@@ -704,6 +864,22 @@ qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6837: error: ATOMICITY_VIOLATION
   6838.                         free((void *)rs->index_of);
   6839.                         free((void *)rs);
 
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6863: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'modnn' should be called atomically.
+  6861.                             if(!((signed int)rs->genpoly[(signed long int)j] == 0))
+  6862.                             {
+  6863. >                             return_value_modnn$5=modnn(rs, (signed int)rs->index_of[(signed long int)rs->genpoly[(signed long int)j]] + root);
+  6864.                               rs->genpoly[(signed long int)j] = (unsigned char)((signed int)rs->genpoly[(signed long int)(j - 1)] ^ (signed int)rs->alpha_to[(signed long int)return_value_modnn$5]);
+  6865.                             }
+
+qrencode-3.4.4_tests_.libs_pthread_qrencode.c:6870: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'malloc' and 'modnn' should be called atomically.
+  6868.                               rs->genpoly[(signed long int)j] = rs->genpoly[(signed long int)(j - 1)];
+  6869.                           signed int return_value_modnn$6;
+  6870. >                         return_value_modnn$6=modnn(rs, (signed int)rs->index_of[(signed long int)rs->genpoly[(signed long int)0]] + root);
+  6871.                           rs->genpoly[(signed long int)0] = rs->alpha_to[(signed long int)return_value_modnn$6];
+  6872.                           i = i + 1;
+
 Summary of the reports
 
-  ATOMICITY_VIOLATION: 88
+  ATOMICITY_VIOLATION: 110

@@ -5,7 +5,7 @@ main:
 get_debugfileprefix: 
 string_to_policy: 
 check_privs: 
-semathread: (gettimeofday)
+semathread: {gettimeofday}
 sched_setattr: 
 warn: 
 err_msg: 

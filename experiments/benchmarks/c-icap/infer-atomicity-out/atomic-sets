@@ -5,7 +5,7 @@ __infer_globals_initializer_acl_http_req_header:
 __infer_globals_initializer_atol_err_erange: 
 get_content_length: 
 __infer_globals_initializer_ci_options_headers: 
-pool_allocator_alloc: (malloc)
+pool_allocator_alloc: {malloc}
 ci_client_icapfilter: 
 ci_list_copy_handler: 
 posix_shared_mem_print_info: 
@@ -241,7 +241,7 @@ ci_connection_destroy:
 fmt_service: 
 common_mutex_destroy: 
 ci_list_pop_back: 
-add_mutex: (pthread_atfork)
+add_mutex: {pthread_atfork}
 ci_request_pack: 
 uint64_free: 
 datatype_free: 
@@ -282,10 +282,10 @@ extend_object_type:
 makeTemplatePathFileName: 
 get_http_req_header: 
 ci_vector_create: 
-pool_allocator_reset: (free)
+pool_allocator_reset: {free}
 fmt_gmttime: 
 ci_request_destroy: 
-templateTryLoadText: (templateFind __variable_initialization strcmp printf) (templateFindFree __variable_initialization templateFree __infer_skip ci_membuf_free ci_array_destroy ci_buffer_free free printf ci_mem_allocator_destroy ci_object_pool_free malloc) (templateFindFree __variable_initialization templateFree __infer_skip ci_membuf_free ci_array_destroy ci_buffer_free free printf ci_mem_allocator_destroy ci_object_pool_free malloc strdup) (templateFindFree __variable_initialization templateFree __infer_skip ci_membuf_free ci_array_destroy ci_buffer_free free printf ci_mem_allocator_destroy ci_object_pool_free strdup)
+templateTryLoadText: {__variable_initialization, printf, strcmp, templateFind} {__infer_skip, __variable_initialization, ci_array_destroy, ci_buffer_free, ci_mem_allocator_destroy, ci_membuf_free, ci_object_pool_free, free, printf, strdup, templateFindFree, templateFree} {__infer_skip, __variable_initialization, ci_array_destroy, ci_buffer_free, ci_mem_allocator_destroy, ci_membuf_free, ci_object_pool_free, free, malloc, printf, strdup, templateFindFree, templateFree} {__infer_skip, __variable_initialization, ci_array_destroy, ci_buffer_free, ci_mem_allocator_destroy, ci_membuf_free, ci_object_pool_free, free, malloc, printf, templateFindFree, templateFree}
 __infer_globals_initializer___intl_malloc: 
 ci_shared_mem_create: 
 common_mutex_lock: 
@@ -305,7 +305,7 @@ __infer_globals_initializer_acl_data_type:
 __infer_globals_initializer_ci_local_cache: 
 __infer_globals_initializer_options: 
 ci_stat_area_destroy: 
-template_release: (templateFree __infer_skip ci_membuf_free ci_array_destroy __variable_initialization ci_buffer_free free printf ci_mem_allocator_destroy ci_object_pool_free)
+template_release: {__infer_skip, __variable_initialization, ci_array_destroy, ci_buffer_free, ci_mem_allocator_destroy, ci_membuf_free, ci_object_pool_free, free, printf, templateFree}
 fmt_request: 
 ci_acl_add_data: 
 ci_membuf_attr_add: 
@@ -402,7 +402,7 @@ ci_vector_add:
 ci_service_set_preview: 
 release_text_table_entry: 
 ci_magic_data_type: 
-del_mutex: (free)
+del_mutex: {free}
 ci_thread_join: 
 ci_access_entry_release: 
 ci_simple_file_new: 
@@ -465,7 +465,7 @@ __infer_globals_initializer_utf_boundaries:
 ci_client_http_headers_completed: 
 ci_simple_file_to_const_string: 
 ci_service_set_max_connections: 
-ci_txt_template_reset: (templateFree __infer_skip ci_membuf_free ci_array_destroy __variable_initialization ci_buffer_free free printf ci_mem_allocator_destroy ci_object_pool_free)
+ci_txt_template_reset: {__infer_skip, __variable_initialization, ci_array_destroy, ci_buffer_free, ci_mem_allocator_destroy, ci_membuf_free, ci_object_pool_free, free, printf, templateFree}
 pool_allocator_build: 
 ci_str_vector_search: 
 __infer_globals_initializer_init_child_mutexes_scheduled: 
@@ -643,7 +643,7 @@ ci_copy_connection:
 ci_service_add_xopts: 
 free_cmp_uint64_data: 
 release_body_system: 
-pool_allocator_free: (free)
+pool_allocator_free: {free}
 client_prepere_body_chunk: 
 __infer_globals_initializer_ci_str_ext_ops: 
 file_proc_mutex_print_info: 

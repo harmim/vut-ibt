@@ -1,4 +1,4 @@
-Found 344 issues
+Found 354 issues
 
 sslsplit-0.4.11+dfsg_sslsplit.test.c:6457: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -936,6 +936,30 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:9720: error: ATOMICITY_VIOLATION
   9721.       do
   9722.       {
 
+sslsplit-0.4.11+dfsg_sslsplit.test.c:9718: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'CRYPTO_add_lock' and 'sk_dup' should be called atomically.
+  9716.       ssl_x509_refcount_inc(c->crt);
+  9717.       struct stack_st *return_value_sk_dup$2;
+  9718. >     return_value_sk_dup$2=sk_dup((struct stack_st *)(1 != 0 ? chain : (struct stack_st_X509 *)0));
+  9719.       c->chain = (struct stack_st_X509 *)return_value_sk_dup$2;
+  9720.       signed int i = 0;
+
+sslsplit-0.4.11+dfsg_sslsplit.test.c:9723: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'CRYPTO_add_lock' and 'sk_num' should be called atomically.
+  9721.       do
+  9722.       {
+  9723. >       return_value_sk_num$3=sk_num((struct stack_st *)c->chain);
+  9724.         if(i >= return_value_sk_num$3)
+  9725.           break;
+
+sslsplit-0.4.11+dfsg_sslsplit.test.c:9716: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'CRYPTO_add_lock' and 'ssl_x509_refcount_inc' should be called atomically.
+  9714.       ssl_key_refcount_inc(c->key);
+  9715.       c->crt = crt;
+  9716. >     ssl_x509_refcount_inc(c->crt);
+  9717.       struct stack_st *return_value_sk_dup$2;
+  9718.       return_value_sk_dup$2=sk_dup((struct stack_st *)(1 != 0 ? chain : (struct stack_st_X509 *)0));
+
 sslsplit-0.4.11+dfsg_sslsplit.test.c:9723: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions '__variable_initialization' and 'sk_num' should be called atomically.
   9721.       do
@@ -991,6 +1015,22 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:9729: error: ATOMICITY_VIOLATION
   9729. >       ssl_x509_refcount_inc((struct x509_st *)return_value_sk_value$4);
   9730.         i = i + 1;
   9731.       }
+
+sslsplit-0.4.11+dfsg_sslsplit.test.c:9718: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ssl_x509_refcount_inc' and 'sk_dup' should be called atomically.
+  9716.       ssl_x509_refcount_inc(c->crt);
+  9717.       struct stack_st *return_value_sk_dup$2;
+  9718. >     return_value_sk_dup$2=sk_dup((struct stack_st *)(1 != 0 ? chain : (struct stack_st_X509 *)0));
+  9719.       c->chain = (struct stack_st_X509 *)return_value_sk_dup$2;
+  9720.       signed int i = 0;
+
+sslsplit-0.4.11+dfsg_sslsplit.test.c:9723: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ssl_x509_refcount_inc' and 'sk_num' should be called atomically.
+  9721.       do
+  9722.       {
+  9723. >       return_value_sk_num$3=sk_num((struct stack_st *)c->chain);
+  9724.         if(i >= return_value_sk_num$3)
+  9725.           break;
 
 sslsplit-0.4.11+dfsg_sslsplit.test.c:9766: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'X509_free' should be called atomically.
@@ -2384,6 +2424,14 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:19761: error: ATOMICITY_VIOLATION
   19762.         return res;
   19763.       }
 
+sslsplit-0.4.11+dfsg_sslsplit.test.c:19761: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sk_value' and 'sk_pop_free' should be called atomically.
+  19759.         }
+  19760.         res[(signed long int)j] = (char *)(void *)0;
+  19761. >       sk_pop_free((struct stack_st *)(1 != 0 ? aias : (struct stack_st_ACCESS_DESCRIPTION *)0), (void (*)(void *))(1 != 0 ? ACCESS_DESCRIPTION_free : (void (*)(struct ACCESS_DESCRIPTION_st *))0));
+  19762.         return res;
+  19763.       }
+
 sslsplit-0.4.11+dfsg_sslsplit.test.c:19771: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
   19769.   signed int ssl_x509_fingerprint_sha1(struct x509_st *crt, unsigned char *fpr)
@@ -2464,6 +2512,14 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:20158: error: ATOMICITY_VIOLATION
   20159.           gn = (struct GENERAL_NAME_st *)return_value_sk_value$7;
   20160.           if(gn->type == 2)
 
+sslsplit-0.4.11+dfsg_sslsplit.test.c:20152: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sk_value' and 'sk_num' should be called atomically.
+  20150.         do
+  20151.         {
+  20152. >         return_value_sk_num$6=sk_num((struct stack_st *)(1 != 0 ? altnames : (struct stack_st_GENERAL_NAME *)0));
+  20153.           if(i >= return_value_sk_num$6)
+  20154.             break;
+
 sslsplit-0.4.11+dfsg_sslsplit.test.c:20296: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function 'X509_free' should be called atomically.
   20294.     }
@@ -2495,6 +2551,14 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:20346: error: ATOMICITY_VIOLATION
   20346. >         return_value_sk_value$4=sk_value((struct stack_st *)(1 != 0 ? altnames : (struct stack_st_GENERAL_NAME *)0), i);
   20347.           gn = (struct GENERAL_NAME_st *)return_value_sk_value$4;
   20348.           if(gn->type == 2)
+
+sslsplit-0.4.11+dfsg_sslsplit.test.c:20340: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'sk_value' and 'sk_num' should be called atomically.
+  20338.         do
+  20339.         {
+  20340. >         return_value_sk_num$3=sk_num((struct stack_st *)(1 != 0 ? altnames : (struct stack_st_GENERAL_NAME *)0));
+  20341.           if(i >= return_value_sk_num$3)
+  20342.             break;
 
 sslsplit-0.4.11+dfsg_sslsplit.test.c:20384: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -2592,6 +2656,14 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:20936: error: ATOMICITY_VIOLATION
   20937.                 do
   20938.                 {
 
+sslsplit-0.4.11+dfsg_sslsplit.test.c:20936: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'CRYPTO_add_lock' and '__variable_initialization' should be called atomically.
+  20934.                   sk_push((struct stack_st *)*chain, (void *)(1 != 0 ? tmpcrt : (struct x509_st *)0));
+  20935.                 ssl_x509_refcount_inc(tmpcrt);
+  20936. >               signed int i = 0;
+  20937.                 do
+  20938.                 {
+
 sslsplit-0.4.11+dfsg_sslsplit.test.c:20939: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Functions '__variable_initialization' and 'sk_num' should be called atomically.
   20937.                 do
@@ -2631,6 +2703,14 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:20946: error: ATOMICITY_VIOLATION
   20946. >                 ssl_x509_refcount_inc(tmpcrt);
   20947.                   sk_push((struct stack_st *)*chain, (void *)(1 != 0 ? tmpcrt : (struct x509_st *)0));
   20948.                   i = i + 1;
+
+sslsplit-0.4.11+dfsg_sslsplit.test.c:20936: error: ATOMICITY_VIOLATION
+  Atomicity Violation! - Functions 'ssl_x509_refcount_inc' and '__variable_initialization' should be called atomically.
+  20934.                   sk_push((struct stack_st *)*chain, (void *)(1 != 0 ? tmpcrt : (struct x509_st *)0));
+  20935.                 ssl_x509_refcount_inc(tmpcrt);
+  20936. >               signed int i = 0;
+  20937.                 do
+  20938.                 {
 
 sslsplit-0.4.11+dfsg_sslsplit.test.c:20984: error: ATOMICITY_VIOLATION
   Atomicity Violation! - Function '__variable_initialization' should be called atomically.
@@ -2754,4 +2834,4 @@ sslsplit-0.4.11+dfsg_sslsplit.test.c:22121: error: ATOMICITY_VIOLATION
 
 Summary of the reports
 
-  ATOMICITY_VIOLATION: 344
+  ATOMICITY_VIOLATION: 354
