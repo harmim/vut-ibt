@@ -49,12 +49,18 @@
   Vojnar, T.: Verifying Concurrent Programs Using Contracts, In: Proc. of
   ICST'17, IEEE, 2017.
 
----
+## Implementation
+The implementation is in the repository
+[harmim/infer](https://github.com/harmim/infer). It is a fork of the repository
+[facebook/infer](https://github.com/facebook/infer). It is implemented under
+the branch [atomicity-sets](https://github.com/harmim/infer/tree/atomicity-sets),
+see the [diff](https://github.com/facebook/infer/compare/master...harmim:atomicity-sets).
 
-- [TODO list](./TODO.md)
-- [Implementation](./IMPLEMENTATION.md)
+## Wiki
+More information about the product, including examples, installation, and usage
+are available at the [Wiki](https://github.com/harmim/infer/wiki/Atomer:-Atomicity-Violations-Analyser).
 
-##### Useful links:
+## Useful links:
 - [Facebook Infer](https://fbinfer.com)
 - [Facebook Infer GitHub](https://github.com/facebook/infer)
 - [OCaml](https://ocaml.org)
@@ -71,3 +77,4 @@
 - [How to Use C Mutex Lock](https://www.thegeekstuff.com/2012/05/c-mutex-examples)
 - [A True Positives Theorem for a Static Race Detector](https://arxiv.org/abs/1811.03503)
 - [Gluon](https://github.com/trxsys/gluon)
+- [VeriFIT Static Analysis Plugins](http://www.fit.vutbr.cz/research/groups/verifit/tools/sa-plugins)
