@@ -4,7 +4,7 @@ main:
 f1: 
 f2: 
 f5: 
-test_selection: {f2} {f2, f3} {f2, f4} {f1}
+test_selection: {f1} {f2} {f2, f3} {f2, f4}
 f3: 
 ff: 
 f4: 
