@@ -15,33 +15,33 @@ void ff(void) { f3(); f1(); f4(); } // (f1, f4); (f3, f1)
 
 void atomic_sequences(void)
 {
-	pthread_mutex_lock(&lock);
+	pthread_mutex_lock(&lock); // {f1, f2, f3}
 	{
-		f1(); f2(); f3(); // {f1, f2, f3}
+		f1(); f2(); f3();
 	}
 	pthread_mutex_unlock(&lock);
 
 	g();
 
-	pthread_mutex_lock(&lock);
+	pthread_mutex_lock(&lock); // {f2, f4}
 	{
-		f4(); f2(); // {f2, f4}
+		f4(); f2();
 	}
 	pthread_mutex_unlock(&lock);
 
 	g();
 
-	pthread_mutex_lock(&lock);
+	pthread_mutex_lock(&lock); // {f1, f3}
 	{
-		f1(); f3(); // {f1, f3}
+		f1(); f3();
 	}
 	pthread_mutex_unlock(&lock);
 
 	g();
 
-	pthread_mutex_lock(&lock);
+	pthread_mutex_lock(&lock); // {f1, f3, f4, ff}
 	{
-		ff(); f3(); // {f1, f3, f4, ff}
+		ff(); f3();
 	}
 	pthread_mutex_unlock(&lock);
 }
@@ -79,8 +79,8 @@ void test2(void)
 
 void test_only_lock(void)
 {
-	pthread_mutex_lock(&lock);
-	f1(); f2(); // {f1, f2}
+	pthread_mutex_lock(&lock); // {f1, f2}
+	f1(); f2();
 }
 
 
@@ -114,12 +114,12 @@ void test_iteration(void)
 
 	g();
 
-	pthread_mutex_lock(&lock);
+	pthread_mutex_lock(&lock); // {f1, f2}; {f1, f2, f3}
 	{
-		f1(); f2(); // {f1, f2}
+		f1(); f2();
 		while (c > 0)
 		{
-			f2(); f3(); // {f1, f2, f3}
+			f2(); f3();
 		}
 	}
 	pthread_mutex_unlock(&lock);
@@ -158,9 +158,9 @@ void test_selection(void)
 
 void test_nested(void)
 {
-	pthread_mutex_lock(&lock);
+	pthread_mutex_lock(&lock); // {f1, f3, f4, ff}
 	{
-		ff(); // {f1, f3, f4, ff}
+		ff();
 	}
 	pthread_mutex_unlock(&lock);
 
