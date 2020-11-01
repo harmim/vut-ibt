@@ -1,15 +1,4 @@
-test1: 
 test_only_lock: {f1, f2}
-main: 
-f1: 
 atomic_sequences: {f1, f2, f3} {f1, f3} {f1, f3, f4, ff} {f2, f4}
-f2: 
-test_selection: 
-f3: 
-ff: 
-g: 
-f4: 
-test2: 
 test_nested: {f1, f3, f4, ff}
-test_only_unlock: 
 test_iteration: {f1, f2} {f1, f2, f3}
