@@ -1,5 +1,5 @@
 #0
-main.c:13: error: ATOMICITY_VIOLATION
+main.c:13: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f4' should be called atomically.
   11. void f4(void) {}
   12. void g(void) {}
@@ -9,7 +9,7 @@ main.c:13: error: ATOMICITY_VIOLATION
   15. 
 
 #1
-main.c:13: error: ATOMICITY_VIOLATION
+main.c:13: error: Atomicity Violation
   Atomicity Violation! - Functions 'f3' and 'f1' should be called atomically.
   11. void f4(void) {}
   12. void g(void) {}
@@ -19,7 +19,7 @@ main.c:13: error: ATOMICITY_VIOLATION
   15. 
 
 #2
-main.c:52: error: ATOMICITY_VIOLATION
+main.c:52: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
   50. void test1(void)
   51. {
@@ -29,7 +29,7 @@ main.c:52: error: ATOMICITY_VIOLATION
   54. 	f1(); g(); f2(); g();
 
 #3
-main.c:56: error: ATOMICITY_VIOLATION
+main.c:56: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
   54. 	f1(); g(); f2(); g();
   55. 
@@ -39,7 +39,7 @@ main.c:56: error: ATOMICITY_VIOLATION
   58. 	f1(); f2(); f3(); g(); // (f1, f2); (f2, f3)
 
 #4
-main.c:58: error: ATOMICITY_VIOLATION
+main.c:58: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
   56. 	f1(); f1(); f2(); g(); // (f1, f2)
   57. 
@@ -49,7 +49,7 @@ main.c:58: error: ATOMICITY_VIOLATION
   60. 	f1(); g(); f2(); g(); f3();
 
 #5
-main.c:58: error: ATOMICITY_VIOLATION
+main.c:58: error: Atomicity Violation
   Atomicity Violation! - Functions 'f2' and 'f3' should be called atomically.
   56. 	f1(); f1(); f2(); g(); // (f1, f2)
   57. 
@@ -59,7 +59,7 @@ main.c:58: error: ATOMICITY_VIOLATION
   60. 	f1(); g(); f2(); g(); f3();
 
 #6
-main.c:68: error: ATOMICITY_VIOLATION
+main.c:68: error: Atomicity Violation
   Atomicity Violation! - Functions 'f2' and 'f4' should be called atomically.
   66. 	f4(); f2(); g(); // (f4, f2)
   67. 
@@ -69,7 +69,7 @@ main.c:68: error: ATOMICITY_VIOLATION
   70. 	f4();
 
 #7
-main.c:76: error: ATOMICITY_VIOLATION
+main.c:76: error: Atomicity Violation
   Atomicity Violation! - Functions 'f3' and 'f4' should be called atomically.
   74. 	g();
   75. 
@@ -79,7 +79,7 @@ main.c:76: error: ATOMICITY_VIOLATION
   78. 
 
 #8
-main.c:66: error: ATOMICITY_VIOLATION
+main.c:66: error: Atomicity Violation
   Atomicity Violation! - Functions 'f4' and 'f2' should be called atomically.
   64. void test2(void)
   65. {
@@ -89,7 +89,7 @@ main.c:66: error: ATOMICITY_VIOLATION
   68. 	f2(); f4(); g(); // (f2, f4)
 
 #9
-main.c:73: error: ATOMICITY_VIOLATION
+main.c:73: error: Atomicity Violation
   Atomicity Violation! - Functions 'f4' and 'f2' should be called atomically.
   71. 	pthread_mutex_lock(&lock);
   72. 	pthread_mutex_unlock(&lock);
@@ -99,7 +99,7 @@ main.c:73: error: ATOMICITY_VIOLATION
   75. 
 
 #10
-main.c:89: error: ATOMICITY_VIOLATION
+main.c:89: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
   87. void test_only_unlock(void)
   88. {
@@ -109,7 +109,7 @@ main.c:89: error: ATOMICITY_VIOLATION
   91. }
 
 #11
-main.c:100: error: ATOMICITY_VIOLATION
+main.c:100: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
    98. 	while (c > 0)
    99. 	{
@@ -119,7 +119,7 @@ main.c:100: error: ATOMICITY_VIOLATION
   102. 
 
 #12
-main.c:106: error: ATOMICITY_VIOLATION
+main.c:106: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
   104. 	while (c > 0)
   105. 	{
@@ -129,7 +129,7 @@ main.c:106: error: ATOMICITY_VIOLATION
   108. 	f3(); // (f1, f3); (f2, f3)
 
 #13
-main.c:108: error: ATOMICITY_VIOLATION
+main.c:108: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f3' should be called atomically.
   106. 		f2(); // (f1, f2)
   107. 	}
@@ -139,7 +139,7 @@ main.c:108: error: ATOMICITY_VIOLATION
   110. 	for (; c > 0; f1()) // (f3, f1)
 
 #14
-main.c:112: error: ATOMICITY_VIOLATION
+main.c:112: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f3' should be called atomically.
   110. 	for (; c > 0; f1()) // (f3, f1)
   111. 	{
@@ -149,7 +149,7 @@ main.c:112: error: ATOMICITY_VIOLATION
   114. 
 
 #15
-main.c:100: error: ATOMICITY_VIOLATION
+main.c:100: error: Atomicity Violation
   Atomicity Violation! - Functions 'f2' and 'f1' should be called atomically.
    98. 	while (c > 0)
    99. 	{
@@ -159,7 +159,7 @@ main.c:100: error: ATOMICITY_VIOLATION
   102. 
 
 #16
-main.c:103: error: ATOMICITY_VIOLATION
+main.c:103: error: Atomicity Violation
   Atomicity Violation! - Functions 'f2' and 'f1' should be called atomically.
   101. 	}
   102. 
@@ -169,7 +169,7 @@ main.c:103: error: ATOMICITY_VIOLATION
   105. 	{
 
 #17
-main.c:108: error: ATOMICITY_VIOLATION
+main.c:108: error: Atomicity Violation
   Atomicity Violation! - Functions 'f2' and 'f3' should be called atomically.
   106. 		f2(); // (f1, f2)
   107. 	}
@@ -179,7 +179,7 @@ main.c:108: error: ATOMICITY_VIOLATION
   110. 	for (; c > 0; f1()) // (f3, f1)
 
 #18
-main.c:110: error: ATOMICITY_VIOLATION
+main.c:110: error: Atomicity Violation
   Atomicity Violation! - Functions 'f3' and 'f1' should be called atomically.
   108. 	f3(); // (f1, f3); (f2, f3)
   109. 
@@ -189,7 +189,7 @@ main.c:110: error: ATOMICITY_VIOLATION
   112. 		f3(); // (f1, f3)
 
 #19
-main.c:136: error: ATOMICITY_VIOLATION
+main.c:136: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f2' should be called atomically.
   134. 	if (c > 0)
   135. 	{
@@ -199,7 +199,7 @@ main.c:136: error: ATOMICITY_VIOLATION
   138. 	else
 
 #20
-main.c:140: error: ATOMICITY_VIOLATION
+main.c:140: error: Atomicity Violation
   Atomicity Violation! - Functions 'f1' and 'f3' should be called atomically.
   138. 	else
   139. 	{
@@ -209,7 +209,7 @@ main.c:140: error: ATOMICITY_VIOLATION
   142. 	f3(); // (f2, f3)
 
 #21
-main.c:142: error: ATOMICITY_VIOLATION
+main.c:142: error: Atomicity Violation
   Atomicity Violation! - Functions 'f2' and 'f3' should be called atomically.
   140. 		f3(); // (f1, f3)
   141. 	}
@@ -219,7 +219,7 @@ main.c:142: error: ATOMICITY_VIOLATION
   144. 	g();
 
 #22
-main.c:153: error: ATOMICITY_VIOLATION
+main.c:153: error: Atomicity Violation
   Atomicity Violation! - Functions 'f4' and 'f2' should be called atomically.
   151. 	else if (c > 0)
   152. 	{
@@ -229,7 +229,7 @@ main.c:153: error: ATOMICITY_VIOLATION
   155. 	f2(); // (f4, f2)
 
 #23
-main.c:155: error: ATOMICITY_VIOLATION
+main.c:155: error: Atomicity Violation
   Atomicity Violation! - Functions 'f4' and 'f2' should be called atomically.
   153. 		f2(); // (f4, f2)
   154. 	}
@@ -239,7 +239,7 @@ main.c:155: error: ATOMICITY_VIOLATION
   157. 
 
 #24
-main.c:171: error: ATOMICITY_VIOLATION
+main.c:171: error: Atomicity Violation
   Atomicity Violation! - Functions 'f4' and 'f2' should be called atomically.
   169. 	g();
   170. 
@@ -249,7 +249,7 @@ main.c:171: error: ATOMICITY_VIOLATION
   173. 
 
 #25
-main.c:167: error: ATOMICITY_VIOLATION
+main.c:167: error: Atomicity Violation
   Atomicity Violation! - Functions 'f4' and 'ff' should be called atomically.
   165. 	pthread_mutex_unlock(&lock);
   166. 
@@ -259,7 +259,7 @@ main.c:167: error: ATOMICITY_VIOLATION
   169. 	g();
 
 #26
-main.c:167: error: ATOMICITY_VIOLATION
+main.c:167: error: Atomicity Violation
   Atomicity Violation! - Functions 'ff' and 'f3' should be called atomically.
   165. 	pthread_mutex_unlock(&lock);
   166. 
@@ -269,7 +269,7 @@ main.c:167: error: ATOMICITY_VIOLATION
   169. 	g();
 
 #27
-main.c:171: error: ATOMICITY_VIOLATION
+main.c:171: error: Atomicity Violation
   Atomicity Violation! - Functions 'ff' and 'f3' should be called atomically.
   169. 	g();
   170. 
@@ -279,4 +279,5 @@ main.c:171: error: ATOMICITY_VIOLATION
   173. 
 
 Found 28 issues
-  ATOMICITY_VIOLATION: 28
+                Issue Type(ISSUED_TYPE_ID): #
+  Atomicity Violation(ATOMICITY_VIOLATION): 28
