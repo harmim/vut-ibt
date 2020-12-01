@@ -4,3 +4,5 @@ test_selection: {f1} {f2} {f2, f3} {f2, f4}
 test2: {f1, f2} {f1, f4}
 test_nested: {f1, f2, f3, ff} {f1, f2, f4, f5, ff}
 test_iteration: {f1, f2} {f3}
+
+# Number of (analysed functions; atomic sets; atomic functions): (6; 13; 27)
