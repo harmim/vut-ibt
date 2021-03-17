@@ -33,7 +33,7 @@ for dir in */; do
 		fi
 
 		atomic_sets=0
-		if [[ -f "infer-atomicity-out/atomic-sets" ]]; then
+		if [[ -f "atomic-sets" ]]; then
 			infer analyze --atomic-sets-only
 			if [[ "${?}" -ne 0 ]]; then
 				failed "In '${dir}' 'infer analyze --atomic-sets-only' failed."
@@ -41,11 +41,11 @@ for dir in */; do
 			fi
 			atomic_sets=1
 
-			diff=$(git diff --name-only infer-atomicity-out/atomic-sets)
+			diff=$(diff -q infer-out/atomic-sets atomic-sets)
 			if [[ "${diff}" ]]; then
 				echo
-				git diff infer-atomicity-out/atomic-sets
-				failed "In '${dir}' 'infer-atomicity-out/atomic-sets' differs."
+				diff -u infer-out/atomic-sets atomic-sets
+				failed "In '${dir}' 'infer-out/atomic-sets' and 'atomic-sets' differs."
 			fi
 		fi
 
