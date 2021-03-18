@@ -5,7 +5,7 @@ NC='\033[0m'
 
 function clean
 {
-	rm -rf infer-out/ *.o *.class *.ast.sh
+	rm -rf infer-out/ *.o *.class *.ast.sh atomic-sets
 	echo
 }
 

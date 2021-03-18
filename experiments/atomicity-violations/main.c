@@ -10,7 +10,7 @@ void f2(void) {}
 void f3(void) {}
 void f4(void) {}
 void g(void) {}
-void ff(void) { f3(); f1(); f4(); } // (f1, f4); (f3, f1)
+void ff(void) { f3(); f1(); f4(); } // (f1, f4); (f3, f1); warning (f1, f4); warning (f3, f1)
 
 
 void atomic_sequences(void)
