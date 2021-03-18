@@ -5,7 +5,7 @@ NC='\033[0m'
 
 function clean
 {
-	rm -rf infer-out/ *.o *.class
+	rm -rf infer-out/ *.o *.class *.ast.sh
 	echo
 }
 
@@ -33,7 +33,7 @@ for dir in */; do
 		fi
 
 		atomic_sets=0
-		if [[ -f "atomic-sets" ]]; then
+		if [[ -f "atomic-sets-exp" ]]; then
 			infer analyze --atomic-sets-only
 			if [[ "${?}" -ne 0 ]]; then
 				failed "In '${dir}' 'infer analyze --atomic-sets-only' failed."
@@ -41,11 +41,11 @@ for dir in */; do
 			fi
 			atomic_sets=1
 
-			diff=$(diff -q infer-out/atomic-sets atomic-sets)
+			diff=$(diff -q atomic-sets atomic-sets-exp)
 			if [[ "${diff}" ]]; then
 				echo
-				diff -u infer-out/atomic-sets atomic-sets
-				failed "In '${dir}' 'infer-out/atomic-sets' and 'atomic-sets' differs."
+				diff -u atomic-sets atomic-sets-exp
+				failed "In '${dir}' 'atomic-sets' and 'atomic-sets-exp' differs."
 			fi
 		fi
 
