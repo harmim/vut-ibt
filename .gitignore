@@ -1,5 +1,8 @@
-*.ast.sh
-
 /bibliography/
 /testing-programs/
 /submission/
+
+*.o
+*.class
+*.ast.sh
+infer-out/

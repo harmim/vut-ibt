@@ -1,3 +1,5 @@
+// Author: Dominik Harmim <iharmim@fit.vut.cz>
+
 #include <stdlib.h>
 #include <pthread.h>
 
@@ -18,25 +20,19 @@ void test1(void)
 	f1(); f1();
 
 	pthread_mutex_lock(&lock); // {f1, f2}
-	{
-		f1(); f1(); f2();
-	}
+	f1(); f1(); f2();
 	pthread_mutex_unlock(&lock);
 
 	f1(); f1();
 
 	pthread_mutex_lock(&lock); // {f1, f3}
-	{
-		f1(); f3();
-	}
+	f1(); f3();
 	pthread_mutex_unlock(&lock);
 
 	f1();
 
 	pthread_mutex_lock(&lock); // {f1, f3}
-	{
-		f1(); f3(); f3();
-	}
+	f1(); f3(); f3();
 	pthread_mutex_unlock(&lock);
 }
 
@@ -46,17 +42,13 @@ void test2(void)
 	f1(); f1();
 
 	pthread_mutex_lock(&lock); // {f1, f2}
-	{
-		f1(); f1(); f2();
-	}
+	f1(); f1(); f2();
 	pthread_mutex_unlock(&lock);
 
 	f3(); f3();
 
 	pthread_mutex_lock(&lock); // {f1, f4}
-	{
-		f1(); f4(); f4();
-	}
+	f1(); f4(); f4();
 	pthread_mutex_unlock(&lock);
 }
 
@@ -87,18 +79,11 @@ void test_iteration(void)
 	}
 
 	pthread_mutex_lock(&lock); // {f1, f2}
-	{
-		f1(); f2();
-	}
+	f1(); f2();
 	pthread_mutex_unlock(&lock);
 
 	pthread_mutex_lock(&lock); // {f3}
-	{
-		while (c > 0)
-		{
-			f3();
-		}
-	}
+	while (c > 0) f3();
 	pthread_mutex_unlock(&lock);
 
 	f4();
@@ -123,18 +108,9 @@ void test_selection(void)
 	}
 
 	pthread_mutex_lock(&lock); // {f2}; {f2, f3}; {f2, f4}
-	{
-		f2();
-
-		if (c > 42)
-		{
-			f3();
-		}
-		else if (c > 0)
-		{
-			f4();
-		}
-	}
+	f2();
+	if (c > 42) f3();
+	else if (c > 0) f4();
 	pthread_mutex_unlock(&lock);
 
 	f4();
@@ -144,15 +120,11 @@ void test_selection(void)
 void test_nested(void)
 {
 	pthread_mutex_lock(&lock); // {f1, f2, f3, ff}
-	{
-		ff(); f3();
-	}
+	ff(); f3();
 	pthread_mutex_unlock(&lock);
 
 	pthread_mutex_lock(&lock); // {f1, f2, f4, f5, ff}
-	{
-		f4(); f5(); ff();
-	}
+	f4(); f5(); ff();
 	pthread_mutex_unlock(&lock);
 }
 
